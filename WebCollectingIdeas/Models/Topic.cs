@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace WebCollectingIdeas.Models
 {
-    public class Department
+    public class Topic
     {
         [Key]
         [DatabaseGeneratedAttribute(DatabaseGeneratedOption.Identity)]
@@ -11,5 +11,7 @@ namespace WebCollectingIdeas.Models
         [Required]
         public string Name { get; set; }
         public DateTime CreateDatetime { get; set; } = DateTime.Now;
+        public DateTime ClosureDate { get; set; }
+        public DateTime FinalClosureDate { get; set; }
     }
 }
