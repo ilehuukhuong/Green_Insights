@@ -65,7 +65,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 _db.Departments.Update(obj);
                 _db.SaveChanges();
-                TempData["Success"] = "Edit successfully";
+                TempData["Edited"] = "Edit successfully";
                 return RedirectToAction("index");
             }
             return View(obj);
@@ -102,11 +102,11 @@ namespace WebCollectingIdeas.Controllers
             {
                 _db.Departments.Remove(obj);
                 _db.SaveChanges();
-                TempData["Success"] = "Delete successfully";
+                TempData["Deleted"] = "Delete successfully";
                 return RedirectToAction("index");
             }
 
-            return View(obj);
+
 
         }
     }
