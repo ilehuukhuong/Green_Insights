@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using WebCollectingIdeas.Models;
+using CollectingIdeas.Models;
 
 namespace WebCollectingIdeas.Controllers
 {

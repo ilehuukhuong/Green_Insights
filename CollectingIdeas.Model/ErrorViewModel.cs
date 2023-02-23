@@ -1,4 +1,4 @@
-namespace WebCollectingIdeas.Models
+namespace CollectingIdeas.Models
 {
     public class ErrorViewModel
     {

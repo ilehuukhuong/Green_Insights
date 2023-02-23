@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
-using WebCollectingIdeas.Models;
+﻿using CollectingIdeas.Models;
+using Microsoft.EntityFrameworkCore;
 
-namespace WebCollectingIdeas.Data
+namespace CollectingIdeas.DataAccess.Data
 {
     public class ApplicationDbContext:DbContext
     {
