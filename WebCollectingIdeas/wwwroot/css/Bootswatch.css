@@ -14,6 +14,7 @@
  */
 @import url("https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=swap");
 
+
 :root {
     --bs-blue: #375a7f;
     --bs-indigo: #6610f2;
@@ -135,11 +136,15 @@ h1, .h1 {
 
 h2, .h2 {
     font-size: calc(1.375rem + 1.5vw);
+    color: #000;
+    text-shadow: 5px 2px 4px grey;
+    font-style: italic;
 }
 
 @media (min-width: 1200px) {
     h2, .h2 {
         font-size: 2.5rem;
+
     }
 }
 
@@ -177,11 +182,16 @@ h6, .h6 {
     margin-bottom: 1rem;
 }
 
- p {
+p {
     margin-top: 0;
     color: #fff;
     margin-bottom: 1rem;
+}
 
+a.pencil {
+    color: #f2f2f2;
+    text-decoration: underline;
+    margin: 5px;
 }
 
 
@@ -360,6 +370,10 @@ th {
 
 label {
     display: inline-block;
+    font-style: italic;
+    font-weight: 600;
+    color: #000;
+    margin: 5px
 }
 
 button {
@@ -2061,6 +2075,7 @@ progress {
 
     .table-bordered > :not(caption) > * > * {
         border-width: 0 1px;
+        color: #000;
     }
 
 .table-borderless > :not(caption) > * > * {
@@ -2073,7 +2088,9 @@ progress {
 
 .table-striped > tbody > tr:nth-of-type(odd) > * {
     --bs-table-accent-bg: var(--bs-table-striped-bg);
-    color: var(--bs-table-striped-color);
+    color: #000;
+    font-weight: 500;
+    font-family: Montserrat;
 }
 
 .table-striped-columns > :not(caption) > tr > :nth-child(even) {
@@ -3271,7 +3288,7 @@ textarea.form-control-lg {
 
 .btn-primary {
     --bs-btn-color: #fff;
-    --bs-btn-bg: #375a7f;
+    --bs-btn-bg: #1376db;
     --bs-btn-border-color: #375a7f;
     --bs-btn-hover-color: #fff;
     --bs-btn-hover-bg: #2f4d6c;

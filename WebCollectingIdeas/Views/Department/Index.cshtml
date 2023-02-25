@@ -32,11 +32,11 @@
                     <td>@item.CreateDatetime</td>
                     <td>
                         <div>
-                            <a asp-controller="Department" asp-action="Edit" asp-route-id=@item.Id>
-                                <i class="bi bi-pencil btn btn-primary"></i>
+                            <a class=" pencil" asp-controller="Department" asp-action="Edit" asp-route-id=@item.Id>
+                                <i class="bi bi-pencil btn btn-warning"></i>
                             </a>
                             <a asp-controller="Department" asp-action="Delete" asp-route-id=@item.Id>
-                                <i class="bi bi-trash3 btn btn-primary"></i>
+                                <i class="bi bi-trash3 btn btn-danger"></i>
                             </a>
                         </div>
 
@@ -51,6 +51,5 @@
                 <td colspan="4">No value!!!</td>
             </tr>
         }
-
     </tbody>
 </table>
