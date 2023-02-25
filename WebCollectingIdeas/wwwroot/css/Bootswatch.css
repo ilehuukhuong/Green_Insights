@@ -102,7 +102,7 @@ body {
     font-size: var(--bs-body-font-size);
     font-weight: var(--bs-body-font-weight);
     line-height: var(--bs-body-line-height);
-    color: var(--bs-body-color);
+    color:#000;
     text-align: var(--bs-body-text-align);
     background-color: #fff;
     -webkit-text-size-adjust: 100%;
@@ -126,6 +126,7 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
 
 h1, .h1 {
     font-size: calc(1.425rem + 2.1vw);
+    text-align:center;
 }
 
 @media (min-width: 1200px) {
@@ -139,6 +140,7 @@ h2, .h2 {
     color: #000;
     text-shadow: 5px 2px 4px grey;
     font-style: italic;
+    text-align:center
 }
 
 @media (min-width: 1200px) {
@@ -2276,6 +2278,7 @@ progress {
     padding-top: calc(0.5rem + 1px);
     padding-bottom: calc(0.5rem + 1px);
     font-size: 1.25rem;
+
 }
 
 .col-form-label-sm {
@@ -2875,6 +2878,8 @@ textarea.form-control-lg {
     .form-floating > .form-control-plaintext:not(:placeholder-shown) {
         padding-top: 1.625rem;
         padding-bottom: 0.625rem;
+        margin: 7px;
+        background-color: aliceblue;
     }
 
     .form-floating > .form-control:-webkit-autofill,
@@ -12531,7 +12536,9 @@ textarea.form-control-lg {
 .nav-pills .nav-item.open .nav-link,
 .nav-pills .nav-item.open .nav-link:focus,
 .nav-pills .nav-item.open .nav-link:hover {
-    color: #fff;
+    color: #000;
+    background-color: lavender;
+    margin: 5px;
 }
 
 .breadcrumb a {
@@ -12617,3 +12624,8 @@ footer a {
     footer a:hover {
         color: #fff;
     }
+
+button#logout {
+    margin: auto;
+    padding: 8px;
+}
