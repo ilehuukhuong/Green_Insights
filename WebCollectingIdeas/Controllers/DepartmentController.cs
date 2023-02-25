@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using WebCollectingIdeas.Data;
-using WebCollectingIdeas.Models;
+using CollectingIdeas.DataAccess.Data;
+using CollectingIdeas.Models;
 
 namespace WebCollectingIdeas.Controllers
 {

@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using WebCollectingIdeas.Data;
-using WebCollectingIdeas.Models;
+﻿using CollectingIdeas.Models;
+using Microsoft.AspNetCore.Mvc;
+using CollectingIdeas.DataAccess.Data;
 
 namespace WebCollectingIdeas.Controllers
 {
