@@ -1,21 +1,21 @@
 ﻿using CollectingIdeas.Models;
 using Microsoft.AspNetCore.Mvc;
 using CollectingIdeas.DataAccess.Data;
+using CollectingIdeas.DataAccess.Repository.IRepository;
 
 namespace WebCollectingIdeas.Controllers
 {
     public class CategoryController : Controller
     {
-        private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
-        public CategoryController(ApplicationDbContext db)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
-
         public IActionResult Index()
         {
-            IEnumerable<Category> objCategoryList = _db.Categories.ToList();
+            IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
             return View(objCategoryList);
         }
         public IActionResult Create()
@@ -29,13 +29,12 @@ namespace WebCollectingIdeas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Add(obj);
+                _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";
                 return RedirectToAction("index");
             }
             return View(obj);
-           
         }
         public IActionResult Edit(int? id)
         {
@@ -43,14 +42,14 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var categoryformDb = _db.Categories.Find(id);
-            //var categoryformDbFirst = _db.Categories.FirstOrDefault(u=>u.Id== id);
+            //var categoryformDb = _db.Categories.Find(id);
+            var categoryformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id== id);
             //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (categoryformDb == null)
+            if (categoryformDbFirst == null)
             {
                 return NotFound();
             }
-            return View(categoryformDb);
+            return View(categoryformDbFirst);
         }
         //post
         [HttpPost]
@@ -59,13 +58,12 @@ namespace WebCollectingIdeas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Update(obj);
+                _unitOfWork.Save();
                 TempData["Edited"] = "Edit successfully";
                 return RedirectToAction("index");
             }
             return View(obj);
-
         }
         public IActionResult Delete(int? id)
         {
@@ -73,21 +71,21 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var categoryformDb = _db.Categories.Find(id);
-            //var categoryformDbFirst = _db.Categories.FirstOrDefault(u=>u.Id== id);
+            //var categoryformDb = _db.Categories.Find(id);
+            var categoryformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id== id);
             //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (categoryformDb == null)
+            if (categoryformDbFirst == null)
             {
                 return NotFound();
             }
-            return View(categoryformDb);
+            return View(categoryformDbFirst);
         }
         //post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Categories.Find(id);
+            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             //var categoryformDbFirst = _db.Categories.FirstOrDefault(u=>u.Id== id);
             //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
             if (obj == null)
@@ -96,12 +94,11 @@ namespace WebCollectingIdeas.Controllers
             }
             else
             {
-                _db.Categories.Remove(obj);
-                _db.SaveChanges();
+                _unitOfWork.Category.Remove(obj);
+                _unitOfWork.Save();
                 TempData["Deleted"] = "Delete successfully";
                 return RedirectToAction("index");
-            }             
-
+            }
         }
     }
 }
