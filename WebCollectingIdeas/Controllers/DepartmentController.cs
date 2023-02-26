@@ -5,21 +5,20 @@ using System.Linq;
 using System.Threading.Tasks;
 using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.Models;
+using CollectingIdeas.DataAccess.Repository.IRepository;
 
 namespace WebCollectingIdeas.Controllers
 {
     public class DepartmentController : Controller
     {
-        private readonly ApplicationDbContext _db;
-
-        public DepartmentController(ApplicationDbContext db)
+        private readonly IUnitOfWork _unitOfWork;
+        public DepartmentController(IUnitOfWork unitOfWork)
         {
-            _db = db;
+            _unitOfWork = unitOfWork;
         }
         public IActionResult Index()
         {
-
-            IEnumerable<Department> objDepartmentList = _db.Departments.ToList();
+            IEnumerable<Department> objDepartmentList = _unitOfWork.Department.GetAll();
             return View(objDepartmentList);
         }
         public IActionResult Create()
@@ -33,13 +32,12 @@ namespace WebCollectingIdeas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Departments.Add(obj);
-                _db.SaveChanges();
+                _unitOfWork.Department.Add(obj);
+                _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";
                 return RedirectToAction("index");
             }
             return View(obj);
-
         }
         public IActionResult Edit(int? id)
         {
@@ -47,7 +45,8 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var departmentformDb = _db.Departments.Find(id);
+            var departmentformDb = _unitOfWork.Department.GetFirstOrDefault(x => x.Id == id);
+            //var departmentformDb = _db.Departments.Find(id);
             //var departmentformDbFirst = _db.Departments.FirstOrDefault(u=>u.Id== id);
             //var departmentformDbsingle = _db.Departments.SingleOrDefault(u => u.Id == id);
             if (departmentformDb == null)
@@ -63,13 +62,12 @@ namespace WebCollectingIdeas.Controllers
         {
             if (ModelState.IsValid)
             {
-                _db.Departments.Update(obj);
-                _db.SaveChanges();
+                _unitOfWork.Department.Update(obj);
+                _unitOfWork.Save();
                 TempData["Edited"] = "Edit successfully";
                 return RedirectToAction("index");
             }
             return View(obj);
-
         }
         public IActionResult Delete(int? id)
         {
@@ -77,7 +75,8 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var departmentformDb = _db.Departments.Find(id);
+            var departmentformDb = _unitOfWork.Department.GetFirstOrDefault(x => x.Id == id);
+            //var departmentformDb = _db.Departments.Find(id);
             //var departmentformDbFirst = _db.Department.FirstOrDefault(u=>u.Id== id);
             //var departmentformDbsingle = _db.Department.SingleOrDefault(u => u.Id == id);
             if (departmentformDb == null)
@@ -91,7 +90,8 @@ namespace WebCollectingIdeas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _db.Departments.Find(id);
+            var obj = _unitOfWork.Department.GetFirstOrDefault(x => x.Id == id);
+            //var obj = _db.Departments.Find(id);
             //var departmentformDbFirst = _db.Departments.FirstOrDefault(u=>u.Id== id);
             //var departmentformDbsingle = _db.Departments.SingleOrDefault(u => u.Id == id);
             if (obj == null)
@@ -100,14 +100,11 @@ namespace WebCollectingIdeas.Controllers
             }
             else
             {
-                _db.Departments.Remove(obj);
-                _db.SaveChanges();
+                _unitOfWork.Department.Remove(obj);
+                _unitOfWork.Save();
                 TempData["Deleted"] = "Delete successfully";
                 return RedirectToAction("index");
             }
-
-
-
         }
     }
 }
