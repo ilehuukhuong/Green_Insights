@@ -77,11 +77,38 @@
             @RenderBody()
         </main>
     </div>
-   @*Footer*@ 
-    <footer> 
-        <div class="bottom">
-            <p> Group 06 _ COMP1640</p> ©@DateTime.Now.Year All Rights Reserverd
+
+    <footer>
+        <div class="footer-content">
+            <h3> ABOUT US</h3>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam vitae felis scelerisque, gravida sapien non, cursus augue. Aenean id pretium turpis. Suspendisse eros nunc, sollicitudin nec.</p>
+
+            <ul class="socials">
+
+                <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+
+                <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+
+                <li><a href="#"><i class="fa fa-google"></i></a></li>
+
+                <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+
+                <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
+
+            </ul>
+
         </div>
+
+        <div class="footer-bottom">
+
+            <p>©@DateTime.Now.Year All Rights Reserverd<span id="year"></span></p>
+
+            <div class="footer-group">
+                <p>Group 06 _ COMP1640</p>
+            </div>
+
+        </div>
+
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
