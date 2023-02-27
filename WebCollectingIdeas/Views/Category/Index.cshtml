@@ -12,7 +12,7 @@
 </div>
 <br />
 <table class="table table-bordered table-striped">
-    <thead>
+    <thead class="items">
         <tr>
             <th>ID</th>
             <th>Name</th>
@@ -27,10 +27,10 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@i</td>
-                    <td>@item.Name</td>
-                    <td>@item.CreateDatetime</td>
-                    <td>
+                    <td class="new-items">@i</td>
+                    <td class="name-item">@item.Name</td>
+                    <td class="new-items">@item.CreateDatetime</td>
+                    <td class="new-items">
                         <div>
                             <a  class= "pencil"asp-controller="Category" asp-action="Edit" asp-route-id=@item.Id>
                                 <i class="bi bi-pencil btn btn-warning"></i>
@@ -48,7 +48,7 @@
         else
         {
             <tr>
-                <td colspan="4">No value!!!</td>
+                <td colspan="4">There is currently no data!!!</td>
             </tr>
         }
 
