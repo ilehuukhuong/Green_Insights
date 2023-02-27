@@ -1,0 +1,59 @@
+﻿@model IEnumerable<Topic>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2>Topic list</h2>
+        </div>
+        <div class="col-6 text-end">
+            <a asp-controller="Topic" asp-action="Create" class="btn btn-success"><i class="bi bi-plus"></i></a>
+        </div>
+    </div>
+</div>
+<br />
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Create Day</th>
+            <th>Closure Date</th>
+            <th>Final Closure Date</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            var i = 1;
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@i</td>
+                    <td>@item.Name</td>
+                    <td>@item.CreateDatetime</td>
+                    <td>@item.ClosureDate</td>
+                    <td>@item.FinalClosureDate</td>
+                    <td>
+                        <div>
+                            <a class=" pencil" asp-controller="Topic" asp-action="Edit" asp-route-id=@item.Id>
+                                <i class="bi bi-pencil btn btn-warning"></i>
+                            </a>
+                            <a asp-controller="Topic" asp-action="Delete" asp-route-id=@item.Id>
+                                <i class="bi bi-trash3 btn btn-danger"></i>
+                            </a>
+                        </div>
+
+                    </td>
+                </tr>
+                i++;
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="6">No value!!!</td>
+            </tr>
+        }
+    </tbody>
+</table>

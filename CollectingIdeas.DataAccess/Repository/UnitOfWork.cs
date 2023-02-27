@@ -20,8 +20,10 @@ namespace CollectingIdeas.DataAccess.Repository
             _db = db;
             Category = new CategoryRepository(_db);
             Department = new DepartmentRepository(_db);
+            Topic = new TopicRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public IDepartmentRepository Department { get; private set; }
+        public ITopicRepository Topic { get; private set;}
     }
 }
