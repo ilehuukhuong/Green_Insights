@@ -1,14 +1,12 @@
-﻿using CollectingIdeas.Models;
+﻿using CollectingIdeas.DataAccess.Repository.IRepository;
+using CollectingIdeas.Models;
 using Microsoft.AspNetCore.Mvc;
-using CollectingIdeas.DataAccess.Data;
-using CollectingIdeas.DataAccess.Repository.IRepository;
 
 namespace WebCollectingIdeas.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
@@ -19,7 +17,7 @@ namespace WebCollectingIdeas.Controllers
             return View(objCategoryList);
         }
         public IActionResult Create()
-        {           
+        {
             return View();
         }
         //post
@@ -38,12 +36,12 @@ namespace WebCollectingIdeas.Controllers
         }
         public IActionResult Edit(int? id)
         {
-            if (id ==null || id == 0)
+            if (id == null || id == 0)
             {
                 return NotFound();
             }
             //var categoryformDb = _db.Categories.Find(id);
-            var categoryformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id== id);
+            var categoryformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
             if (categoryformDbFirst == null)
             {
@@ -72,7 +70,7 @@ namespace WebCollectingIdeas.Controllers
                 return NotFound();
             }
             //var categoryformDb = _db.Categories.Find(id);
-            var categoryformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u=>u.Id== id);
+            var categoryformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
             if (categoryformDbFirst == null)
             {

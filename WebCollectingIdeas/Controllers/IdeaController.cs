@@ -1,6 +1,8 @@
 ﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 
 namespace WebCollectingIdeas.Controllers
 {
@@ -45,7 +47,7 @@ namespace WebCollectingIdeas.Controllers
         {
             if (ModelState.IsValid)
             {
-                obj.IdentityUserId = HttpContext.User.FindFirst
+                obj.IdentityUserId = User.FindFirst(ClaimTypes.NameIdentifier).Value;
                 _unitOfWork.Idea.Add(obj);
                 _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";

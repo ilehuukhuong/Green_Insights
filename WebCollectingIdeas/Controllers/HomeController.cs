@@ -1,6 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using CollectingIdeas.Models;
+using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
-using CollectingIdeas.Models;
 
 namespace WebCollectingIdeas.Controllers
 {

@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using CollectingIdeas.DataAccess.Data;
+﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
-using CollectingIdeas.DataAccess.Repository.IRepository;
+using Microsoft.AspNetCore.Mvc;
 
 namespace WebCollectingIdeas.Controllers
 {
