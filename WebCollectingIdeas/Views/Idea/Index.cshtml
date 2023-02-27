@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Topic>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col">
+            <h2>Topic list</h2>
+        </div>
+    </div>
+</div>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Submission deadline</th>
+            <th>Evaluation deadline</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Name</td>
+                    <td>@item.ClosureDate</td>
+                    <td>@item.FinalClosureDate</td>
+                    <td>
+                        <div>
+                            <a asp-controller="Idea" asp-action="Edit" asp-route-id=@item.Id>
+                                <i class="fa fa-eye btn btn-secondary"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="4">There are no topics available at this time!!!</td>
+            </tr>
+        }
+    </tbody>
+</table>

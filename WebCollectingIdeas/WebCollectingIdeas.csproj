@@ -60,4 +60,9 @@
     <UpToDateCheckInput Remove="Views\Topic\Edit.cshtml" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Include="Views\Idea\Edit.cshtml" />
+    <None Include="Views\Idea\Index.cshtml" />
+  </ItemGroup>
+
 </Project>
