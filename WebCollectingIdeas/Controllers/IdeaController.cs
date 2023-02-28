@@ -41,6 +41,10 @@ namespace WebCollectingIdeas.Controllers
         //    var item = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
         //    return View(item);
         //}
+        public ActionResult Detail()
+        {
+            return View();
+        }
         public IActionResult Create()
         {
             IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
