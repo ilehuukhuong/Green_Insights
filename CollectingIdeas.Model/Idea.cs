@@ -24,14 +24,13 @@ namespace CollectingIdeas.Models
         [Required]
         [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
-        public virtual Category Category { get; set; }
+        public virtual Category? Category { get; set; }
         [Required]
         [ForeignKey("TopicId")]
         public int TopicId { get; set; }
-        public virtual Topic Topic { get; set; }
-        [Required]
+        public virtual Topic? Topic { get; set; }
         [ForeignKey("IdentityUserId")]
-        public string IdentityUserId { get; set; }
-        public virtual IdentityUser IdentityUser { get; set; }
+        public string? IdentityUserId { get; set; }
+        public virtual IdentityUser? IdentityUser { get; set; }
     }
 }
