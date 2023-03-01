@@ -59,7 +59,7 @@ namespace WebCollectingIdeas.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Idea obj)
+        public IActionResult Create([Bind("TopicId,Title,Description,CategoryId")] Idea obj)
         {
             obj.Id = 0;
             obj.IdentityUserId = _userManager.GetUserId(HttpContext.User);
@@ -68,10 +68,10 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Idea.Add(obj);
                 _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";
-                return RedirectToAction("Edit", obj.TopicId);
+                return RedirectToAction("Edit", "Idea",obj.TopicId);
             }
             TempData["Deleted"] = "Create failed";
-            return RedirectToAction("Create", obj.TopicId);
+            return RedirectToAction("Create", "Idea",obj.TopicId);
         }
     }
 }
