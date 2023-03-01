@@ -1,5 +1,13 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
+﻿<div>@ViewBag.TopicId</div>
+<div>
+    @ViewBag.TopicName
+</div>
+<div>
+    @ViewBag.ClosureDate
+</div>
+<div>
+    @ViewBag.FinalClosureDate
+</div>
+<a asp-controller="Idea" asp-action="Create" asp-route-id=@ViewBag.TopicId>
+    <i class="fa fa-eye btn btn-secondary"></i>
+</a>
