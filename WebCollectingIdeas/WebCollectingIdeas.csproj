@@ -36,13 +36,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Update="Views\Topic\Index.cshtml">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
     <UpToDateCheckInput Remove="Views\Topic\Create.cshtml" />
   </ItemGroup>
 
@@ -61,8 +54,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Include="Views\Idea\Edit.cshtml" />
-    <None Include="Views\Idea\Index.cshtml" />
+    <Content Include="C:\Users\Anh\Downloads\Index-Category.txt" Link="Index-Category.txt" />
+    <Content Include="C:\Users\Anh\Downloads\Index-Department.txt" Link="Index-Department.txt" />
+    <Content Include="C:\Users\Anh\Downloads\Index.txt" Link="Index.txt">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="C:\Users\Anh\Downloads\Edit-Idea.txt" Link="Edit-Idea.txt" />
+    <None Include="C:\Users\Anh\Downloads\Index-Idea.txt" Link="Index-Idea.txt" />
   </ItemGroup>
 
 </Project>

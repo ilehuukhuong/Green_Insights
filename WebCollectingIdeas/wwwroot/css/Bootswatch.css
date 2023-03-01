@@ -12593,9 +12593,20 @@ button#logout {
 .section {
     margin-left: 10px;
 }
-/*Css for Category, Department and Topic*/
+/*Css for Category, Department and Topic, Idea*/
 thead.items {
     text-align: center;
+}
+
+th.name-item{
+    text-align:left;
+}
+
+td.action {
+    color: #000;
+    font-weight: 500;
+    font-family: Montserrat;
+    text-align: center
 }
 
 td.new-items {
@@ -12603,11 +12614,13 @@ td.new-items {
     font-weight: 500;
     font-family: Montserrat;
     text-align: center;
+    padding-top: 20px;
 }
 td.name-item {
     color: #000;
     font-weight: 500;
     font-family: Montserrat;
+    padding-top: 20px;
 }
 
 a.pencil {
@@ -12622,6 +12635,14 @@ i.bi.bi-pencil.btn.btn-warning {
 
 i.bi.bi-trash3.btn.btn-danger {
     margin: 2px;
+}
+
+.col-3.text-end {
+    padding-top: 5px;
+}
+
+.eyes {
+    padding:8px;
 }
 
 /*Footer*/

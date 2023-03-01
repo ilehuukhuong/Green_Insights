@@ -1,21 +1,20 @@
 ﻿@model IEnumerable<Topic>
 
 <div class="container p-3">
-    <div class="row pt-4">
+    <div class="row justify-content-end">
         <div class="col-6">
             <h2>Topic list</h2>
         </div>
-        <div class="col-6 text-end">
+        <div class="col-3 text-end">
             <a asp-controller="Topic" asp-action="Create" class="btn btn-success"><i class="bi bi-plus"></i></a>
         </div>
     </div>
 </div>
-<br />
 <table class="table table-bordered table-striped">
     <thead class="items">
         <tr>
             <th>ID</th>
-            <th>Name</th>
+            <th class="name-item">Name</th>
             <th>Create Day</th>
             <th>Closure Date</th>
             <th>Final Closure Date</th>
@@ -34,7 +33,7 @@
                     <td class="new-items">@item.CreateDatetime</td>
                     <td class="new-items">@item.ClosureDate</td>
                     <td class="new-items">@item.FinalClosureDate</td>
-                    <td class="new-items">
+                    <td class="action">
                         <div>
                             <a class=" pencil" asp-controller="Topic" asp-action="Edit" asp-route-id=@item.Id>
                                 <i class="bi bi-pencil btn btn-warning"></i>

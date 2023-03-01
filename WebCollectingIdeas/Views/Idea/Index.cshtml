@@ -1,16 +1,22 @@
 ﻿@model IEnumerable<Topic>
 
 <div class="container p-3">
-    <div class="row pt-3">
-        <div class="col">
+    <div class="row justify-content-end">
+        <div class="col-3 text-start">
+            <input type="search"/>
+        </div>
+        <div class="col-6">
             <h2>Idea list</h2>
+        </div>
+        <div class="col-3 text-end">
+            <a asp-controller="Idea" asp-action="Create" class="btn btn-success"><i class="bi bi-plus"></i></a>
         </div>
     </div>
 </div>
 <table class="table table-bordered table-striped">
-    <thead>
+    <thead class="items">
         <tr>
-            <th>Name</th>
+            <th class="name-item">Name</th>
             <th>Submission deadline</th>
             <th>Evaluation deadline</th>
             <th>Action</th>
@@ -22,11 +28,11 @@
             @foreach (var item in Model)
             {
                 <tr>
-                    <td>@item.Name</td>
-                    <td>@item.ClosureDate</td>
-                    <td>@item.FinalClosureDate</td>
-                    <td>
-                        <div>
+                    <td class="name-item">@item.Name</td>
+                    <td class="new-items">@item.ClosureDate</td>
+                    <td class="new-items">@item.FinalClosureDate</td>
+                    <td class="action">
+                        <div class="eyes">
                             <a asp-controller="Idea" asp-action="Edit" asp-route-id=@item.Id>
                                 <i class="fa fa-eye btn btn-secondary"></i>
                             </a>
