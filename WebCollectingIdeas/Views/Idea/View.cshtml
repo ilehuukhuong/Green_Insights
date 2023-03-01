@@ -1,0 +1,50 @@
+﻿<div class="container">
+    <div class="container p-3">
+        <div class="row pt-4">
+            <div class="col">
+                <h2>List of Ideas</h2>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <dl class="row justify-content-center">
+                <dt class="col-sm-6 text-end">Topic Name:</dt>
+                <dd class="col-sm-6">@ViewBag.TopicName</dd>
+                <dt class="col-sm-6 text-end">Submission deadline:</dt>
+                <dd class="col-sm-6">@ViewBag.ClosureDate</dd>
+                <dt class="col-sm-6 text-end">Evaluation deadline:</dt>
+                <dd class="col-sm-6">@ViewBag.FinalClosureDate</dd>
+            </dl>
+        </div>
+        <div class="col-12 text-center">
+            <a class="btn btn-light text-white" asp-controller="Idea" asp-action="Index">Back to List</a>
+            <a class="btn btn-success text-white" asp-controller="Idea" asp-action="Index">Create</a> 
+        </div>
+
+        <table class="table table-bordered table-striped">
+            <thead class="items">
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Views</th>
+                    <th>Like</th>
+                    <th>Dislike</th>
+                    <th>Action</th>
+                </tr>
+                <tr>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>#</td>
+                    <td>
+                        <a class="btn btn-outline-warning" asp-action="Detail">Detail</a>
+                        <a class="btn btn-outline-info">Like</a>
+                        <a class="btn btn-outline-danger">Dislike</a>
+                    </td>
+                </tr>
+            </thead>
+
+        </table>
+    </div>

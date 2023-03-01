@@ -53,18 +53,4 @@
     <UpToDateCheckInput Remove="Views\Topic\Edit.cshtml" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Include="C:\Users\Anh\Downloads\Index-Category.txt" Link="Index-Category.txt" />
-    <Content Include="C:\Users\Anh\Downloads\Index-Department.txt" Link="Index-Department.txt" />
-    <Content Include="C:\Users\Anh\Downloads\Index.txt" Link="Index.txt">
-      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
-      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Include="C:\Users\Anh\Downloads\Edit-Idea.txt" Link="Edit-Idea.txt" />
-    <None Include="C:\Users\Anh\Downloads\Index-Idea.txt" Link="Index-Idea.txt" />
-  </ItemGroup>
-
 </Project>

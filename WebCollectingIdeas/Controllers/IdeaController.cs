@@ -23,7 +23,7 @@ namespace WebCollectingIdeas.Controllers
             IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
             return View(objTopicList);
         }
-        public IActionResult Edit(int id)
+        public IActionResult View(int id)
         {
             if (id == null || id <= 0)
             {
@@ -68,7 +68,7 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Idea.Add(obj);
                 _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";
-                return RedirectToAction("Edit", "Idea",obj.TopicId);
+                return RedirectToAction("View", "Idea",obj.TopicId);
             }
             TempData["Deleted"] = "Create failed";
             return RedirectToAction("Create", "Idea",obj.TopicId);

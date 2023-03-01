@@ -269,7 +269,7 @@ sup {
 
 .text-center a {
     color: var(--bs-link-color);
-    text-decoration: underline;
+    
 }
 
     a:hover {
@@ -8870,6 +8870,7 @@ textarea.form-control-lg {
 
 .text-center {
     text-align: center !important;
+    margin-bottom: 20px;
 }
 
 .text-decoration-none {
