@@ -11,12 +11,10 @@ namespace WebCollectingIdeas.Controllers
     public class IdeaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly IHttpContextAccessor _httpContextAccessor;
         private readonly UserManager<IdentityUser> _userManager;
         public IdeaController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
         {
             _unitOfWork = unitOfWork;
-            _httpContextAccessor = httpContextAccessor;
             _userManager = userManager;
         }
 
@@ -42,13 +40,12 @@ namespace WebCollectingIdeas.Controllers
             ViewBag.FinalClosureDate = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id).FinalClosureDate;
             return View(item);
         }
-        //public ActionResult Edit(int id)
-        //{
-        //    var item = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
-        //    return View(item);
-        //}
-        public IActionResult Create(int topicId = -1)
+        public IActionResult Create(int id)
         {
+            if (id == null || id <= 0)
+            {
+                return NotFound();
+            }
             IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
                     u => new SelectListItem()
                     {
@@ -56,30 +53,25 @@ namespace WebCollectingIdeas.Controllers
                         Value = u.Id.ToString()
                     }
                 );
-
-            ViewBag.TopicId = topicId;
+            ViewBag.TopicId = id;
             ViewBag.CategoryList = CategoryList;
             return View();
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(Idea obj, int id)
+        public IActionResult Create(Idea obj)
         {
-            //obj.IdentityUserId = _httpContextAccessor.HttpContext.User.FindFirstValue(ClaimTypes.Email);
+            obj.Id = 0;
             obj.IdentityUserId = _userManager.GetUserId(HttpContext.User);
-            //obj.TopicId = 1;
-            _unitOfWork.Idea.Add(obj);
-            _unitOfWork.Save();
-            TempData["Success"] = "Create successfully";
-            return RedirectToAction("index");
-            //if (ModelState.IsValid)
-            //{
-            //    _unitOfWork.Idea.Add(obj);
-            //    _unitOfWork.Save();
-            //    TempData["Success"] = "Create successfully";
-            //    return RedirectToAction("index");
-            //}
-            //return View(obj);
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Idea.Add(obj);
+                _unitOfWork.Save();
+                TempData["Success"] = "Create successfully";
+                return RedirectToAction("Edit", obj.TopicId);
+            }
+            TempData["Deleted"] = "Create failed";
+            return RedirectToAction("Create", obj.TopicId);
         }
     }
 }
