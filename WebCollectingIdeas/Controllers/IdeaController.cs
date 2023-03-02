@@ -1,6 +1,7 @@
 ﻿using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
+using CollectingIdeas.Models.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,16 +14,18 @@ namespace WebCollectingIdeas.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
-        public IdeaController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+        private IWebHostEnvironment _webHostEnvironment;
+        public IdeaController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager, IWebHostEnvironment webHostEnvironment)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
             IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
             return View(objTopicList);
-        }        
+        }
         public ActionResult Detail(int id)
         {
             var obj = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
@@ -47,32 +50,51 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+            IdeaVM ideaVM = new IdeaVM();
+            ideaVM.idea = new Idea();
+            ideaVM.TopicList = _unitOfWork.Topic.GetAll().Select(
                     u => new SelectListItem()
                     {
                         Text = u.Name,
                         Value = u.Id.ToString()
                     }
                 );
+            ideaVM.CategoryList = _unitOfWork.Category.GetAll().Select(
+                u => new SelectListItem()
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }
+                );
             ViewBag.TopicId = id;
-            ViewBag.CategoryList = CategoryList;
-            return View();
+            return View(ideaVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create([Bind("TopicId,Title,Description,CategoryId")] Idea obj)
+        public IActionResult Create(IdeaVM obj, IFormFile? file)
         {
-            obj.Id = 0;
-            obj.IdentityUserId = _userManager.GetUserId(HttpContext.User);
+            obj.idea.IdentityUserId = _userManager.GetUserId(HttpContext.User);
             if (ModelState.IsValid)
             {
-                _unitOfWork.Idea.Add(obj);
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+                if (file != null) 
+                {
+                    string fileName = Guid.NewGuid().ToString();
+                    var uploads = Path.Combine(wwwRootPath, @"file");
+                    var extension = Path.GetExtension(file.FileName);
+                    using (var fileStreams = new FileStream(Path.Combine(uploads,fileName + extension), FileMode.Create))
+                    {
+                        file.CopyTo(fileStreams);
+                    }
+                    obj.idea.Path = @"file" + fileName + extension;
+                }
+                _unitOfWork.Idea.Add(obj.idea);
                 _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";
-                return RedirectToAction("View", "Idea", new { @id = obj.TopicId });
+                return RedirectToAction("View", "Idea", new { @id = obj.idea.TopicId });
             }
             TempData["Deleted"] = "Create failed";
-            return RedirectToAction("Create", "Idea", new { @id = obj.TopicId });
+            return RedirectToAction("Create", "Idea", new { @id = obj.idea.TopicId });
         }
     }
 }

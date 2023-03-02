@@ -1,33 +1,61 @@
-﻿@model Idea
+﻿@using CollectingIdeas.Models.ViewModel;
+@model IdeaVM
 
-<form method="post">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2>Create Topic</h2>
             <hr />
         </div>
-        <input asp-for="TopicId" type="hidden" value="@ViewBag.TopicId" />
+        <input asp-for="idea.TopicId" type="hidden" value="@ViewBag.TopicId" />
+        @*<div class="mb-3">
+        <label asp-for=idea.TopicId>Topic</label>
+        <select asp-for=idea.TopicId asp-items="Model.TopicList" class="form-select">
+        <option onselect="" value = "@ViewBag.TopicId">-- Select Topic</option>
+        </select>
+        <span asp-validation-for=idea.TopicId class="text-danger"></span>
+        </div>*@
         <div class="mb-3">
-            <label asp-for=Title>Title</label>
-            <input asp-for=Title class="form-control" />
-            <span asp-validation-for=Title class="text-danger"></span>
+            <label asp-for=idea.Title>Title</label>
+            <input asp-for=idea.Title class="form-control" />
+            <span asp-validation-for=idea.Title class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for=Description>Description</label>
-            <textarea asp-for=Description class="form-control" rows="3"></textarea>
-            <span asp-validation-for=Description class="text-danger"></span>
+            <label asp-for=idea.Description>Description</label>
+            <textarea asp-for=idea.Description class="form-control" rows="3"></textarea>
+            <span asp-validation-for=idea.Description class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for=CategoryId>Category</label>
-            <select asp-for=CategoryId asp-items="ViewBag.CategoryList" class="form-select">
+            <label asp-for=idea.CategoryId>Category</label>
+            <select asp-for=idea.CategoryId asp-items="Model.CategoryList" class="form-select">
                 <option disabled onselect="">-- Select Category</option>
             </select>
-            <span asp-validation-for=CategoryId class="text-danger"></span>
+            <span asp-validation-for=idea.CategoryId class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
+        <div class="mb-3">
+            <label asp-for=idea.Path>File</label>
+            <input type="file" id="fileUrl" name="file" class="form-control" />
+        </div>
+        <button type="submit" onclick="return ValidateInput()" class="btn btn-success">Create</button>
         <a class="btn btn-light text-white" asp-controller="Idea" asp-action="View" asp-route-id=@ViewBag.TopicId>Back</a>
     </div>
 </form>
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <script>
+        function ValidateInput() {
+            if (document.getElementById("fileUrl").value == "") {
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Oops...',
+                    text: 'Something went wrong!',
+                    footer: '<a href="">Please upload file</a>'
+                })
+                return false;
+            }
+            return true;
+        }
+    </script>
 }
