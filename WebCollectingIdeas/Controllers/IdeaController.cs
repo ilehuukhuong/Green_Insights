@@ -1,4 +1,5 @@
-﻿using CollectingIdeas.DataAccess.Repository.IRepository;
+﻿using CollectingIdeas.DataAccess.Data;
+using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -10,12 +11,14 @@ namespace WebCollectingIdeas.Controllers
 {
     public class IdeaController : Controller
     {
+        private readonly ApplicationDbContext _db;
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
-        public IdeaController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
+        public IdeaController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, ApplicationDbContext db)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
+            _db = db;
         }
 
         public IActionResult Index()
@@ -23,38 +26,40 @@ namespace WebCollectingIdeas.Controllers
             IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
             return View(objTopicList);
         }
+        public ActionResult Detail(int id)
+        {
+            var obj = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
+            return View(obj);
+        }
         public IActionResult View(int id)
         {
-            if (id == null || id <= 0)
+            if (id <= 0)
             {
                 return NotFound();
             }
-            var item = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
-            if (item == null)
+            var obj = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
+            if (obj == null)
             {
                 return NotFound();
-            }
-            ViewBag.TopicId = id;
-            ViewBag.TopicName = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id).Name;
-            ViewBag.ClosureDate = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id).ClosureDate;
-            ViewBag.FinalClosureDate = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id).FinalClosureDate;
-            return View(item);
+            };
+            return View(obj);
         }
         public IActionResult Create(int id)
         {
-            if (id == null || id <= 0)
+            if (id <= 0)
             {
                 return NotFound();
             }
-            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
-                    u => new SelectListItem()
-                    {
-                        Text = u.Name,
-                        Value = u.Id.ToString()
-                    }
-                );
+            ViewBag.CategoryList = new SelectList(_db.Categories.ToList(), "Id", "Name");
+            //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+            //        u => new SelectListItem()
+            //        {
+            //            Text = u.Name,
+            //            Value = u.Id.ToString()
+            //        }
+            //    );
             ViewBag.TopicId = id;
-            ViewBag.CategoryList = CategoryList;
+            //ViewBag.CategoryList = CategoryList;
             return View();
         }
         [HttpPost]
@@ -68,10 +73,10 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Idea.Add(obj);
                 _unitOfWork.Save();
                 TempData["Success"] = "Create successfully";
-                return RedirectToAction("View", "Idea",obj.TopicId);
+                return RedirectToAction("View", "Idea", new { @id = obj.TopicId });
             }
             TempData["Deleted"] = "Create failed";
-            return RedirectToAction("Create", "Idea",obj.TopicId);
+            return RedirectToAction("Create", "Idea", new { @id = obj.TopicId });
         }
     }
 }
