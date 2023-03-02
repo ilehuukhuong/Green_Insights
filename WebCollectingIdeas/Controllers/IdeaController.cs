@@ -11,21 +11,18 @@ namespace WebCollectingIdeas.Controllers
 {
     public class IdeaController : Controller
     {
-        private readonly ApplicationDbContext _db;
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
-        public IdeaController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager, ApplicationDbContext db)
+        public IdeaController(IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor, UserManager<IdentityUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
-            _db = db;
         }
-
         public IActionResult Index()
         {
             IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
             return View(objTopicList);
-        }
+        }        
         public ActionResult Detail(int id)
         {
             var obj = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
@@ -50,16 +47,15 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            ViewBag.CategoryList = new SelectList(_db.Categories.ToList(), "Id", "Name");
-            //IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
-            //        u => new SelectListItem()
-            //        {
-            //            Text = u.Name,
-            //            Value = u.Id.ToString()
-            //        }
-            //    );
+            IEnumerable<SelectListItem> CategoryList = _unitOfWork.Category.GetAll().Select(
+                    u => new SelectListItem()
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    }
+                );
             ViewBag.TopicId = id;
-            //ViewBag.CategoryList = CategoryList;
+            ViewBag.CategoryList = CategoryList;
             return View();
         }
         [HttpPost]

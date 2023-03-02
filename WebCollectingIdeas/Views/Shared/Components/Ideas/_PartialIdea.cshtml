@@ -1,0 +1,19 @@
+﻿@model IEnumerable<Idea>
+@foreach (var obj in Model)
+{
+    if (ViewBag.TopicId == obj.TopicId)
+    {
+        <tr>
+            <td>@obj.Title</td>
+            <td>@obj.Description</td>
+            <td>#</td>
+            <td>#</td>
+            <td>#</td>
+            <td>
+                <a class="btn btn-outline-warning" asp-action="Detail">Detail</a>
+                <a class="btn btn-outline-info">Like</a>
+                <a class="btn btn-outline-danger">Dislike</a>
+            </td>
+        </tr>
+    }
+}
