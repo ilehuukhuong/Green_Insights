@@ -1,20 +1,246 @@
 html {
-  font-size: 14px;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+    html {
+        font-size: 16px;
+    }
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    position: relative;
+    min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
-  background-color:white;
+    margin-bottom: 60px;
+    background-color: white;
 }
 
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 90px;
+    height: 100%;
+    padding: 6px 16px;
+    background-color: #303030;
+    color: white;
+    
+}
+    .sidebar.active {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 250px;
+        height: 100%;
+        padding: 6px 16px;
+        background-color: #303030;
+        color: white;
+        box-shadow: 3px 0 10px dimgrey;
+    }
+  
+
+    .sidebar .logo_content .logo {
+        display: flex;
+        height: 50px;
+        width: 100%;
+        margin-left: 10px;
+        font-size: 25px;
+        align-items: center;
+        pointer-events: none;
+        margin-top:5px;
+        opacity: 0;
+    }
+
+    .sidebar.active .logo_content .logo {
+        opacity: 1;
+    }
+
+
+
+        .sidebar .logo_content .logo .logo_name {
+            font-size: 25px;
+            font-weight: 600;
+            margin: 0 9px;
+        }
+
+    .sidebar #btn {
+        position: absolute;
+        color: white;
+        left: 50%;
+        top: 6px;
+        font-size: 30px;
+        height: 50px;
+        width: 50px;
+        text-align: center;
+        line-height: 50px;
+        transform: translate(-50%);
+    }
+
+       .sidebar.active #btn{
+           left:85%;
+
+       }
+
+        .sidebar .src {
+            position: relative;
+            height: 50px;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        .sidebar .src input {
+            position: absolute;
+            height: 90%;
+            width: calc(100% - 50px);
+            left: 10px;
+            top: 0;
+            border-radius: 20px;
+            outline: none;
+            border: none;
+            background-color: white;
+            color: #000;
+            padding-left: 50px;
+            font-size: 15px;
+            box-shadow: 0 2px 9px darkgrey;
+        }
+
+        .sidebar .src .bx-search-alt {
+            position: absolute;
+            z-index: 99;
+            font-size: 25px;
+            color: #222222c7;
+            padding-left:20px;
+        }
+
+            .sidebar .src .bx-search-alt:hover {
+                color: #222222f5;
+            }
+
+    .sidebar.active .src .bx-search-alt {
+        position: absolute;
+        z-index: 99;
+        font-size: 25px;
+        color: #222222c7;
+        padding-left: 20px;
+    }
+
+            .sidebar i {
+                height: 45px;
+                min-width: 23px;
+                border-radius: 20px;
+                line-height: 40px;
+                text-align: center;
+                font-size: 25px;
+                margin-top: 5px;
+                margin-left: 5px;
+            }
+
+    .sidebar.active i {
+        height: 45px;
+        min-width: 23px;
+        border-radius: 20px;
+        line-height: 40px;
+        text-align: center;
+        font-size: 25px;
+        margin-top: 5px;
+        margin-right: 10px;
+    }
+
+    .sidebar ul {
+        padding-left: 20px;
+        margin-top:10px;
+        
+    }
+
+    .sidebar.active ul {
+        margin-top: 20px;
+    }
+
+        .sidebar ul li {
+            position: relative;
+            height: 50px;
+            width: 90%;
+            margin:0;
+            list-style: none;
+            line-height: 60px;
+        }
+
+            .sidebar ul li a {
+                color: #b3b3b3;
+                display: flex;
+                text-decoration: none;
+                align-items: center;
+                border-radius: 20px;
+                font-size: 15px;
+                white-space: nowrap;
+            }
+
+                .sidebar ul li a:hover {
+                    color: #000000;
+                    background: #ffffffeb;
+                    box-shadow: 0 2px 7px darkgrey;
+                }
+
+    .sidebar.active ul li a:hover {
+        color: #000000;
+        background: #ffffffeb;
+        box-shadow: 0 2px 7px darkgrey;
+    }
+
+    .sidebar.active .link_name{
+        opacity: 1;
+        pointer-events:none;
+    }
+    .sidebar .link_name{
+        opacity:0;
+    }
+
+
+/* Login, Logout, Register buttons*/
+
+/*button#logout {
+    position: fixed;
+    display:flex;
+    height: 30px;
+    width: 30px;
+    left: 35px;
+    bottom: 5%;
+    border-radius: 20px;
+}
+
+.sidebar .active .button#logout {
+    position: fixed;
+    display: flex;
+    height: 50px;
+    width: 100px;
+    left: 35px;
+    bottom: 5%;
+    border-radius: 20px;
+}
+
+    button#logout i {
+        position:relative;
+        height: 20px;
+        min-width: 25px;
+        border-radius: 20px;
+        line-height:5px;
+        display:inline-flex;
+        right:3px;
+        bottom:1px;
+    }
+.sidebar .btn-name{
+    opacity:1;
+    
+}*/
+
+div#navbarColor02 {
+    position: fixed;
+    right: 2%;
+}
+
+a#manage {
+    margin-top: 3px;
+}

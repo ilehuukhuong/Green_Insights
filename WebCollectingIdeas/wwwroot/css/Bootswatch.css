@@ -688,7 +688,7 @@ progress {
     --bs-gutter-y: 0;
     width: 100%;
     padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 0.5);
+    padding-left: calc(var(--bs-gutter-x) * 4);
     margin-right: auto;
     margin-left: auto;
 }
@@ -4275,7 +4275,7 @@ textarea.form-control-lg {
         display: flex;
         flex-wrap: inherit;
         align-items: center;
-        justify-content: space-between;
+        justify-content: center;
     }
 
 .navbar-brand {
@@ -12586,14 +12586,7 @@ textarea.form-control-lg {
 .alert-dark {
     background-color: #303030;
 }
-/*Login, Logout & Register*/
-button#logout {
-    margin: auto;
-    padding: 8px;
-}
-.section {
-    margin-left: 10px;
-}
+
 /*Css for Category, Department and Topic, Idea*/
 thead.items {
     text-align: center;
