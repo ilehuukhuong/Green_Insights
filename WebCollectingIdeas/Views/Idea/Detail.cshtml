@@ -1,4 +1,5 @@
-﻿<div class="container">
+﻿@model Idea
+<div class="container">
     <div class="container p-3">
         <div class="row pt-4">
             <div class="col">
@@ -6,49 +7,50 @@
             </div>
         </div>
     </div>
-    <a asp-controller="Idea" asp-action="Create" asp-route-id=@ViewBag.TopicId>
-        <i class="fa fa-eye btn btn-secondary"></i>
-    </a>
-    <table class="table table-bordered table-striped">
-        <thead class="items">
-            <dl class="row">
-                <dt class="col-sm-2">
-                    Title
-                </dt>
-                <dd class="col-sm-10">#</dd>
-                <dt class="col-sm-2">
-                    Brief
-                </dt>
-                <dd class="col-sm-10">#</dd>
-                <dt class="col-sm-2">
-                    Content
-                </dt>
-                <dd class="col-sm-10">#</dd>
-                <dt class="col-sm-2">
-                    FilePath
-                </dt>
-                <dd class="col-sm-10">#</dd>
-                <dt class="col-sm-2">
-                    View
-                </dt>
-                <dd class="col-sm-10">#</dd>
-                <dt class="col-sm-2">
-                    Submission
-                </dt>
-                <dd class="col-sm-10">#</dd>
-                <dt class="col-sm-2">
-                    Category
-                </dt>
-                <dd class="col-sm-10">#</dd>
-            </dl>
-            <hr>
-        </thead>
-    </table>
-    <div>#</div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            Topic Name
+        </dt>
+        <dd class="col-sm-10">@Model.TopicId</dd>
+        <dt class="col-sm-2">
+            Category Name
+        </dt>
+        <dd class="col-sm-10">@Model.CategoryId</dd>
+        <dt class="col-sm-2">
+            Title
+        </dt>
+        <dd class="col-sm-10">@Model.Title</dd>
+        <dt class="col-sm-2">
+            Description
+        </dt>
+        <dd class="col-sm-10">@Model.Description</dd>
+        <dt class="col-sm-2">
+            Create Day
+        </dt>
+        <dd class="col-sm-10">@Model.CreateDatetime</dd>
+        <dt class="col-sm-2">
+            FilePath
+        </dt>
+        <dd class="col-sm-10">@Model.Path</dd>
+        <dt class="col-sm-2">
+            View
+        </dt>
+        <dd class="col-sm-10">#</dd>
+        <dt class="col-sm-2">
+            Like
+        </dt>
+        <dd class="col-sm-10">#</dd>
+        <dt class="col-sm-2">
+            Dislike
+        </dt>
+        <dd class="col-sm-10">#</dd>
+    </dl>
     <hr>
     <div>#</div>
     <hr>
     <div>#</div>
     <hr>
-        <div><a class="btn btn-light text-white" asp-controller="Idea" asp-action="Index">Back to List</a></div>
+    <div>#</div>
+    <hr>
+    <div><a class="btn btn-light text-white" asp-controller="Idea" asp-action="View" asp-route-id=@Model.TopicId>Back to Topic View</a></div>
 </div>

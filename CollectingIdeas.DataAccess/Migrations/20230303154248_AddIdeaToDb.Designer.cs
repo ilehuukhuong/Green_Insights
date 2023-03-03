@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebCollectingIdeas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20230302163306_idea_1.4")]
-    partial class idea_14
+    [Migration("20230303154248_AddIdeaToDb")]
+    partial class AddIdeaToDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

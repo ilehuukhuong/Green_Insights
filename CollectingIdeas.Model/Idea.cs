@@ -23,19 +23,19 @@ namespace CollectingIdeas.Models
         public string? Path { get; set; }
         public DateTime CreateDatetime { get; set; } = DateTime.Now;
         [Required]
-        [ForeignKey("CategoryId")]
         public int CategoryId { get; set; }
         [ValidateNever]
+        [ForeignKey("CategoryId")]
         public virtual Category Category { get; set; }
         [Required]
-        [ForeignKey("TopicId")]
         public int TopicId { get; set; }
         [ValidateNever]
+        [ForeignKey("TopicId")]
         public virtual Topic Topic { get; set; }
-        [ForeignKey("IdentityUserId")]
         [ValidateNever]
         public string IdentityUserId { get; set; }
         [ValidateNever]
+        [ForeignKey("IdentityUserId")]
         public virtual IdentityUser IdentityUser { get; set; }
     }
 }
