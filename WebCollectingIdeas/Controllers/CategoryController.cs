@@ -1,21 +1,40 @@
-﻿using CollectingIdeas.DataAccess.Repository.IRepository;
+﻿using CollectingIdeas.DataAccess.Data;
+using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryController(IUnitOfWork unitOfWork)
+        public CategoryController(IUnitOfWork unitOfWork,ApplicationDbContext db)
         {
             _unitOfWork = unitOfWork;
+            _db = db;
         }
-        public IActionResult Index()
+        private ApplicationDbContext _db;
+
+        public ActionResult Index(string Searchtext, int? page)
         {
-            IEnumerable<Category> objCategoryList = _unitOfWork.Category.GetAll();
-            return View(objCategoryList);
+            var pageSize = 10;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Category> items = _db.Categories.OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Name.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
+
         public IActionResult Create()
         {
             return View();
