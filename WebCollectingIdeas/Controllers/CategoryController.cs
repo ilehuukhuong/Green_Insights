@@ -9,13 +9,10 @@ namespace WebCollectingIdeas.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        public CategoryController(IUnitOfWork unitOfWork,ApplicationDbContext db)
+        public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
-            _db = db;
         }
-        private ApplicationDbContext _db;
-
         public ActionResult Index(string Searchtext, int? page)
         {
             var pageSize = 10;
@@ -23,7 +20,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 page = 1;
             }
-            IEnumerable<Category> items = _db.Categories.OrderByDescending(x => x.Id);
+            IEnumerable<Category> items = _unitOfWork.Category.GetAll().OrderByDescending(x => x.Id);
             if (!string.IsNullOrEmpty(Searchtext))
             {
                 items = items.Where(x => x.Name.Contains(Searchtext));
