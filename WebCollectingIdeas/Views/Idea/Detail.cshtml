@@ -28,10 +28,15 @@
             Create Day
         </dt>
         <dd class="col-sm-10">@Model.CreateDatetime</dd>
-        <dt class="col-sm-2">
-            FilePath
-        </dt>
-        <dd class="col-sm-10">@Model.Path</dd>
+        @if (Model.Path != null)
+        {
+            <dt class="col-sm-2">
+                File
+            </dt>
+            <dd class="col-sm-10">
+                <a class="col-sm-10" href="~/@Model.Path" download>Download</a>
+            </dd>
+        }
         <dt class="col-sm-2">
             View
         </dt>

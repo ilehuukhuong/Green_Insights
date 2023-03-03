@@ -28,7 +28,15 @@ namespace WebCollectingIdeas.Controllers
         }
         public ActionResult Detail(int id)
         {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
             var obj = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
+            if (obj == null)
+            {
+                return NotFound();
+            };
             return View(obj);
         }
         public IActionResult View(int id)
@@ -77,16 +85,21 @@ namespace WebCollectingIdeas.Controllers
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null) 
+                if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString();
-                    var uploads = Path.Combine(wwwRootPath, @"file");
+                    var userMail = User.FindFirstValue(ClaimTypes.Email);
+                    string uploads = Path.Combine(wwwRootPath, @"file/topic_" + obj.idea.TopicId + @"/" + userMail + @"_" + obj.idea.Title);
+                    if (!Directory.Exists(uploads))
+                    {
+                        Directory.CreateDirectory(uploads);
+                    }
                     var extension = Path.GetExtension(file.FileName);
-                    using (var fileStreams = new FileStream(Path.Combine(uploads,fileName + extension), FileMode.Create))
+                    using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
                         file.CopyTo(fileStreams);
                     }
-                    obj.idea.Path = @"file" + fileName + extension;
+                    obj.idea.Path = @"file/topic_" + obj.idea.TopicId + @"/" + userMail + @"_" + obj.idea.Title + @"/" + fileName + extension;
                 }
                 _unitOfWork.Idea.Add(obj.idea);
                 _unitOfWork.Save();
