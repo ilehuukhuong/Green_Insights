@@ -57,8 +57,6 @@
 
   <ItemGroup>
     <Content Include="C:\Users\Anh\Downloads\JS.txt" Link="JS.txt" />
-    <Content Include="C:\Users\Anh\Downloads\site.txt" Link="site.txt" />
-    <Content Include="C:\Users\Anh\Downloads\_Layout.txt" Link="_Layout.txt" />
   </ItemGroup>
 
 </Project>
