@@ -37,6 +37,8 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             };
+            ViewBag.CategoryName = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == obj.CategoryId).Name;
+            ViewBag.TopicName = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == obj.TopicId).Name;
             return View(obj);
         }
         public IActionResult View(int id)
