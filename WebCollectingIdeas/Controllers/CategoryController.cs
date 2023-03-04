@@ -114,5 +114,17 @@ namespace WebCollectingIdeas.Controllers
                 return RedirectToAction("index");
             }
         }
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            if (obj != null)
+            {
+                _unitOfWork.Category.Remove(obj);
+                _unitOfWork.Save();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
     }
 }
