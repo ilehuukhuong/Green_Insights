@@ -2,6 +2,7 @@
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using CollectingIdeas.Models.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -10,6 +11,7 @@ using System.Security.Claims;
 
 namespace WebCollectingIdeas.Controllers
 {
+    [Authorize]
     public class IdeaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -26,20 +28,40 @@ namespace WebCollectingIdeas.Controllers
             IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
             return View(objTopicList);
         }
-        public ActionResult Detail(int id)
+        public IActionResult Detail(int id)
         {
             if (id <= 0)
             {
                 return NotFound();
             }
-            var obj = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
-            if (obj == null)
+            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
+            if (objIdea == null)
             {
                 return NotFound();
             };
-            ViewBag.CategoryName = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == obj.CategoryId).Name;
-            ViewBag.TopicName = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == obj.TopicId).Name;
-            return View(obj);
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            if (objView == null)
+            {
+                View objViewNew = new View();
+                objViewNew.IdentityUserId = userId;
+                objViewNew.IdeaId = id;
+                objViewNew.LastVisit = DateTime.Now;
+                _unitOfWork.View.Add(objViewNew);
+                objIdea.View += 1;
+                _unitOfWork.Idea.Update(objIdea);
+                _unitOfWork.Save();
+
+            }
+            else
+            {
+                objView.LastVisit = DateTime.Now;
+                _unitOfWork.View.Update(objView);
+                _unitOfWork.Save();
+            }
+            ViewBag.CategoryName = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == objIdea.CategoryId).Name;
+            ViewBag.TopicName = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == objIdea.TopicId).Name;
+            return View(objIdea);
         }
         public IActionResult View(int id)
         {

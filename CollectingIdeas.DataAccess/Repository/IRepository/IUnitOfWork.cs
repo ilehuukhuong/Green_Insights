@@ -12,6 +12,7 @@ namespace CollectingIdeas.DataAccess.Repository.IRepository
         IDepartmentRepository Department { get; }
         ITopicRepository Topic { get; }
         IIdeaRepository Idea { get; }
+        IViewRepository View { get; }
         void Save();
     }
 }

@@ -1,5 +1,6 @@
 ﻿using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
+using CollectingIdeas.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,10 +23,12 @@ namespace CollectingIdeas.DataAccess.Repository
             Department = new DepartmentRepository(_db);
             Topic = new TopicRepository(_db);
             Idea = new IdeaRepository(_db);
+            View =new ViewRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public IDepartmentRepository Department { get; private set; }
         public ITopicRepository Topic { get; private set;}
         public IIdeaRepository Idea { get; private set; }
+        public IViewRepository View { get; private set; }
     }
 }

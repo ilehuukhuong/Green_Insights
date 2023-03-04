@@ -4,6 +4,7 @@ using CollectingIdeas.DataAccess.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace WebCollectingIdeas.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20230304143150_AddViewToDb")]
+    partial class AddViewToDb
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -93,9 +95,6 @@ namespace WebCollectingIdeas.Migrations
                         .HasColumnType("nvarchar(250)");
 
                     b.Property<int>("TopicId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("View")
                         .HasColumnType("int");
 
                     b.HasKey("Id");

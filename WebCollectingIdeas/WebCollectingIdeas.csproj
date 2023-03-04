@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="Views\Idea\Test.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.14" />
@@ -42,6 +46,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Idea\Test.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Topic\Create.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Topic\Delete.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Topic\Edit.cshtml" />
@@ -53,6 +58,14 @@
 
   <ItemGroup>
     <UpToDateCheckInput Remove="Views\Topic\Edit.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Idea\Test.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Idea\Test.cshtml" />
   </ItemGroup>
 
 </Project>

@@ -21,6 +21,7 @@ namespace CollectingIdeas.Models
         [StringLength(500)]
         public string? Description { get; set; }
         public string? Path { get; set; }
+        public int View { get; set; }
         public DateTime CreateDatetime { get; set; } = DateTime.Now;
         [Required]
         public int CategoryId { get; set; }
