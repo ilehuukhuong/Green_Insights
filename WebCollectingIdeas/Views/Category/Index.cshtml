@@ -3,12 +3,10 @@
 @using X.PagedList;
 <div class="container p-3">
     <div class="row justify-content-end">
-        <div class="col-6">
+        <div class="text-center">
             <h2>Category list</h2>
         </div>
-        <div class="col-3 text-end">
-            <a asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="bi bi-plus">Create</i></a>
-        </div>
+            
     </div>
     <form asp-controller="Category" asp-action="Index" method="get">
         <div class="input-group">
@@ -20,6 +18,9 @@
     </form>
 </div>
 <div class="card-body">
+    <a asp-controller="Category" asp-action="Create" class="btn btn-success"><i class="bi bi-plus">Create</i></a>  
+    <a href="#" class="btn btn-danger" id="BtnDeleteAll">DELETE ALL</a>
+
     <table class="table table-bordered table-striped">
         <thead class="items">
             <tr>
@@ -61,7 +62,7 @@
             else
             {
                 <tr>
-                    <td colspan="4">No value!!!</td>
+                    <td colspan="5">No value!!!</td>
                 </tr>
             }
         </tbody>
@@ -95,10 +96,10 @@
                     }
                 });
                 if (str.length > 0) {
-                    var conf = confirm('Do you want to delete all selected?');
+                    var conf = confirm('Do you want to delete all?');
                     if (conf == true) {
                         $.ajax({
-                            url: '/admin/news/deleteAll',
+                            url: '/category/deleteAll',
                             type: 'POST',
                             data: { ids: str },
                             success: function (rs) {

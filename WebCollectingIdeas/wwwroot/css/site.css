@@ -201,7 +201,7 @@ body {
 
 /* Login, Logout, Register buttons*/
 
-button#logout {
+/*button#logout {
     position: fixed;
     display:flex;
     height: 30px;
@@ -234,7 +234,7 @@ button#logout {
 .sidebar .btn-name{
     opacity:1;
     
-}
+}*/
 
 div#navbarColor02 {
     position: absolute;

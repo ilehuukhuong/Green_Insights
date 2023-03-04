@@ -115,13 +115,32 @@ namespace WebCollectingIdeas.Controllers
             }
         }
         [HttpPost]
-        public ActionResult Delete(int id)
+        public IActionResult Delete(int id)
         {
             var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
             if (obj != null)
             {
                 _unitOfWork.Category.Remove(obj);
                 _unitOfWork.Save();
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        public IActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == Convert.ToInt32(item));
+                        _unitOfWork.Category.Remove(obj);
+                        _unitOfWork.Save();
+                    }
+                }
                 return Json(new { success = true });
             }
             return Json(new { success = false });
