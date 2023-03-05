@@ -2914,7 +2914,8 @@ textarea.form-control-lg {
     display: flex;
     flex-wrap: wrap;
     align-items: stretch;
-    width: 100%;
+    width: 70%;
+    left: 30%;
 }
 
     .input-group > .form-control,
@@ -4300,8 +4301,8 @@ textarea.form-control-lg {
     --bs-nav-link-hover-color: var(--bs-navbar-hover-color);
     --bs-nav-link-disabled-color: var(--bs-navbar-disabled-color);
     display: flex;
-    flex-direction: column;
-    padding-left: 0;
+    flex-direction: row;
+    padding-left: 20%;
     margin-bottom: 0;
     list-style: none;
 }
