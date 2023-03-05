@@ -37,3 +37,14 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();
+
+app.Use(async (context, next) =>
+{
+    await next();
+
+    if (context.Response.StatusCode == 404)
+    {
+        context.Request.Path = "/error/404";
+        await next();
+    }
+});

@@ -414,3 +414,29 @@ a#manage {
         cursor: not-allowed;
         background-color: #ffffff;
     }
+.cmt {
+    max-width: 600px;
+    margin: 0 auto;
+    font-family: Arial, sans-serif;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    font-size: 16px;
+    background-color: white;
+    color: black;
+}
+
+input[type="checkbox"] {
+    margin: 1px;
+}
