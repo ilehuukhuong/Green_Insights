@@ -1,6 +1,7 @@
 ﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
@@ -11,10 +12,23 @@ namespace WebCollectingIdeas.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public IActionResult Index()
+        public ActionResult Index(string Searchtext, int? page)
         {
-            IEnumerable<Department> objDepartmentList = _unitOfWork.Department.GetAll();
-            return View(objDepartmentList);
+            var pageSize = 10;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Department> items = _unitOfWork.Department.GetAll().OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Name.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
         public IActionResult Create()
         {
@@ -70,25 +84,21 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var departmentformDb = _unitOfWork.Department.GetFirstOrDefault(x => x.Id == id);
-            //var departmentformDb = _db.Departments.Find(id);
-            //var departmentformDbFirst = _db.Department.FirstOrDefault(u=>u.Id== id);
-            //var departmentformDbsingle = _db.Department.SingleOrDefault(u => u.Id == id);
-            if (departmentformDb == null)
+            //var categoryformDb = _db.Categories.Find(id);
+            var departmentformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
+            //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+            if (departmentformDbFirst == null)
             {
                 return NotFound();
             }
-            return View(departmentformDb);
+            return View(departmentformDbFirst);
         }
         //post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _unitOfWork.Department.GetFirstOrDefault(x => x.Id == id);
-            //var obj = _db.Departments.Find(id);
-            //var departmentformDbFirst = _db.Departments.FirstOrDefault(u=>u.Id== id);
-            //var departmentformDbsingle = _db.Departments.SingleOrDefault(u => u.Id == id);
+            var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
@@ -100,6 +110,39 @@ namespace WebCollectingIdeas.Controllers
                 TempData["Deleted"] = "Delete successfully";
                 return RedirectToAction("index");
             }
+        }
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == id);
+            if (obj != null)
+            {
+                _unitOfWork.Department.Remove(obj);
+                _unitOfWork.Save();
+                TempData["Deleted"] = "Delete successfully";
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        public IActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == Convert.ToInt32(item));
+                        _unitOfWork.Department.Remove(obj);
+                        _unitOfWork.Save();
+                        TempData["Deleted"] = "Delete successfully";
+                    }
+                }
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

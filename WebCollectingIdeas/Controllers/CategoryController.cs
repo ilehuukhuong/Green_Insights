@@ -122,6 +122,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 _unitOfWork.Category.Remove(obj);
                 _unitOfWork.Save();
+                TempData["Deleted"] = "Delete successfully";
                 return Json(new { success = true });
             }
             return Json(new { success = false });
@@ -139,6 +140,7 @@ namespace WebCollectingIdeas.Controllers
                         var obj = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == Convert.ToInt32(item));
                         _unitOfWork.Category.Remove(obj);
                         _unitOfWork.Save();
+                        TempData["Deleted"] = "Delete successfully";
                     }
                 }
                 return Json(new { success = true });

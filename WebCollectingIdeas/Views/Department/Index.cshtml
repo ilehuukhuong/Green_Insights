@@ -1,54 +1,144 @@
-﻿@model IEnumerable<Department>
-
+﻿@model X.PagedList.PagedList<Department>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 <div class="container p-3">
     <div class="row justify-content-end">
-        <div class="col-6">
+        <div class="text-center">
             <h2>Department list</h2>
         </div>
-        <div class="col-3 text-end">
-            <a asp-controller="Department" asp-action="Create" class="btn btn-success"><i class="bi bi-plus"></i></a>
+
+    </div>
+    <form asp-controller="Department" asp-action="Index" method="get">
+        <div class="input-group">
+            <input type="text" name="Searchtext" class="form-control" placeholder="Type Something To Search" />
+            <div class="input-group-append">
+                <button type="submit" class="btn btn-info" style="margin-left: 5px;">Search</button>
+            </div>
+        </div>
+    </form>
+</div>
+<div class="card-body">
+    <a asp-controller="Department" asp-action="Create" class="btn btn-success"><i class="bi bi-plus">Create</i></a>
+    <a href="#" class="btn btn-danger" id="BtnDeleteAll">DELETE ALL</a>
+
+    <table class="table table-bordered table-striped">
+        <thead class="items">
+            <tr>
+                <th><input type="checkbox" id="SelectAll" /></th>
+                <th>ID</th>
+                <th class="name-item">Name</th>
+                <th>Create Day</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (Model != null && Model.Any())
+            {
+                var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                foreach (var item in Model)
+                {
+                    <tr id="trow_@item.Id">
+                        <td class="new-items"><input type="checkbox" id="cbkItem" value="@item.Id" /></td>
+                        <td class="new-items">@i</td>
+                        <td class="name-item">@item.Name</td>
+                        <td class="new-items">@item.CreateDatetime</td>
+                        <td class="action">
+                            <div>
+                                <a class=" pencil" asp-controller="Department" asp-action="Edit" asp-route-id=@item.Id>
+                                    <i class="bi bi-pencil btn btn-warning"></i>
+                                </a>
+                                @*<a asp-controller="Department" asp-action="Delete" asp-route-id=@item.Id>
+                        <i class="bi bi-trash3 btn btn-danger"></i>
+                        </a>*@
+                                <a href="#" data-id="@item.Id" class="btnDelete">
+                                    <i class="bi bi-trash3 btn btn-danger"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    i++;
+                }
+            }
+            else
+            {
+                <tr>
+                    <td colspan="5">No value!!!</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div class="row">
+        <div class="col-6" style="">
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
         </div>
     </div>
 </div>
-<table class="table table-bordered table-striped">
-    <thead class="items">
-        <tr>
-            <th>ID</th>
-            <th class="name-item">Name</th>
-            <th>Create Day</th>
-            <th>Action</th>
-        </tr>
-    </thead>
-    <tbody>
-        @if (Model != null && Model.Any())
-        {
-            var i = 1;
-            @foreach (var item in Model)
-            {
-                <tr>
-                    <td class="new-items">@i</td>
-                    <td class="name-item">@item.Name</td>
-                    <td class="new-items">@item.CreateDatetime</td>
-                    <td class="action">
-                        <div>
-                            <a class=" pencil" asp-controller="Department" asp-action="Edit" asp-route-id=@item.Id>
-                                <i class="bi bi-pencil btn btn-warning"></i>
-                            </a>
-                            <a asp-controller="Department" asp-action="Delete" asp-route-id=@item.Id>
-                                <i class="bi bi-trash3 btn btn-danger"></i>
-                            </a>
-                        </div>
-
-                    </td>
-                </tr>
-                i++;
-            }
-        }
-        else
-        {
-            <tr>
-                <td colspan="4">No value!!!</td>
-            </tr>
-        }
-    </tbody>
-</table>
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '#BtnDeleteAll', function (e) {
+                e.preventDefault();
+                var str = "";
+                var checkbox = $(this).parents('.card-body').find('tr td input:checkbox');
+                var i = 0;
+                checkbox.each(function () {
+                    if (this.checked) {
+                        checkbox.attr('selected', 'checked');
+                        var _id = $(this).val();
+                        if (i == 0) {
+                            str += _id;
+                        } else {
+                            str += "," + _id;
+                        }
+                        i++;
+                    } else {
+                        checkbox.attr('selected', '');
+                    }
+                });
+                if (str.length > 0) {
+                    var conf = confirm('Do you want to delete all?');
+                    if (conf == true) {
+                        $.ajax({
+                            url: '/department/deleteAll',
+                            type: 'POST',
+                            data: { ids: str },
+                            success: function (rs) {
+                                if (rs.success) {
+                                    location.reload();
+                                }
+                            }
+                        });
+                    }
+                }
+            });
+            $('body').on('change', '#SelectAll', function () {
+                var checkStatus = this.checked;
+                var checkbox = $(this).parents('.card-body').find('tr td input:checkbox');
+                checkbox.each(function () {
+                    this.checked = checkStatus;
+                    if (this.checked) {
+                        checkbox.attr('selected', 'checked');
+                    } else {
+                        checkbox.attr('selected', '');
+                    }
+                });
+            });
+            $('body').on('click', '.btnDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm('Do you want to delete this department?');
+                if (conf == true) {
+                    $.ajax({
+                        url: '/department/delete',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (rs) {
+                            if (rs.success) {
+                                $('#trow_' + id).remove();
+                            }
+                        }
+                    });
+                };
+            });
+        });
+    </script>
+}
