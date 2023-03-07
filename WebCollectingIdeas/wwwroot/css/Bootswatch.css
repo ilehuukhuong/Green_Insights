@@ -122,6 +122,8 @@ h6, .h6, h5, .h5, h4, .h4, h3, .h3, h2, .h2, h1, .h1 {
     margin-bottom: 0.5rem;
     font-weight: 500;
     line-height: 1.2;
+    font-style: italic;
+    text-shadow: 5px 2px 4px grey;
 }
 
 h1, .h1 {
@@ -425,6 +427,8 @@ button,
     [type=submit]:not(:disabled) {
         cursor: pointer;
         margin: 1px;
+       
+        
     }
 
 ::-moz-focus-inner {
@@ -12507,6 +12511,7 @@ textarea.form-control-lg {
 
 .form-control {
     color-scheme: light;
+    width:350px
 }
 
 .input-group-addon {
@@ -12565,6 +12570,8 @@ textarea.form-control-lg {
 
 .alert-success {
     background-color: #00bc8c;
+    width:350px;
+    margin-left:23px;
 }
 
 .alert-info {
