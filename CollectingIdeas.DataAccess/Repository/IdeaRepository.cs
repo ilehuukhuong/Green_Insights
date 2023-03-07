@@ -1,6 +1,8 @@
 ﻿using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,6 +21,11 @@ namespace CollectingIdeas.DataAccess.Repository
         public void Update(Idea idea)
         {
             _db.Ideas.Update(idea);
+        }
+
+        public Idea GetIdea(int id)
+        {
+            return _db.Ideas.Include(i => i.Topic).Include(i => i.Category).FirstOrDefault(i => i.Id == id);
         }
     }
 }

@@ -21,22 +21,24 @@ namespace CollectingIdeas.Models
         [StringLength(500)]
         public string? Description { get; set; }
         public string? Path { get; set; }
-        public int View { get; set; }
+        public int Views { get; set; }
+        public int Likes { get; set; }
+        public int Dislikes { get; set; }
         public DateTime CreateDatetime { get; set; } = DateTime.Now;
         [Required]
         public int CategoryId { get; set; }
         [ValidateNever]
         [ForeignKey("CategoryId")]
-        public virtual Category Category { get; set; }
+        public Category Category { get; set; }
         [Required]
         public int TopicId { get; set; }
         [ValidateNever]
         [ForeignKey("TopicId")]
-        public virtual Topic Topic { get; set; }
+        public Topic Topic { get; set; }
         [ValidateNever]
         public string IdentityUserId { get; set; }
         [ValidateNever]
         [ForeignKey("IdentityUserId")]
-        public virtual IdentityUser IdentityUser { get; set; }
+        public IdentityUser IdentityUser { get; set; }
     }
 }

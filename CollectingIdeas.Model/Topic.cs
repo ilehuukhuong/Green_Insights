@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace CollectingIdeas.Models
@@ -13,5 +14,7 @@ namespace CollectingIdeas.Models
         public DateTime CreateDatetime { get; set; } = DateTime.Now;
         public DateTime ClosureDate { get; set; }
         public DateTime FinalClosureDate { get; set; }
+        [ValidateNever]
+        public ICollection<Idea> Idea { get; set; }
     }
 }

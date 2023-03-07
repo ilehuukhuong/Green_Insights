@@ -34,7 +34,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(x => x.Id == id);
+            var objIdea = _unitOfWork.Idea.GetIdea(id);
             if (objIdea == null)
             {
                 return NotFound();
@@ -48,7 +48,7 @@ namespace WebCollectingIdeas.Controllers
                 objViewNew.IdeaId = id;
                 objViewNew.LastVisit = DateTime.Now;
                 _unitOfWork.View.Add(objViewNew);
-                objIdea.View += 1;
+                objIdea.Views += 1;
                 _unitOfWork.Idea.Update(objIdea);
                 _unitOfWork.Save();
 
@@ -59,8 +59,6 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.View.Update(objView);
                 _unitOfWork.Save();
             }
-            ViewBag.CategoryName = _unitOfWork.Category.GetFirstOrDefault(x => x.Id == objIdea.CategoryId).Name;
-            ViewBag.TopicName = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == objIdea.TopicId).Name;
             return View(objIdea);
         }
         public IActionResult View(int id)

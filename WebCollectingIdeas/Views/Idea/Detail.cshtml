@@ -11,11 +11,11 @@
         <dt class="col-sm-4">
             Topic Name
         </dt>
-        <dd class="col-sm-8">@ViewBag.TopicName</dd>
+        <dd class="col-sm-8">@Model.Topic.Name</dd>
         <dt class="col-sm-4">
             Category Name
         </dt>
-        <dd class="col-sm-8">@ViewBag.CategoryName</dd>
+        <dd class="col-sm-8">@Model.Category.Name</dd>
         <dt class="col-sm-4">
             Title
         </dt>
@@ -43,15 +43,15 @@
         <dt class="col-sm-4">
             View
         </dt>
-        <dd class="col-sm-8">@Model.View</dd>
+        <dd class="col-sm-8">@Model.Views</dd>
         <dt class="col-sm-4">
             Like
         </dt>
-        <dd class="col-sm-8">#</dd>
+        <dd class="col-sm-8">@Model.Likes</dd>
         <dt class="col-sm-4">
             Dislike
         </dt>
-        <dd class="col-sm-8">#</dd>
+        <dd class="col-sm-8">@Model.Dislikes</dd>
 
     </dl>
 </div>
