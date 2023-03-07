@@ -241,7 +241,7 @@ a#manage {
 }
 
 .input-group {
-    margin:10px;
+    margin: 10px;
 }
 
 button#Search {
@@ -471,6 +471,20 @@ input#show-name {
     margin-top: 5px;
 }
 
-/* Css for Login Page*/
+/* Css for Detail Idea Page*/
+a.btn.btn-info.like {
+    position: absolute;
+    right: 10%;
+    margin-top: 10px;
+}
 
+a.btn.btn-danger.dislike {
+    position: absolute;
+    right: 5px;
+    margin-top: 10px;
+}
 
+a.btn.btn-light.text-white.backto {
+    position: relative;
+    left: -40%;
+}
