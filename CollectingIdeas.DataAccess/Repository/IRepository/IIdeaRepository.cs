@@ -10,5 +10,6 @@ namespace CollectingIdeas.DataAccess.Repository.IRepository
     public interface IIdeaRepository : IRepository<Idea>
     {
         void Update(Idea idea);
+        Idea GetIdea(int id);
     }
 }

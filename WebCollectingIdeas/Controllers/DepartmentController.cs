@@ -112,6 +112,7 @@ namespace WebCollectingIdeas.Controllers
             }
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
             var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == id);
@@ -125,6 +126,7 @@ namespace WebCollectingIdeas.Controllers
             return Json(new { success = false });
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteAll(string ids)
         {
             if (!string.IsNullOrEmpty(ids))

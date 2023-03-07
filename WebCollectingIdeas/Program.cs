@@ -35,16 +35,5 @@ app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
-
+app.UseStatusCodePagesWithRedirects("/Error/{0}");
 app.Run();
-
-app.Use(async (context, next) =>
-{
-    await next();
-
-    if (context.Response.StatusCode == 404)
-    {
-        context.Request.Path = "/error/404";
-        await next();
-    }
-});
