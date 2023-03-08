@@ -1,12 +1,16 @@
-﻿using CollectingIdeas.DataAccess.Data;
+﻿using ClosedXML.Excel;
+using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using CollectingIdeas.Models.ViewModel;
+using Ionic.Zip;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using System.Net.Mime;
 using System.Security.Claims;
 
 namespace WebCollectingIdeas.Controllers
@@ -212,6 +216,71 @@ namespace WebCollectingIdeas.Controllers
             }
             TempData["Deleted"] = "Create failed";
             return RedirectToAction("Create", "Idea", new { @id = obj.idea.TopicId });
+        }
+        public IActionResult DownloadZip(int id)
+        {
+            string wwwRootPath = _webHostEnvironment.WebRootPath;
+            // Path to the folder to be compressed.
+            string folderPath = Path.Combine(wwwRootPath, @"file/topic_" + id); ;
+            if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+            // Name of the zip file.
+            string zipFileName = "topic_" + id + ".zip";
+
+            // Path to the zip file to be created.
+            string zipPath = Path.Combine(Path.GetTempPath(), zipFileName);
+
+            // Use DotNetZip to create the zip file.
+            using (ZipFile zip = new ZipFile())
+            {
+                // Add the files in the folder to the zip file.
+                zip.AddDirectory(folderPath);
+
+                // Save the zip file to the specified path.
+                zip.Save(zipPath);
+            }
+
+            // Return the zip file to the user.
+            byte[] fileBytes = System.IO.File.ReadAllBytes(zipPath);
+            return File(fileBytes, MediaTypeNames.Application.Zip, zipFileName);
+        }
+        public IActionResult DownloadExcel(int id)
+        {
+            var ideas = _unitOfWork.Idea.GetAll();
+            var workbook = new XLWorkbook();
+            var worksheet = workbook.Worksheets.Add("Ideas");
+            worksheet.Cell("A1").Value = "ID";
+            worksheet.Cell("B1").Value = "Title";
+            worksheet.Cell("C1").Value = "Description";
+            worksheet.Cell("D1").Value = "Path";
+            worksheet.Cell("E1").Value = "Views";
+            worksheet.Cell("F1").Value = "Like";
+            worksheet.Cell("G1").Value = "Dislike";
+            int row = 2;
+            int i = 1;
+            foreach (var idea in ideas)
+            {
+                if (idea.TopicId == id)
+                {
+                    worksheet.Cell("A" + row).Value = i;
+                    worksheet.Cell("B" + row).Value = idea.Title;
+                    worksheet.Cell("C" + row).Value = idea.Description;
+                    worksheet.Cell("D" + row).Value = idea.Path;
+                    worksheet.Cell("E" + row).Value = idea.Views;
+                    worksheet.Cell("F" + row).Value = idea.Likes;
+                    worksheet.Cell("G" + row).Value = idea.Dislikes;
+                    row++;
+                    i++;
+                }
+            }
+            var stream = new MemoryStream();
+            workbook.SaveAs(stream);
+            stream.Seek(0, SeekOrigin.Begin);
+            var contentType = "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet";
+            var fileName = "Topic_" + id + ".xlsx";
+            return File(stream, contentType, fileName);
         }
     }
 }
