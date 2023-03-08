@@ -1,40 +1,24 @@
 ﻿@model View
 @if (Model == null)
 {
-    <a class="btnLike" data-id="@ViewBag.IdeaId">
-        <i class="btn btn-outline-info">Like</i>
-    </a>
-    <a class="btnDislike" data-id="@ViewBag.IdeaId">
-        <i class="btn btn-outline-danger">Dislike</i>
-    </a>
+    <a class="btn btn-outline-info btnLike" data-id="@ViewBag.IdeaId">Like</a>
+    <a class="btn btn-outline-danger btnDislike" data-id="@ViewBag.IdeaId">Dislike</a>
 }
 else
 {
     @switch (Model.React)
     {
         case -1:
-            <a class="btnLike" data-id="@ViewBag.IdeaId">
-                <div class="btn btn-outline-info">Like</div>
-            </a>
-            <a class="btnDislike" data-id="@ViewBag.IdeaId">
-                <div class="btn btn-danger">Dislike</div>
-            </a>
+            <a class="btn btn-outline-info btnLike" data-id="@ViewBag.IdeaId">Like</a>
+            <a class="btn btn-danger btnDislike" data-id="@ViewBag.IdeaId">Dislike</a>
             break;
         case 1:
-            <a class="btnLike" data-id="@ViewBag.IdeaId">
-                <div class="btn btn-info">Like</div>
-            </a>
-            <a class="btnDislike" data-id="@ViewBag.IdeaId">
-                <div class="btn btn-outline-danger">Dislike</div>
-            </a>
+            <a class="btn btn-info btnLike" data-id="@ViewBag.IdeaId">Like</a>
+            <a class="btn btn-outline-danger btnDislike" data-id="@ViewBag.IdeaId">Dislike</a>
             break;
         default:
-            <a class="btnLike" data-id="@ViewBag.IdeaId">
-                <i class="btn btn-outline-info">Like</i>
-            </a>
-            <a class="btnDislike" data-id="@ViewBag.IdeaId">
-                <i class="btn btn-outline-danger">Dislike</i>
-            </a>
+            <a class="btn btn-outline-info btnLike" data-id="@ViewBag.IdeaId">Like</a>
+            <a class="btn btn-outline-danger btnDislike" data-id="@ViewBag.IdeaId">Dislike</a>
             break;
     }
 }
