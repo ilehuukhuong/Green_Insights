@@ -18,11 +18,9 @@
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <div class="container-fluid">
                 <a class="navbar-brand" href="#">BRAND</a>
-                <div class="navbar-collapse" id="navbarColor02">                     
-                    <partial name="_LoginPartial" />
-                </div>
+                
             </div>
-        </nav>       
+        </nav>
     </header>
     <div class="sidebar">
         <div class="logo_content">
@@ -43,40 +41,39 @@
                 <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
                     <i class='bx bx-home-circle'></i>
                     <span class="link_name"> Home</span>
-                </a>  
+                </a>
             </li>
 
             <li>
                 <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">
                     <i class='bx bx-category-alt'></i>
                     <span class="link_name"> Category</span>
-                </a>              
+                </a>
             </li>
 
             <li>
                 <a class="dropdown-item" asp-area="" asp-controller="Department" asp-action="Index">
                     <i class='bx bx-git-branch'></i>
                     <span class="link_name"> Department</span>
-                </a>               
+                </a>
             </li>
 
             <li>
                 <a class="dropdown-item" asp-area="" asp-controller="Topic" asp-action="Index">
                     <i class='bx bx-news'></i>
                     <span class="link_name">Topic</span>
-                </a>             
+                </a>
             </li>
 
             <li>
                 <a class="dropdown-item" asp-area="" asp-controller="Idea" asp-action="Index">
                     <i class='bx bx-brightness'></i>
                     <span class="link_name"> Ideas</span>
-                </a>               
+                </a>
             </li>
             <li>
-                
-                
-            
+                <partial name="_LoginPartial" />
+            </li>
         </ul>
     </div>
     <div class="container">
@@ -92,9 +89,10 @@
             <p>
                 Introducing our website, a platform dedicated to gathering ideas from staff members to improve our university. We believe that every member of our university community has valuable insights and perspectives that can contribute to making our institution a better place to learn and work.
 
-Our website is designed to be user-friendly and accessible, making it easy for staff members to submit their ideas and suggestions. We welcome all ideas, whether they relate to academic programs, campus facilities, student services, or any other aspect of university life.
+                Our website is designed to be user-friendly and accessible, making it easy for staff members to submit their ideas and suggestions. We welcome all ideas, whether they relate to academic programs, campus facilities, student services, or any other aspect of university life.
 
-Once submitted, ideas are reviewed and evaluated by a team of experts, who work to identify those with the greatest potential impact. These ideas are then presented to university leadership for consideration and potential implementation.</p>
+                Once submitted, ideas are reviewed and evaluated by a team of experts, who work to identify those with the greatest potential impact. These ideas are then presented to university leadership for consideration and potential implementation.
+            </p>
 
             <ul class="socials">
 
@@ -109,7 +107,6 @@ Once submitted, ideas are reviewed and evaluated by a team of experts, who work 
                 <li><a href="#"><i class="fa fa-linkedin-square"></i></a></li>
 
             </ul>
-
         </div>
         <div class="footer-bottom">
 

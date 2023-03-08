@@ -65,15 +65,15 @@ body {
     .sidebar #btn {
         position: absolute;
         color: white;
-        left: 30%;
-        top: 6px;
+        left: 20%;
+        top: 10px;
         font-size: 30px;
         height: 50px;
         width: 50px;
         text-align: center;
         line-height: 50px;
         transform: translate(-50%);
-        opacity:1;
+        opacity: 1;
     }
 
     .sidebar.active #btn {
@@ -82,7 +82,7 @@ body {
 
     .sidebar .src {
         position: relative;
-        opacity:0;
+        opacity: 0;
     }
 
     .sidebar.active .src {
@@ -90,18 +90,18 @@ body {
         height: 50px;
         width: 100%;
         margin-top: 20px;
-        opacity:1;
+        opacity: 1;
     }
-        .sidebar .src input {
-            position: absolute;
-            opacity:0;
 
-        }
+    .sidebar .src input {
+        position: absolute;
+        opacity: 0;
+    }
 
     .sidebar.active .src input {
         position: absolute;
         height: 90%;
-        width: calc(100% - 50px);
+        width: calc(100% - 30px);
         left: 10px;
         top: 0;
         border-radius: 20px;
@@ -112,20 +112,20 @@ body {
         padding-left: 50px;
         font-size: 15px;
         box-shadow: 0 2px 9px darkgrey;
-        opacity:1;
+        opacity: 1;
     }
 
-        .sidebar .src .bx-search-alt {
-            position: absolute;
-            z-index: 99;
-            font-size: 25px;
-            color: #222222c7;
-            padding-left: 20px;
-        }
+    .sidebar .src .bx-search-alt {
+        position: absolute;
+        z-index: 99;
+        font-size: 25px;
+        color: #222222c7;
+        padding-left: 20px;
+    }
 
-            .sidebar .src .bx-search-alt:hover {
-                color: #222222f5;
-            }
+        .sidebar .src .bx-search-alt:hover {
+            color: #222222f5;
+        }
 
     .sidebar.active .src .bx-search-alt {
         position: absolute;
@@ -136,7 +136,7 @@ body {
     }
 
     .sidebar i {
-        opacity:0;
+        opacity: 0;
     }
 
     .sidebar.active i {
@@ -148,62 +148,199 @@ body {
         font-size: 25px;
         margin-top: 5px;
         margin-right: 10px;
-        opacity:1;
+        padding-left: 10px;
+        opacity: 1;
     }
 
     .sidebar ul {
-        opacity:0;
+        opacity: 0;
     }
 
     .sidebar.active ul {
+        padding-left: 5px;
         margin-top: 20px;
-        opacity:1;
+        opacity: 1;
     }
 
     .sidebar ul li {
-        opacity:0;
-        pointer-events:none;
+        opacity: 0;
+        pointer-events: none;
     }
 
     .sidebar.active ul li {
         position: relative;
         margin: 0;
         list-style: none;
-        pointer-events:auto;
-        opacity:1;
+        pointer-events: auto;
+        opacity: 1;
     }
 
-        .sidebar ul li a {
-            opacity:0;
-        }
-
-        .sidebar.active ul li a {
-            color: #b3b3b3;
-            display: flex;
-            text-decoration: none;
-            align-items: center;
-            border-radius: 20px;
-            font-size: 15px;
-            white-space: nowrap;
-            opacity:1;
-        }
-
-    .sidebar.active ul li a:hover {
-        color: #000000;
-        background: #ffffffeb;
-        box-shadow: 0 2px 7px darkgrey;
+    .sidebar ul li a {
+        opacity: 0;
+        width: calc(100% - 20px);
     }
+
+    .sidebar.active ul li a {
+        color: #b3b3b3;
+        display: flex;
+        text-decoration: none;
+        align-items: center;
+        border-radius: 20px;
+        font-size: 15px;
+        white-space: nowrap;
+        opacity: 1;
+    }
+
+        .sidebar.active ul li a:hover {
+            color: #000;
+            background: #ffffffeb;
+            box-shadow: 0 2px 7px darkgrey;
+        }
 
     .sidebar.active .link_name {
         opacity: 1;
         pointer-events: none;
+        padding-left: 20px;
     }
 
     .sidebar .link_name {
         opacity: 0;
     }
+
+ul.navbar-nav {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: fixed;
+    left: 80px;
+    bottom: 25px;
+}
+
+
+button#logout {
+    position: fixed;
+    bottom: 20px;
+    left: 100px;
+}
+
+a#manage {
+    position: absolute;
+    width: calc(100% - 20px);
+    bottom: 40px;
+    right: 40px;
+}
+
+a#login {
+    border-radius: 10px;
+    color: white;
+    padding-left: 15px;
+    width: 70px;
+    background-color: forestgreen;
+    border: #303030;
+    margin: 5px;
+}
+
+a#register {
+    border-radius: 10px;
+    width: 70px;
+    color: white;
+    background-color: #e7650a;
+    border: #303030;
+    padding-left: 8px;
+    margin: 5px;
+}
+
+/* CSS for Footer*/
+footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #111111db;
+    height: auto;
+    width: 100vw;
+    padding-top: 40px;
+    color: #fff;
+}
+
+.footer-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+    .footer-content p {
+        max-width: 700px;
+        margin: 10px auto;
+        line-height: 28px;
+        font-size: 14px;
+        color: #cacdd2;
+    }
+
+.socials {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem 0 1.5rem 0;
+}
+
+    .socials li {
+        margin: 0 10px;
+    }
+
+    .socials a {
+        text-decoration: none;
+        color: #fff;
+        padding: 5px;
+        border-radius: 50%;
+    }
+
+        .socials a i {
+            font-size: 1rem;
+            width: 20px;
+            transition: color 0.4s ease;
+        }
+
+        .socials a:hover {
+            color: #24262b;
+            background-color: #fff;
+        }
+
+.footer-bottom {
+    background: #303030;
+    width: 100vw;
+    padding: 20px;
+    padding-bottom: 40px;
+    text-align: center;
+}
+
+    .footer-bottom p {
+        float: left;
+        color: #fff;
+        font-size: 14px;
+        word-spacing: 2px;
+    }
+
+        .footer-bottom p a {
+            color: #ccc;
+            font-size: 16px;
+            text-decoration: none;
+        }
+
+    .footer-bottom span {
+        text-transform: uppercase;
+    }
+
+.footer-group {
+    float: right;
+}
+
+
 /*css for Navbar*/
-div#navbarColor02 {
+div #navbarColor02 {
     position: absolute;
     right: 20px;
     margin-left: 20px;
@@ -249,16 +386,14 @@ div#navbarColor02 {
     transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
 }
 
-a#manage {
-    margin-top: 3px;
-}
+
 
 .input-group {
     margin: 10px;
 }
 
 button#Search {
-    margin-right:5px;
+    margin-right: 5px;
     margin-left: 10px;
     margin-top: 5px;
     height: 40px;
@@ -470,16 +605,16 @@ input[type="checkbox"] {
     justify-content: center;
 }
 
-    a#BtnDeleteAll {
-        position: relative;
-        min-width: auto;
-        margin-right:5px;
-        margin-top: 10px;
-        height: 40px;
-        text-align: center;
-        font-size: 11px;
-        padding-top:10px;
-    }
+a#BtnDeleteAll {
+    position: relative;
+    min-width: auto;
+    margin-right: 5px;
+    margin-top: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 11px;
+    padding-top: 10px;
+}
 
 a.btn.btn-success.btnCreate {
     margin-left: 0;
@@ -492,15 +627,12 @@ a.btn.btn-success.btnCreate {
     padding-top: 10px;
     right: 0;
 }
+
 }
-    /* Css for Detail Page of Ideas*/
-    .container-ideas {
+/* Css for Detail Page of Ideas*/
+.container-ideas {
     position: relative;
     left: 25%;
-}
-
-input#show-name {
-    margin-top: 8px;
 }
 
 .button-group {
@@ -535,9 +667,16 @@ a.btn.btn-light.text-white.backto {
     justify-content: space-between;
 }
 
+.showname {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
 /* Css for Index of Idea*/
 
-a.views {
+a .views {
     color: #ffffff00;
     text-decoration: none;
 }
@@ -550,4 +689,20 @@ a.download_zip {
 a.download_excel {
     color: #ffffff00;
     text-decoration: none
+}
+
+
+/*CSS for Login & Register Page*/
+
+.login-submit {
+    width: 300px;
+    display: flex;
+    margin-left: 30px;
+    justify-content: center;
+}
+.register-submit {
+    width: 300px;
+    display: flex;
+    margin-left: 30px;
+    justify-content: center;
 }
