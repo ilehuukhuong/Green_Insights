@@ -55,13 +55,13 @@
 
     </dl>
 </div>
-
 <div class="button-group">
     <a class="btn btn-light text-white backto" asp-controller="Idea" asp-action="View" asp-route-id=@Model.TopicId>Back to Topic View</a>
     <div class="group-button">
-        <a class="btn btn-info like">Like</a>
-        <a class="btn btn-danger dislike">Dislike</a>
-    </div>  
+        @*<a class="btn btn-info like">Like</a>
+        <a class="btn btn-danger dislike">Dislike</a>*@
+        @await Component.InvokeAsync("React", Model.Id)
+    </div>
 </div>
 <hr />
 <form class="cmt" action="#" method="post">
@@ -70,7 +70,7 @@
         <label for="comment">Comment:</label>
         <textarea id="comment" name="comment" rows="4" required></textarea>
     </div>
-    <div class = "form-idea">
+    <div class="form-idea">
         <div class="showname">
             <input class="form-check-input" type="checkbox" id="show-name" name="show-name">
             <label class="form-check-label" for="show-name">Show my name</label>
@@ -78,5 +78,43 @@
         <button type="submit" class="btn btn-success send">Send</button>
     </div>
 </form>
-
-
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnLike', function () {
+                var id = $(this).data("id");
+                let token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '/idea/like',
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        id: id
+                    },
+                    success: function (rs) {
+                        if (rs.success) {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+            $('body').on('click', '.btnDislike', function () {
+                var id = $(this).data("id");
+                let token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '/idea/dislike',
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        id: id
+                    },
+                    success: function (rs) {
+                        if (rs.success) {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}

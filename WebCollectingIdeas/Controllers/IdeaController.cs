@@ -41,6 +41,89 @@ namespace WebCollectingIdeas.Controllers
             };
             var userId = _userManager.GetUserId(HttpContext.User);
             var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            ManageView(id, objIdea, userId, objView);
+            return View(objIdea);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Like(int id)
+        {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+            var objIdeaTemp = _unitOfWork.Idea.GetIdea(id);
+            if (objIdeaTemp == null)
+            {
+                return NotFound();
+            };
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            ManageView(id, objIdeaTemp, userId, objViewTemp);
+            var objIdea = _unitOfWork.Idea.GetIdea(id);
+            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            switch (objView.React)
+            {
+                case -1:
+                    objView.React = 1;
+                    objIdea.Likes += 1;
+                    objIdea.Dislikes -= 1;
+                    break;
+                case 1:
+                    objView.React = 0;
+                    objIdea.Likes -= 1;
+                    break;
+                default:
+                    objView.React = 1;
+                    objIdea.Likes += 1;
+                    break;
+            }
+            _unitOfWork.Idea.Update(objIdea);
+            _unitOfWork.View.Update(objView);
+            _unitOfWork.Save();
+            return Json(new { success = true });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Dislike(int id)
+        {
+            if (id <= 0)
+            {
+                return NotFound();
+            }
+            var objIdeaTemp = _unitOfWork.Idea.GetIdea(id);
+            if (objIdeaTemp == null)
+            {
+                return NotFound();
+            };
+            var userId = _userManager.GetUserId(HttpContext.User);
+            var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            ManageView(id, objIdeaTemp, userId, objViewTemp);
+            var objIdea = _unitOfWork.Idea.GetIdea(id);
+            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            switch (objView.React)
+            {
+                case -1:
+                    objView.React = 0;
+                    objIdea.Dislikes -= 1;
+                    break;
+                case 1:
+                    objView.React = -1;
+                    objIdea.Likes -= 1;
+                    objIdea.Dislikes += 1;
+                    break;
+                default:
+                    objView.React = -1;
+                    objIdea.Dislikes += 1;
+                    break;
+            }
+            _unitOfWork.Idea.Update(objIdea);
+            _unitOfWork.View.Update(objView);
+            _unitOfWork.Save();
+            return Json(new { success = true });
+        }
+        public void ManageView(int id, Idea objIdea, string userId, View objView)
+        {
             if (objView == null)
             {
                 View objViewNew = new View();
@@ -59,7 +142,6 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.View.Update(objView);
                 _unitOfWork.Save();
             }
-            return View(objIdea);
         }
         public IActionResult View(int id)
         {

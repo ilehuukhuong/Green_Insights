@@ -45,3 +45,43 @@
         </div>
     </div>
 }
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $('body').on('click', '.btnLike', function () {
+                var id = $(this).data("id");
+                let token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '/idea/like',
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        id: id
+                    },
+                    success: function (rs) {
+                        if (rs.success) {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+            $('body').on('click', '.btnDislike', function () {
+                var id = $(this).data("id");
+                let token = $('input[name="__RequestVerificationToken"]').val();
+                $.ajax({
+                    url: '/idea/dislike',
+                    type: 'POST',
+                    data: {
+                        __RequestVerificationToken: token,
+                        id: id
+                    },
+                    success: function (rs) {
+                        if (rs.success) {
+                            location.reload();
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+}
