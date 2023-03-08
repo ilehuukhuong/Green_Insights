@@ -692,7 +692,7 @@ progress {
     --bs-gutter-y: 0;
     width: 100%;
     padding-right: calc(var(--bs-gutter-x) * 0.5);
-    padding-left: calc(var(--bs-gutter-x) * 4);
+    padding-left: calc(var(--bs-gutter-x) * 0.5);
     margin-right: auto;
     margin-left: auto;
 }
@@ -4439,6 +4439,7 @@ textarea.form-control-lg {
                 padding: 0;
                 overflow-y: visible;
             }
+
 }
 
 @media (min-width: 768px) {
