@@ -282,5 +282,20 @@ namespace WebCollectingIdeas.Controllers
             var fileName = "Topic_" + id + ".xlsx";
             return File(stream, contentType, fileName);
         }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Comment(Comment comment)
+        {
+            comment.IdentityUserId = _userManager.GetUserId(HttpContext.User);
+            if (ModelState.IsValid)
+            {
+                _unitOfWork.Comment.Add(comment);
+                _unitOfWork.Save();
+                TempData["Success"] = "Create successfully";
+                return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
+            }
+            TempData["Deleted"] = "Create failed";
+            return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
+        }
     }
 }

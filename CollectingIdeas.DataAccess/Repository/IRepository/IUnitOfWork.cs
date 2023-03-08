@@ -13,6 +13,7 @@ namespace CollectingIdeas.DataAccess.Repository.IRepository
         ITopicRepository Topic { get; }
         IIdeaRepository Idea { get; }
         IViewRepository View { get; }
+        ICommentRepository Comment { get; }
         void Save();
     }
 }

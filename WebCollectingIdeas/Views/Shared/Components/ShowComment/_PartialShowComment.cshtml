@@ -1,0 +1,24 @@
+﻿@model IEnumerable<Comment>
+@foreach (var obj in Model)
+{
+    if (ViewBag.IdeaId == obj.IdeaId)
+    {
+        <div class="comment mt-4 text-justify">
+
+            @if (obj.isName == false)
+            {
+                <h4>
+                    Anonymous
+                </h4>
+            }
+            else
+            {
+                <h4>@obj.IdentityUserId</h4>
+            }
+            <span>- @String.Format("{0:MMMM dd, yyyy}", obj.CreateDatetime)</span>
+            <br>
+            <p>@obj.Content</p>
+        </div>
+    }
+}
+

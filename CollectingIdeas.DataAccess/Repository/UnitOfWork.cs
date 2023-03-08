@@ -24,11 +24,13 @@ namespace CollectingIdeas.DataAccess.Repository
             Topic = new TopicRepository(_db);
             Idea = new IdeaRepository(_db);
             View =new ViewRepository(_db);
+            Comment = new CommentRepository(_db);
         }
         public ICategoryRepository Category { get; private set; }
         public IDepartmentRepository Department { get; private set; }
         public ITopicRepository Topic { get; private set;}
         public IIdeaRepository Idea { get; private set; }
         public IViewRepository View { get; private set; }
+        public ICommentRepository Comment { get; private set; }
     }
 }

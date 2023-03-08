@@ -67,21 +67,7 @@
 <section>
     <div class="container">
         <div class="row">
-            <div class="col-sm-5">
-                <form class="cmt" action="#" method="post">
-                    <div>
-                        <label for="comment">Leave a comment:</label>
-                        <textarea id="comment" name="comment" rows="4" required></textarea>
-                    </div>
-                    <div class="form-idea">
-                        <div class="showname">
-                            <input class="form-check-input" type="checkbox" id="show-name" name="show-name">
-                            <label class="form-check-label" for="show-name">Show name</label>
-                            <button type="submit" class="btn btn-success send">Send</button>
-                        </div>                       
-                    </div>                   
-                </form>
-            </div>
+            @await Component.InvokeAsync("CreateComment", Model.Id)
             <div class="col-sm-5 col-md-6 col-12 pb-3">
                 <h1>Comments</h1>
                 <div class="comment mt-3 text-justify">                   
@@ -96,11 +82,14 @@
                     <br>
                     <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
                 </div>
+                @await Component.InvokeAsync("ShowComment", Model.Id)
             </div>
         </div>
     </div>
 </section>
 @section Scripts{
+    <partial name="_ValidationScriptsPartial" />
+
     <script>
         $(document).ready(function () {
             $('body').on('click', '.btnLike', function () {

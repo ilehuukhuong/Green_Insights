@@ -15,6 +15,7 @@ namespace CollectingIdeas.DataAccess.Data
         public DbSet<Topic> Topics { get; set; }
         public DbSet<Idea> Ideas { get; set; }
         public DbSet<View> Views { get; set; }
+        public DbSet<Comment> Comments { get; set; }
 
     }
 }
