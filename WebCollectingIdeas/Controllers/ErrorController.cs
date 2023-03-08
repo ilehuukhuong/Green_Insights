@@ -5,7 +5,7 @@ namespace WebCollectingIdeas.Controllers
 {
     public class ErrorController : Controller
     {
-        [Route("/Error/{statusCode}")]
+        [Route("/Error/{statusCode}")] //The Route attribute is used to route the URL "/Error/{statusCode}" to the ErrorController's HttpStatusCodeHandler method.
         public IActionResult HttpStatusCodeHandler(int statusCode)
         {
             string message;

@@ -1,6 +1,7 @@
 ﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using Microsoft.AspNetCore.Mvc;
+using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
@@ -11,17 +12,29 @@ namespace WebCollectingIdeas.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-
-        public IActionResult Index()
+        public ActionResult Index(string Searchtext, int? page)
         {
-            IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
-            return View(objTopicList);
+            var pageSize = 10;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Topic> items = _unitOfWork.Topic.GetAll().OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Name.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
         public IActionResult Create()
         {
             return View();
         }
-
+        //Post Ceate
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Topic obj)
@@ -35,7 +48,6 @@ namespace WebCollectingIdeas.Controllers
             }
             return View(obj);
         }
-
         public IActionResult Edit(int? id)
         {
             if (id == null || id == 0)
@@ -43,13 +55,16 @@ namespace WebCollectingIdeas.Controllers
                 return NotFound();
             }
             var topicformDb = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
+            //var departmentformDb = _db.Departments.Find(id);
+            //var departmentformDbFirst = _db.Departments.FirstOrDefault(u=>u.Id== id);
+            //var departmentformDbsingle = _db.Departments.SingleOrDefault(u => u.Id == id);
             if (topicformDb == null)
             {
                 return NotFound();
             }
             return View(topicformDb);
         }
-
+        //post Edit
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Topic obj)
@@ -63,26 +78,27 @@ namespace WebCollectingIdeas.Controllers
             }
             return View(obj);
         }
-
         public IActionResult Delete(int? id)
         {
             if (id == null || id == 0)
             {
                 return NotFound();
             }
-            var topicformDb = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
-            if (topicformDb == null)
+            //var categoryformDb = _db.Categories.Find(id);
+            var topicformDbFirst = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
+            //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
+            if (topicformDbFirst == null)
             {
                 return NotFound();
             }
-            return View(topicformDb);
+            return View(topicformDbFirst);
         }
-
+        //post
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult DeletePOST(int? id)
         {
-            var obj = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
+            var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
             if (obj == null)
             {
                 return NotFound();
@@ -94,6 +110,41 @@ namespace WebCollectingIdeas.Controllers
                 TempData["Deleted"] = "Delete successfully";
                 return RedirectToAction("index");
             }
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Delete(int id)
+        {
+            var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
+            if (obj != null)
+            {
+                _unitOfWork.Topic.Remove(obj);
+                _unitOfWork.Save();
+                TempData["Deleted"] = "Delete successfully";
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult DeleteAll(string ids)
+        {
+            if (!string.IsNullOrEmpty(ids))
+            {
+                var items = ids.Split(',');
+                if (items != null && items.Any())
+                {
+                    foreach (var item in items)
+                    {
+                        var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == Convert.ToInt32(item));
+                        _unitOfWork.Topic.Remove(obj);
+                        _unitOfWork.Save();
+                        TempData["Deleted"] = "Delete successfully";
+                    }
+                }
+                return Json(new { success = true });
+            }
+            return Json(new { success = false });
         }
     }
 }

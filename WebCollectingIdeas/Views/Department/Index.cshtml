@@ -7,22 +7,22 @@
             <h2>Department list</h2>
         </div>
     </div>
-    <div class="Department-element">
-    <form asp-controller="Department" asp-action="Index" method="get">
-        <div class="input-group">
-            <input type="text" name="Searchtext" class="form-search" placeholder="Search Department.." />
-            <div class="input-group-append">
-                <button type="submit" class="btn btn-secondary" id="Search">Search</button>
-            </div>
-        </div>
-    </form>
-    <div class="btn-group-md">
-        <a href="#" class="btn btn-danger" id="BtnDeleteAll"> <i class='bx bxs-trash'></i>DELETE ALL</a>
-        <a asp-controller="Department" asp-action="Create" class="btn btn-success"><i class="bi bi-plus">CREATE</i></a>
-    </div>
-    </div>
 </div>
 <div class="card-body">
+    <div class="Department-element">
+        <form asp-controller="Department" asp-action="Index" method="get">
+            <div class="input-group">
+                <input type="text" name="Searchtext" class="form-search" placeholder="Search Department.." />
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-secondary" id="Search">Search</button>
+                </div>
+            </div>
+        </form>
+        <div class="btn-group-md">
+            <a href="#" class="btn btn-danger" id="BtnDeleteAll"> <i class='bx bxs-trash'></i>DELETE ALL</a>
+            <a asp-controller="Department" asp-action="Create" class="btn btn-success"><i class="bi bi-plus">CREATE</i></a>
+        </div>
+    </div>
     <table class="table table-bordered table-striped">
         <thead class="items">
             <tr>
