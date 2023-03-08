@@ -12,8 +12,6 @@ namespace WebCollectingIdeas.Controllers
             if (statusCode == 404)
             {
                 message = "Sorry, the resource you requested could not be found";
-                ViewBag.Path = HttpContext.Request.Path;
-                ViewBag.QueryString = HttpContext.Request.QueryString;
             }
             else
             {
@@ -21,7 +19,7 @@ namespace WebCollectingIdeas.Controllers
             }
 
             ViewBag.ErrorMessage = message;
-            return View("NotFound");
+            return View("Index");
         }
     }
 }

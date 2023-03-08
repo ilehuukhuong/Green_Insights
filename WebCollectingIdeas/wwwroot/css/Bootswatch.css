@@ -2921,7 +2921,7 @@ textarea.form-control-lg {
     align-items: stretch;
     width: 100%;
     right: 0;
-    justify-content: end;
+    justify-content: start;
 }
 
     .input-group > .form-control,
