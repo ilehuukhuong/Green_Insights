@@ -64,20 +64,42 @@
     </div>
 </div>
 <hr />
-<form class="cmt" action="#" method="post">
-
-    <div>
-        <label for="comment">Comment:</label>
-        <textarea id="comment" name="comment" rows="4" required></textarea>
-    </div>
-    <div class="form-idea">
-        <div class="showname">
-            <input class="form-check-input" type="checkbox" id="show-name" name="show-name">
-            <label class="form-check-label" for="show-name">Show my name</label>
+<section>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-5">
+                <form class="cmt" action="#" method="post">
+                    <div>
+                        <label for="comment">Leave a comment:</label>
+                        <textarea id="comment" name="comment" rows="4" required></textarea>
+                    </div>
+                    <div class="form-idea">
+                        <div class="showname">
+                            <input class="form-check-input" type="checkbox" id="show-name" name="show-name">
+                            <label class="form-check-label" for="show-name">Show name</label>
+                            <button type="submit" class="btn btn-success send">Send</button>
+                        </div>                       
+                    </div>                   
+                </form>
+            </div>
+            <div class="col-sm-5 col-md-6 col-12 pb-3">
+                <h1>Comments</h1>
+                <div class="comment mt-3 text-justify">                   
+                    <h4>Jhon Doe</h4>
+                    <span>- 20 October, 2018</span>
+                    <br>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                </div>
+                <div class="comment mt-4 text-justify">
+                    <h4>Rob Simpson</h4>
+                    <span>- 20 October, 2018</span>
+                    <br>
+                    <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus numquam assumenda hic aliquam vero sequi velit molestias doloremque molestiae dicta?</p>
+                </div>
+            </div>
         </div>
-        <button type="submit" class="btn btn-success send">Send</button>
     </div>
-</form>
+</section>
 @section Scripts{
     <script>
         $(document).ready(function () {
