@@ -27,13 +27,13 @@
                     <td class="new-items">@item.FinalClosureDate</td>
                     <td class="action">
                         <div class="eyes">
-                            <a asp-controller="Idea" asp-action="View" asp-route-id=@item.Id>
+                            <a class="views" asp-controller="Idea" asp-action="View" asp-route-id=@item.Id>
                                 <i class="fa fa-eye btn btn-secondary"></i>
                             </a>
-                            <a asp-controller="Idea" asp-action="DownloadZip" asp-route-id=@item.Id>
+                            <a class="download_zip" asp-controller="Idea" asp-action="DownloadZip" asp-route-id=@item.Id>
                                 <i class="btn btn-secondary">Export ZIP</i>
                             </a>
-                            <a asp-controller="Idea" asp-action="DownloadExcel" asp-route-id=@item.Id>
+                            <a class="download_excel" asp-controller="Idea" asp-action="DownloadExcel" asp-route-id=@item.Id>
                                 <i class="btn btn-secondary">Export Excel</i>
                             </a>
                         </div>

@@ -23,23 +23,20 @@ body {
     position: fixed;
     top: 0;
     left: 0;
-    width: 90px;
-    height: 100%;
-    padding: 6px 16px;
-    background-color: #303030;
     color: white;
 }
 
     .sidebar.active {
         position: fixed;
         top: 0;
-        left: 0;
+        left: 0px;
         width: 250px;
         height: 100%;
         padding: 6px 16px;
         background-color: #303030;
         color: white;
         box-shadow: 3px 0 10px dimgrey;
+        z-index: 999;
     }
 
 
@@ -59,8 +56,6 @@ body {
         opacity: 1;
     }
 
-
-
     .sidebar .logo_content .logo .logo_name {
         font-size: 25px;
         font-weight: 600;
@@ -70,7 +65,7 @@ body {
     .sidebar #btn {
         position: absolute;
         color: white;
-        left: 50%;
+        left: 30%;
         top: 6px;
         font-size: 30px;
         height: 50px;
@@ -78,6 +73,7 @@ body {
         text-align: center;
         line-height: 50px;
         transform: translate(-50%);
+        opacity:1;
     }
 
     .sidebar.active #btn {
@@ -86,26 +82,38 @@ body {
 
     .sidebar .src {
         position: relative;
+        opacity:0;
+    }
+
+    .sidebar.active .src {
+        position: relative;
         height: 50px;
         width: 100%;
         margin-top: 20px;
+        opacity:1;
     }
-
         .sidebar .src input {
             position: absolute;
-            height: 90%;
-            width: calc(100% - 50px);
-            left: 10px;
-            top: 0;
-            border-radius: 20px;
-            outline: none;
-            border: none;
-            background-color: white;
-            color: #000;
-            padding-left: 50px;
-            font-size: 15px;
-            box-shadow: 0 2px 9px darkgrey;
+            opacity:0;
+
         }
+
+    .sidebar.active .src input {
+        position: absolute;
+        height: 90%;
+        width: calc(100% - 50px);
+        left: 10px;
+        top: 0;
+        border-radius: 20px;
+        outline: none;
+        border: none;
+        background-color: white;
+        color: #000;
+        padding-left: 50px;
+        font-size: 15px;
+        box-shadow: 0 2px 9px darkgrey;
+        opacity:1;
+    }
 
         .sidebar .src .bx-search-alt {
             position: absolute;
@@ -128,14 +136,7 @@ body {
     }
 
     .sidebar i {
-        height: 45px;
-        min-width: 23px;
-        border-radius: 20px;
-        line-height: 40px;
-        text-align: center;
-        font-size: 25px;
-        margin-top: 5px;
-        margin-left: 5px;
+        opacity:0;
     }
 
     .sidebar.active i {
@@ -147,27 +148,36 @@ body {
         font-size: 25px;
         margin-top: 5px;
         margin-right: 10px;
+        opacity:1;
     }
 
     .sidebar ul {
-        padding-left: 20px;
-        margin-top: 10px;
+        opacity:0;
     }
 
     .sidebar.active ul {
         margin-top: 20px;
+        opacity:1;
     }
 
     .sidebar ul li {
+        opacity:0;
+        pointer-events:none;
+    }
+
+    .sidebar.active ul li {
         position: relative;
-        height: 50px;
-        width: 90%;
         margin: 0;
         list-style: none;
-        line-height: 60px;
+        pointer-events:auto;
+        opacity:1;
     }
 
         .sidebar ul li a {
+            opacity:0;
+        }
+
+        .sidebar.active ul li a {
             color: #b3b3b3;
             display: flex;
             text-decoration: none;
@@ -175,13 +185,8 @@ body {
             border-radius: 20px;
             font-size: 15px;
             white-space: nowrap;
+            opacity:1;
         }
-
-            .sidebar ul li a:hover {
-                color: #000000;
-                background: #ffffffeb;
-                box-shadow: 0 2px 7px darkgrey;
-            }
 
     .sidebar.active ul li a:hover {
         color: #000000;
@@ -192,10 +197,6 @@ body {
     .sidebar.active .link_name {
         opacity: 1;
         pointer-events: none;
-    }
-
-    .sidebar .link_name {
-        opacity: 0;
     }
 
     .sidebar .link_name {
@@ -532,3 +533,21 @@ a.btn.btn-light.text-white.backto {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+}
+
+/* Css for Index of Idea*/
+
+a.views {
+    color: #ffffff00;
+    text-decoration: none;
+}
+
+a.download_zip {
+    color: #ffffff00;
+    text-decoration: none;
+}
+
+a.download_excel {
+    color: #ffffff00;
+    text-decoration: none
+}
