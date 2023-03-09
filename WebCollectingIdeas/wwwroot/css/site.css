@@ -20,7 +20,7 @@ body {
 /*Css for Sidebar*/
 
 .sidebar {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     color: white;
@@ -221,6 +221,7 @@ button#logout {
     position: fixed;
     bottom: 20px;
     left: 100px;
+    background-color: #d92121fc;
 }
 
 a#manage {
@@ -614,6 +615,7 @@ a#BtnDeleteAll {
     text-align: center;
     font-size: 11px;
     padding-top: 10px;
+    white-space: nowrap;
 }
 
 a.btn.btn-success.btnCreate {
@@ -626,6 +628,7 @@ a.btn.btn-success.btnCreate {
     font-size: 12px;
     padding-top: 10px;
     right: 0;
+    white-space: nowrap;
 }
 
 }
@@ -662,6 +665,7 @@ a.btn.btn-light.text-white.backto {
 }
 
 .form-idea {
+    position:relative;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -674,9 +678,15 @@ a.btn.btn-light.text-white.backto {
     align-items: center;
 }
 
+button.btn.btn-success.send {
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
+
 /* Css for Index of Idea*/
 
-a .views {
+a.views {
     color: #ffffff00;
     text-decoration: none;
 }
@@ -688,18 +698,48 @@ a.download_zip {
 
 a.download_excel {
     color: #ffffff00;
-    text-decoration: none
+    text-decoration: none;
 }
 
+i.fa.fa-eye.btn.btn-secondary.view-detail {
+    height: 37px;
+    padding-top: 8px;
+    margin: 5px;
+}
 
+i.btn.btn-secondary.export-zip {
+    margin: 5px;
+    height: 37px;
+    white-space: nowrap;
+}
+
+i.btn.btn-secondary.export-excel {
+    height: 37px;
+    margin: 2px;
+    white-space: nowrap;
+}
+
+/*CSS for View of Ideas*/
+
+a.btn.btn-outline-warning.detail {
+    margin: 5px;
+}
+
+a.btn.btn-outline-info.btnLike {
+    margin: 5px;
+}
+
+a.btn.btn-outline-danger.btnDislike {
+    margin: 5px;
+}
 /*CSS for Login & Register Page*/
-
 .login-submit {
     width: 300px;
     display: flex;
     margin-left: 30px;
     justify-content: center;
 }
+
 .register-submit {
     width: 300px;
     display: flex;

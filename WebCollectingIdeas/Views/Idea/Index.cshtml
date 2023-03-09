@@ -28,13 +28,13 @@
                     <td class="action">
                         <div class="eyes">
                             <a class="views" asp-controller="Idea" asp-action="View" asp-route-id=@item.Id>
-                                <i class="fa fa-eye btn btn-secondary"></i>
+                                <i class="fa fa-eye btn btn-secondary view-detail"></i>
                             </a>
                             <a class="download_zip" asp-controller="Idea" asp-action="DownloadZip" asp-route-id=@item.Id>
-                                <i class="btn btn-secondary">Export ZIP</i>
+                                <i class="btn btn-secondary export-zip">Export ZIP</i>
                             </a>
                             <a class="download_excel" asp-controller="Idea" asp-action="DownloadExcel" asp-route-id=@item.Id>
-                                <i class="btn btn-secondary">Export Excel</i>
+                                <i class="btn btn-secondary export-excel">Export Excel</i>
                             </a>
                         </div>
                     </td>
