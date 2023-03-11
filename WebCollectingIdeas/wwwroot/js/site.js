@@ -3,6 +3,8 @@
 
 // Write your JavaScript code.
 
+
+//Functions of Button to Open & Close the Sidebar
 let btn = document.querySelector('#btn');
 let sidebar = document.querySelector('.sidebar');
 let srcBtn = document.querySelector('bx-search-alt');
@@ -14,3 +16,26 @@ btn.onclick = function () {
 srcBtn.onclick = function () {
     sidebar.classList.toggle('active');
 }
+
+// Get all checkboxes and "Delete all" button
+//var checkboxes = document.querySelectorAll('input[type="checkbox"]');
+//var deleteAllButton = document.getElementById("delete-all");
+
+// Add change event to each checkbox
+//checkboxes.forEach(function (checkbox) {
+    //checkbox.addEventListener("change", function () {
+        // Check if any checkbox is checked
+        //var checked = false;
+        //checkboxes.forEach(function (cb) {
+            //if (cb.checked) {
+                //checked = true;
+            //}
+        //});
+        // If any checkbox is selected, show "delete all" button. Otherwise, hide the "delete all" button
+        //if (checked) {
+            //deleteAllButton.style.display = "block";
+        //} else {
+            //deleteAllButton.style.display = "none";
+        //}
+    //});
+//});

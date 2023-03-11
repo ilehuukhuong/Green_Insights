@@ -11,8 +11,10 @@
             <input asp-for=Name class="form-control"/>
             <span asp-validation-for=Name class="text-danger"></span>
         </div>
-        <button type="submit" class="btn btn-success">Create</button>
-        <a class="btn btn-light" asp-controller="Category" asp-action="Index">Back to List</a>
+        <div class="button-group">
+        <button type="submit" class="btn btn-success create">Create</button>
+        <a class="btn btn-dark text-white" asp-controller="Category" asp-action="Index"><i class='bx bx-arrow-back'></i></a>
+        </div>
     </div>
 </form>
 @section Scripts{

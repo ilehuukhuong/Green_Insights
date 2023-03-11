@@ -4,7 +4,7 @@
 <form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2>Create Topic</h2>
+            <h2>Create Ideas</h2>
             <hr />
         </div>
         <input asp-for="idea.TopicId" type="hidden" value="@ViewBag.TopicId" />
@@ -29,8 +29,10 @@
             <label asp-for=idea.Path>File</label>
             <input type="file" id="fileUrl" name="file" class="form-control" />
         </div>
-        <button type="submit" onclick="return ValidateInput()" class="btn btn-success">Create</button>
-        <a class="btn btn-light text-white" asp-controller="Idea" asp-action="View" asp-route-id=@ViewBag.TopicId>Back</a>
+        <div class="button-group">
+        <button type="submit" onclick="return ValidateInput()" class="btn btn-success create">Create</button>
+        <a class="btn btn-dark text-white" asp-controller="Idea" asp-action="View" asp-route-id=@ViewBag.TopicId><i class='bx bx-arrow-back'></i></a>
+        </div>
     </div>
 </form>
 @section Scripts{

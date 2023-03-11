@@ -12,8 +12,10 @@
             <input asp-for=Name disabled class="form-control" />
             <span asp-validation-for=Name class="text-danger"></span>
         </div>
+        <div class="button-group">
         <button type="submit" class="btn btn-danger">Delete</button>
-       <a class="btn btn-light text-white" asp-controller="Category" asp-action="Index">Back to List</a>
+        <a class="btn btn-dark text-white" asp-controller="Category" asp-action="Index"><i class='bx bx-arrow-back'></i></a>
+        </div>
     </div>
 </form>
 @section Scripts{
