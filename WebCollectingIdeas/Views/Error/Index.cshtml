@@ -1,9 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Error";
 }
+<div style="margin-bottom:100px; margin-top:50px; margin-bottom:175px">
 
-<h1>Error</h1>
+<div class="container" style="text-align: center;  color: #888;">
+    <h1 style="font-size: 150px; color: #888; margin-bottom: 0px;">404</h1>
+    <p style="font-size: 50px; ">Page not found</p>
+    
+</div>
 
 <h2>@ViewBag.ErrorMessage</h2>
- 
+
+<div style="text-align: center; margin-left: 25px;">
+<a class="btn btn-outline-light text-dark" style=" width:150px"  asp-controller="Home" asp-action="Index">Back to Home</a>
+</div>
+</div>
+
 
