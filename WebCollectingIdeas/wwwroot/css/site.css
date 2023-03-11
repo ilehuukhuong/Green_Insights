@@ -219,6 +219,7 @@ ul.navbar-nav {
 
 button#logout {
     position: fixed;
+    padding: 5px;
     bottom: 20px;
     left: 100px;
     background-color: #d92121fc;
@@ -609,7 +610,7 @@ input[type="checkbox"] {
 a#BtnDeleteAll {
     position: relative;
     min-width: auto;
-    margin-right: 5px;
+    margin-left: 5px;
     margin-top: 10px;
     height: 40px;
     text-align: center;
@@ -631,9 +632,16 @@ a.btn.btn-success.btnCreate {
     white-space: nowrap;
 }
 
+i.bx.bxs-trash {
+    margin-right: 3px;
 }
-/* Css for Detail Page of Ideas*/
-.container-ideas {
+
+i.bx.bx-plus {
+    margin-right: 3px;
+    font-weight: 200;
+}
+    /* Css for Detail Page of Ideas*/
+    .container-ideas {
     position: relative;
     left: 25%;
 }
@@ -731,6 +739,11 @@ a.btn.btn-outline-info.btnLike {
 
 a.btn.btn-outline-danger.btnDislike {
     margin: 5px;
+}
+
+i.bx.bx-plus.Idea {
+    font-weight: 200;
+    margin-right: 0;
 }
 /*CSS for Login & Register Page*/
 .login-submit {
