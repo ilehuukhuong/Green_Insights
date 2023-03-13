@@ -10,7 +10,7 @@
             <td class="new-items">@obj.Likes</td>
             <td class="new-items">@obj.Dislikes</td>
             <td class="action">
-                <a class="btn btn-outline-warning detail" asp-action="Detail" asp-route-id=@obj.Id>Detail</a>
+                <a class="btn btn-outline-warning detail" asp-action="Detail" asp-route-id=@obj.Id><i class='bx bx-detail'></i></a>
                 @await Component.InvokeAsync("React", obj.Id)
             </td>
         </tr>

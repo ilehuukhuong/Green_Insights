@@ -219,6 +219,7 @@ ul.navbar-nav {
 
 button#logout {
     position: fixed;
+    padding: 5px;
     bottom: 20px;
     left: 100px;
     background-color: #d92121fc;
@@ -609,12 +610,12 @@ input[type="checkbox"] {
 a#BtnDeleteAll {
     position: relative;
     min-width: auto;
-    margin-right: 5px;
+    margin-left: 5px;
     margin-top: 10px;
     height: 40px;
     text-align: center;
     font-size: 11px;
-    padding-top: 10px;
+    padding-top: 11px;
     white-space: nowrap;
 }
 
@@ -631,9 +632,16 @@ a.btn.btn-success.btnCreate {
     white-space: nowrap;
 }
 
+i.bx.bxs-trash {
+    margin-right: 3px;
 }
-/* Css for Detail Page of Ideas*/
-.container-ideas {
+
+i.bx.bx-plus {
+    margin-right: 3px;
+    font-weight: 200;
+}
+    /* Css for Detail Page of Ideas*/
+    .container-ideas {
     position: relative;
     left: 25%;
 }
@@ -684,6 +692,11 @@ button.btn.btn-success.send {
     top: 5px;
 }
 
+i.bx.bx-send {
+    margin-bottom: 1px;
+    vertical-align: middle;
+}
+
 /* Css for Index of Idea*/
 
 a.views {
@@ -721,16 +734,33 @@ i.btn.btn-secondary.export-excel {
 
 /*CSS for View of Ideas*/
 
-a.btn.btn-outline-warning.detail {
+.btn-outline-warning.detail {
     margin: 5px;
 }
 
-a.btn.btn-outline-info.btnLike {
+.btn-outline-info.btnLike {
     margin: 5px;
 }
 
-a.btn.btn-outline-danger.btnDislike {
+.btn-outline-danger.btnDislike {
     margin: 5px;
+}
+
+i.bx.bx-plus.Idea {
+    font-weight: 200;
+    margin-right: 0;
+}
+
+.bx-like {
+    padding-top: 5px;
+}
+
+.bx-dislike {
+    padding-top: 5px;
+}
+
+.bx-detail {
+    padding-top: 5px;
 }
 /*CSS for Login & Register Page*/
 .login-submit {
@@ -746,3 +776,28 @@ a.btn.btn-outline-danger.btnDislike {
     margin-left: 30px;
     justify-content: center;
 }
+
+/*CSS for interface of Create Ideas, Topic, Category, Department pages*/
+
+button.btn.btn-success.create {
+    position: absolute;
+    right: 0;
+}
+
+a.btn.btn-dark.text-white {
+    position: relative;
+}
+
+/*CSS for interface of Edit Ideas, Topic, Category, Department pages*/
+
+button.btn.btn-warning.update {
+    position: absolute;
+    right: 0;
+}
+
+button.btn.btn-warning.delete {
+    position: absolute;
+    right: 0;
+}
+
+
