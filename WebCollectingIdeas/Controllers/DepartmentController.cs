@@ -35,6 +35,7 @@ namespace WebCollectingIdeas.Controllers
             return View();
         }
         //Post Ceate
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Create(Department obj)

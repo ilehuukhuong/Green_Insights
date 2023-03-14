@@ -37,7 +37,6 @@
     <Folder Include="Areas\Staff\Controllers\" />
     <Folder Include="Areas\Staff\Views\" />
     <Folder Include="Views\Error\" />
-    <Folder Include="wwwroot\file\" />
   </ItemGroup>
 
   <ItemGroup>
