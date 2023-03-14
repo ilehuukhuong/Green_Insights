@@ -39,13 +39,26 @@
                 </div>
                 <div class="section">
                     <p style="margin-top:10px; ">
-                        Not a member?  <a style="color:#2691d9; text-decoration:none " asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> Signup</a>
+                        Not a member?  <a style="color:#2691d9; text-decoration:none " asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl"> Sign up</a>
                     </p>
                     <p >
                         <a style="text-decoration:none;color:#2691d9" id="resend-confirmation" asp-page="./ResendEmailConfirmation">Resend email confirmation</a>
                     </p>
+                   
                 </div>
-               
+
+
+                <div class="or-login"><a>Or login with:</a></div>
+
+                <div class="google">
+                    <i class="bi bi-google"></i>
+                    <p>Google</p>
+                  
+                </div>
+                <div class="facebook">
+                    <i class="bi bi-facebook"></i>
+                    <p>Facebook</p>
+                </div>
             </form>
         </section>
     </div>
@@ -57,6 +70,8 @@
                 if ((Model.ExternalLogins?.Count ?? 0) == 0)
                 {
                     <div>
+
+
                         <p>
                             There are no external authentication services configured. See this <a href="https://go.microsoft.com/fwlink/?LinkID=532715">article
                             about setting up this ASP.NET application to support logging in via external services</a>.
