@@ -12,6 +12,11 @@
             <span asp-validation-for=Name class="text-danger"></span>
         </div>
         <div class="mb-3">
+            <label asp-for=CreateDatetime>Create Date</label>
+            <input asp-for=CreateDatetime class="form-control" />
+            <span asp-validation-for=CreateDatetime class="text-danger"></span>
+        </div>
+        <div class="mb-3">
             <label asp-for=ClosureDate>Closure Date</label>
             <input asp-for=ClosureDate class="form-control" />
             <span asp-validation-for=ClosureDate class="text-danger"></span>

@@ -11,7 +11,7 @@ namespace CollectingIdeas.Models
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
-        public DateTime CreateDatetime { get; set; } = DateTime.Now;
+        public DateTime LastUpdate { get; set; } = DateTime.Now;
         [ValidateNever]
         public ICollection<Idea> Idea { get; set; }
     }

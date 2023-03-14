@@ -133,7 +133,6 @@ namespace WebCollectingIdeas.Controllers
                 View objViewNew = new View();
                 objViewNew.IdentityUserId = userId;
                 objViewNew.IdeaId = id;
-                objViewNew.LastVisit = DateTime.Now;
                 _unitOfWork.View.Add(objViewNew);
                 objIdea.Views += 1;
                 _unitOfWork.Idea.Update(objIdea);
@@ -142,7 +141,6 @@ namespace WebCollectingIdeas.Controllers
             }
             else
             {
-                objView.LastVisit = DateTime.Now;
                 _unitOfWork.View.Update(objView);
                 _unitOfWork.Save();
             }

@@ -1,24 +1,41 @@
 ﻿@model IEnumerable<Comment>
-@foreach (var obj in Model)
+@if (Model != null && Model.Any())
 {
-    if (ViewBag.IdeaId == obj.IdeaId)
+    var i = 0;
+    foreach (var obj in Model)
+    {
+        if (ViewBag.IdeaId == obj.IdeaId)
+        {
+            i++;
+            <div class="comment mt-4 text-justify">
+
+                @if (obj.isName == false)
+                {
+                    <h4>
+                        Anonymous
+                    </h4>
+                }
+                else
+                {
+                    <h4>@obj.IdentityUser.Email</h4>
+                }
+                <h6>@String.Format("{0:MMMM dd, yyyy}", obj.CreateDatetime)</h6>
+                <p>@obj.Content</p>
+            </div>
+        }
+    }
+    if (i == 0)
     {
         <div class="comment mt-4 text-justify">
-
-            @if (obj.isName == false)
-            {
-                <h4>
-                    Anonymous
-                </h4>
-            }
-            else
-            {
-                <h4>@obj.IdentityUserId</h4>
-            }
-            <span>- @String.Format("{0:MMMM dd, yyyy}", obj.CreateDatetime)</span>
-            <br>
-            <p>@obj.Content</p>
+            <h4>No Comments</h4>
         </div>
     }
 }
+else
+{
+    <div class="comment mt-4 text-justify">
+        <h4>No Comments</h4>
+    </div>
+}
+
 

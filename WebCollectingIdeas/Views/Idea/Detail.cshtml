@@ -30,7 +30,7 @@
         <dt class="col-sm-4">
             Create Day
         </dt>
-        <dd class="col-sm-8">@Model.CreateDatetime</dd>
+        <dd class="col-sm-8">@String.Format("{0:MMMM dd, yyyy}", Model.CreateDatetime)</dd>
         @if (Model.Path != null)
         {
             <dt class="col-sm-4">

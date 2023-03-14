@@ -22,5 +22,10 @@ namespace CollectingIdeas.DataAccess.Repository
         {
             _db.Comments.Update(comment);
         }
+        public IEnumerable<Comment> GetAll()
+        {
+            IQueryable<Comment> query = DbSet.Include(i => i.IdentityUser);
+            return query.ToList();
+        }
     }
 }

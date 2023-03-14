@@ -16,7 +16,7 @@ namespace CollectingIdeas.Models
     {
         [Key]
         public int Id { get; set; }
-        public DateTime LastVisit { get; set; }
+        public DateTime LastVisit { get; set; } = DateTime.Now;
         [Required]
         public int IdeaId { get; set; }
         [Required]

@@ -39,6 +39,17 @@ namespace WebCollectingIdeas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Create(Topic obj)
         {
+            obj.CreateDatetime = DateTime.Now;
+            if (obj.ClosureDate < DateTime.Now)
+            {
+                TempData["Deleted"] = "Closure Date must be after Today";
+                return View(obj);
+            }
+            if (obj.FinalClosureDate < obj.ClosureDate)
+            {
+                TempData["Deleted"] = "Final Closure Date must be after Closure Date";
+                return View(obj);
+            }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Topic.Add(obj);
@@ -46,11 +57,12 @@ namespace WebCollectingIdeas.Controllers
                 TempData["Success"] = "Create successfully";
                 return RedirectToAction("index");
             }
+            TempData["Deleted"] = "Create Failed";
             return View(obj);
         }
         public IActionResult Edit(int? id)
         {
-            if (id == null || id == 0)
+            if (id == null || id <= 0)
             {
                 return NotFound();
             }
@@ -69,6 +81,16 @@ namespace WebCollectingIdeas.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult Edit(Topic obj)
         {
+            if (obj.ClosureDate < obj.CreateDatetime)
+            {
+                TempData["Deleted"] = "Closure Date must be after Create Date";
+                return View(obj);
+            }
+            if (obj.FinalClosureDate < obj.ClosureDate)
+            {
+                TempData["Deleted"] = "Final Closure Date must be after Closure Date";
+                return View(obj);
+            }
             if (ModelState.IsValid)
             {
                 _unitOfWork.Topic.Update(obj);
