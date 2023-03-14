@@ -12652,4 +12652,12 @@ i.bi.bi-trash3.btn.btn-danger {
 .eyes {
     padding:8px;
 }
+.checkbox a {
+    color: #2691d9;
+    cursor: pointer;
+    text-decoration: none;
+    font-style: italic;
+    font-weight: 600;
+    margin-left: 70px;
+}
 
