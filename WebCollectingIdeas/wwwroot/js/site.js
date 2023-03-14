@@ -39,3 +39,16 @@ srcBtn.onclick = function () {
         //}
     //});
 //});
+
+
+//function setContainerHeight() {
+//    var footer = document.getElementByTagName("footer");
+//   var footerHeight = footer.offsetHeight;
+//    var windowHeight = window.innerHeight;
+//    var container = document.getElementByClassName("container");
+//    var containerHeight = windowHeight - footerHeight;
+//    container.style.minHeight = containerHeight + "px";
+//}
+
+//window.onload = setContainerHeight;
+//window.onresize = setContainerHeight;
