@@ -10,7 +10,7 @@
     <div class="col-md-6">
         <section>
             <form id="account" method="post">
-                <h2 style="margin-left:-125px">Use a local account to log in.</h2>
+                <h2 style="margin-right:-16px">Use a local account to log in.</h2>
                 <hr />
                 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
                 <div class="form-floating" style="width:350px">
@@ -29,10 +29,10 @@
                             <input class="form-check-input" asp-for="Input.RememberMe" />
                             @Html.DisplayNameFor(m => m.Input.RememberMe)
                         </label>
-                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
-
                     </div>
-
+                    <div class="forget">
+                        <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+                    </div>
                 </div>
                 <div class="login-submit" style="margin-left:0px; width:350px">
                     <button id="login-submit" type="submit" class="w-100 btn btn-lg btn-primary">Log in</button>
@@ -47,13 +47,11 @@
                    
                 </div>
 
-
                 <div class="or-login"><a>Or login with:</a></div>
 
                 <div class="google">
                     <i class="bi bi-google"></i>
                     <p>Google</p>
-                  
                 </div>
                 <div class="facebook">
                     <i class="bi bi-facebook"></i>
