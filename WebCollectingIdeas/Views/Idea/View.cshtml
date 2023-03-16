@@ -2,49 +2,50 @@
 @{
     ViewData["Title"] = @Model.Name;
 }
-@if (Model != null)
-{
-    <div class="container-ideas-list">
-        <div class="container p-3">
-            <div class="row pt-4">
-                <div class="col">
-                    <h2>List of Ideas</h2>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <dl class="row justify-content-center">
-                    <dt class="col-sm-6 text-end">Topic Name:</dt>
-                    <dd class="col-sm-6">@Model.Name</dd>
-                    <dt class="col-sm-6 text-end">Submission deadline:</dt>
-                    <dd class="col-sm-6">@Model.ClosureDate</dd>
-                    <dt class="col-sm-6 text-end">Evaluation deadline:</dt>
-                    <dd class="col-sm-6">@Model.FinalClosureDate</dd>
-                </dl>
-            </div>
-            <div class="col-12 text-center">
-                <a class="btn btn-dark text-white" asp-controller="Idea" asp-action="Index"><i class='bx bx-arrow-back'></i></a>
-                <a class="btn btn-success text-white" asp-controller="Idea" asp-action="Create" asp-route-id=@Model.Id><i class="bx bx-plus Idea"></i></a>
-            </div>
-            <table class="table table-bordered table-striped">
-                <thead class="items">
-                    <tr>
-                        <th>Title</th>
-                        <th>Views</th>
-                        <th>Like</th>
-                        <th>Dislike</th>
-                        <th>Action</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @await Component.InvokeAsync("Ideas", Model.Id)
-                </tbody>
-            </table>
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col">
+            <h2>List of Ideas</h2>
         </div>
     </div>
+</div>
+<div class="col-12">
+    <dl class="row justify-content-center">
+        <dt class="col-sm-6 text-end">Topic Name:</dt>
+        <dd class="col-sm-6">@Model.Name</dd>
+        <dt class="col-sm-6 text-end">Submission deadline:</dt>
+        <dd class="col-sm-6">@Model.ClosureDate</dd>
+        <dt class="col-sm-6 text-end">Evaluation deadline:</dt>
+        <dd class="col-sm-6">@Model.FinalClosureDate</dd>
+    </dl>
+</div>
+<div class="col-12 text-center">
+    <a class="btn btn-dark text-white" asp-controller="Idea" asp-action="Index"><i class='bx bx-arrow-back'></i></a>
+    <a class="btn btn-success text-white" asp-controller="Idea" asp-action="Create" asp-route-id=@Model.Id><i class="bx bx-plus Idea"></i></a>
+</div>
+@if (Model != null)
+{
+        <div class="container-ideas-list">
+            <div class="row">
+                <table class="table table-bordered table-striped">
+                    <thead class="items">
+                        <tr>
+                            <th>Title</th>
+                            <th>Views</th>
+                            <th>Like</th>
+                            <th>Dislike</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @await Component.InvokeAsync("Ideas", Model.Id)
+                    </tbody>
+                </table>
+            </div>
+        </div>
 }
-@section Scripts{
+    @section Scripts{
     <script>
         $(document).ready(function () {
             $('body').on('click', '.btnLike', function () {

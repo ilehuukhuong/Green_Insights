@@ -40,5 +40,7 @@ namespace CollectingIdeas.Models
         [ValidateNever]
         [ForeignKey("IdentityUserId")]
         public IdentityUser IdentityUser { get; set; }
+       
     }
+
 }

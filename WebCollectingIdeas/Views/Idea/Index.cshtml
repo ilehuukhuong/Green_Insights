@@ -1,5 +1,6 @@
-﻿@model IEnumerable<Topic>
-
+﻿@model X.PagedList.PagedList<Topic>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 <div class="container p-3">
     <div class="row justify-content-center">
         <div class="col-6">
@@ -7,6 +8,14 @@
         </div>
     </div>
 </div>
+<form asp-controller="Idea" asp-action="Index" method="get" class="searchform">
+    <div class="input-group">
+        <input type="text" name="Searchtext" class="form-search" placeholder="Search Topic.." />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary" id="Search">Search</button>
+        </div>
+    </div>
+</form>
 <table class="table table-bordered table-striped">
     <thead class="items">
         <tr>
@@ -19,6 +28,7 @@
     <tbody>
         @if (Model != null && Model.Any())
         {
+            var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
             @foreach (var item in Model)
             {
                 <tr>
@@ -39,6 +49,7 @@
                         </div>
                     </td>
                 </tr>
+                i++;
             }
         }
         else
@@ -49,3 +60,8 @@
         }
     </tbody>
 </table>
+<div class="row">
+    <div class="col-12">
+        @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+    </div>
+</div>

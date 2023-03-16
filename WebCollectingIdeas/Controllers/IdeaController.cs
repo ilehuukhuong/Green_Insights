@@ -4,6 +4,7 @@ using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using CollectingIdeas.Models.ViewModel;
 using Ionic.Zip;
+using MailKit;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -12,6 +13,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mime;
 using System.Security.Claims;
+using WebCollectingIdeas.Mail;
+using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
@@ -20,17 +23,33 @@ namespace WebCollectingIdeas.Controllers
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly UserManager<IdentityUser> _userManager;
+        private readonly ISendMailService _mailService;
         private IWebHostEnvironment _webHostEnvironment;
-        public IdeaController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager, IWebHostEnvironment webHostEnvironment)
+
+        public IdeaController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager, IWebHostEnvironment webHostEnvironment, ISendMailService mailService)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
+            _mailService = mailService;
         }
-        public IActionResult Index()
+        public ActionResult Index(string Searchtext, int? page)
         {
-            IEnumerable<Topic> objTopicList = _unitOfWork.Topic.GetAll();
-            return View(objTopicList);
+            var pageSize = 5;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Topic> items = _unitOfWork.Topic.GetAll().OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Name.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
         public IActionResult Detail(int id)
         {
@@ -180,12 +199,13 @@ namespace WebCollectingIdeas.Controllers
                     Value = u.Id.ToString()
                 }
                 );
+
             ViewBag.TopicId = id;
             return View(ideaVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IdeaVM obj, IFormFile? file)
+        public IActionResult Create(IdeaVM obj, IFormFile? file, IdeaVM model)
         {
             obj.idea.IdentityUserId = _userManager.GetUserId(HttpContext.User);
             if (ModelState.IsValid)
@@ -200,6 +220,7 @@ namespace WebCollectingIdeas.Controllers
                     {
                         Directory.CreateDirectory(uploads);
                     }
+
                     var extension = Path.GetExtension(file.FileName);
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
@@ -209,7 +230,11 @@ namespace WebCollectingIdeas.Controllers
                 }
                 _unitOfWork.Idea.Add(obj.idea);
                 _unitOfWork.Save();
+
+                _mailService.IdeaSubmissionEmail("kaissken@gmail.com","","");
+
                 TempData["Success"] = "Create successfully";
+                
                 return RedirectToAction("View", "Idea", new { @id = obj.idea.TopicId });
             }
             TempData["Deleted"] = "Create failed";
@@ -295,5 +320,6 @@ namespace WebCollectingIdeas.Controllers
             TempData["Deleted"] = "Create failed";
             return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
         }
+      
     }
 }

@@ -12,7 +12,7 @@ namespace WebCollectingIdeas.Controllers
         {
             _unitOfWork = unitOfWork;
         }
-        public ActionResult Index(string Searchtext, int? page)
+        public IActionResult Index(string Searchtext, int? page)
         {
             var pageSize = 10;
             if (page == null)
