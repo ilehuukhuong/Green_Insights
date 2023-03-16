@@ -8365,6 +8365,7 @@ textarea.form-control-lg {
 
 .justify-content-between {
     justify-content: space-between !important;
+    flex-wrap: wrap;
 }
 
 .justify-content-around {
