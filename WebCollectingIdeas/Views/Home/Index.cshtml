@@ -2,195 +2,306 @@
 	ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-	<div id="content-slider" class="clr">
-		<div class="wrap-slider clr">
-			<h1 class="main-title">Lists of Latest Ideas</h1>
-			<input type="radio" id="a-1" name="a">
-			<input type="radio" id="a-2" name="a">
-			<input type="radio" id="a-3" name="a">
-			<input type="radio" id="a-4" name="a">
-			<nav id="main">
-				<label for="a-1" class="first"></label>
-				<label for="a-2" class="first"></label>
-				<label for="a-3" class="first"></label>
-				<label for="a-4" class="first"></label>
-			</nav>
-			<div class="slider">
-				<div class="inset">
-					<figure>
-						<figcaption class="title-1">
-							<h1>Title Idea</h1>
-							<p>We'll help you get ready for university, get registered once you arrive, and get the latest updates on events that will help you settle into university life.</p>
-							<a href="#">read more...@*<h1>@Model.MyField.Substring(0, 10)</h1>*@</a>
-						</figcaption>
-						<img src="/file/img/box1.jpg" id="i-1" class="f"></img>
-					</figure>
-
-					<figure>
-						<figcaption class="title-2">
-							<h1>Title Idea</h1>
-							<p>At university you will use digital tools to access information, learn and collaborate with others in online and digital spaces.</p>
-							<a href="#">read more...</a>
-						</figcaption>
-						<img src="/file/img/box2.jpg" id="i-2" class="f"></img>
-					</figure>
-
-					<figure>
-						<figcaption class="title-3">
-							<h1>Title Idea</h1>
-							<p>Natural is a term used to describe anything that is not man-made or artificial, but instead comes from the natural world. It refers to elements, substances, and processes that exist in nature.</p>
-							<a href="#">read more...</a>
-						</figcaption>
-						<img src="~/file/img/box3.png" id="i-3" class="f"></img>
-					</figure>
-					<figure>
-						<figcaption class="title-4">
-							<h1>Title Idea</h1>
-							<p>Technology has brought many benefits, it has also raised concerns about privacy, security, and the impact on jobs and the economy.</p>
-							<a href="#">READ MORE</a>
-						</figcaption>
-						<img src="~/file/img/box4.png" id="i-3" class="f"></img>
-					</figure>
+<div class="content">
+	<section class="full-width">
+		<!-- Left-col-start-->
+		<div class="left-col">
+			<div class="widgetContainer">
+				<div class="widgetContent">
+					<div id="photos" class="galleryview withOutThumbs">
+					</div>
+					<div class="clear"></div>
 				</div>
+				<div class="clear"></div>
 			</div>
+			<br />
+			<!-- Left-col-one-start-->
+			<div class="left-col-one">
+				<section class="most-view">
+					<div class="title-1">
+						<h2 class="sub-title">Most View Ideas</h2>
+					</div>
+					<div class="container-for-heading">
+						<div class="new-block">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-1" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small>3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block-sub">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-2" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small class="time">3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block-sub right">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-3" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small class="time">3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block-sub">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-4" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small class="time">3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block-sub right">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-5" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small class="time">3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						
+					</div>
+				</section>
+			</div>
+			<!-- Left-col-one-end-->
+			<!-- Left-col-two-start-->
+			<div class="left-col-two">
+				<section class="popular-view">
+					<div class="title-2">
+						<h2 class="sub-title">Popular Ideas</h2>
+					</div>
+					<div class="container-for-heading">
+						<div class="new-block">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-1" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small>3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-2" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small>3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-5" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small>3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-3" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small>3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+						<div class="new-block">
+							<div class="d-flex w-100 justify-content-between">
+								<a class="news-tag tag-4" href="#">abcdef</a>
+								<h4 class="mb-1">Idea heading</h4>
+								<small>3 days ago</small>
+							</div>
+							<hr />
+							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+							<div class="button-list">
+								<a class="arrow" href="#">
+									Read more<i class='bx bx-chevron-right'></i>
+								</a>
+								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</div>
+				</section>
+			</div>
+			<!-- Left-col-two-end-->
 		</div>
-	</div>
-	<div class="sub-container">
-		<div class="col-4 left-col-one">
-			<section class="most-view">
-				<div class="title-1">
-					<h2 class="sub-title">Most View Ideas</h2>
+		<!-- Left-col-end-->
+		<!-- Right-col-start-->
+		<div  class="right-col">
+			<section class="latest-ideas">
+				<div class="title-3">
+					<h2 class="sub-title">Latest Ideas</h2>
 				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-1" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
+				<div class="container-for-heading">
+					<div class="new-block">
+						<div class="d-flex w-100 justify-content-between">
+							<a class="news-tag tag-1" href="#">abcdef</a>
+							<h4 class="mb-1">Idea heading</h4>
+							<small>3 days ago</small>
+						</div>
+						<hr />
+						<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+						<div class="button-list">
+							<a class="arrow" href="#">
+								Read more<i class='bx bx-chevron-right'></i>
+							</a>
+							<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+							<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+							<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+						</div>
+						<div class="clear"></div>
 					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+					<div class="new-block">
+						<div class="d-flex w-100 justify-content-between">
+							<a class="news-tag tag-2" href="#">abcdef</a>
+							<h4 class="mb-1">Idea heading</h4>
+							<small>3 days ago</small>
+						</div>
+						<hr />
+						<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+						<div class="button-list">
+							<a class="arrow" href="#">
+								Read more<i class='bx bx-chevron-right'></i>
+							</a>
+							<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+							<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+							<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+						</div>
+						<div class="clear"></div>
 					</div>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-2" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
+					<div class="new-block">
+						<div class="d-flex w-100 justify-content-between">
+							<a class="news-tag tag-3" href="#">abcdef</a>
+							<h4 class="mb-1">Idea heading</h4>
+							<small>3 days ago</small>
+						</div>
+						<hr />
+						<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+						<div class="button-list">
+							<a class="arrow" href="#">
+								Read more<i class='bx bx-chevron-right'></i>
+							</a>
+							<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+							<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+							<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+						</div>
+						<div class="clear"></div>
 					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120000</span>
-					</div>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-3" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
-					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>12</span>
-					</div>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-4" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
-					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>1</span>
+					<div class="new-block">
+						<div class="d-flex w-100 justify-content-between">
+							<a class="news-tag tag-4" href="#">abcdef</a>
+							<h4 class="mb-1">Idea heading</h4>
+							<small>3 days ago</small>
+						</div>
+						<hr />
+						<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
+						<div class="button-list">
+							<a class="arrow" href="#">
+								Read more<i class='bx bx-chevron-right'></i>
+							</a>
+							<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
+							<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
+							<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
+						</div>
+						<div class="clear"></div>
 					</div>
 				</div>
 			</section>
 		</div>
 
-		<div class="col-4 left-col-two">
-			<section class="popular-view">
-				<div class="title-2">
-					<h2 class="sub-title">Most Popular Ideas</h2>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-1" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
-					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-					</div>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-2" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
-					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120000</span>
-					</div>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-3" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
-					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>12</span>
-					</div>
-				</div>
-				<div class="new-block">
-					<div class="d-flex w-100 justify-content-between">
-						<a class="news-tag tag-4" href="#">abcdef</a>
-						<h4 class="mb-1">Idea heading</h4>
-						<small>3 days ago</small>
-					</div>
-					<hr />
-					<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-					<div class="button-list">
-						<a class="btn btn-warning read-more" href="#">
-							Read more
-						</a>
-						<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>1</span>
-					</div>
-				</div>
-			</section>
-		</div>
-	</div>
+	</section>
 </div>
