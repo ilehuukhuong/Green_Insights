@@ -1,10 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using CollectingIdeas.Utility;
 using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
 using WebCollectingIdeas.Mail;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var mailsettings = builder.Configuration.GetSection("MailSettings");
@@ -12,10 +14,13 @@ var mailsettings = builder.Configuration.GetSection("MailSettings");
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
-builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
-builder.Services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = true*/)
+//builder.Services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = true*/)
+//    .AddEntityFrameworkStores<ApplicationDbContext>();
+builder.Services.AddIdentity<IdentityUser,IdentityRole>( ).AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.Configure<MailSettings>(mailsettings);
 builder.Services.AddScoped<ISendMailService, SendMailService>();
 

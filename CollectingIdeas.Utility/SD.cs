@@ -8,5 +8,10 @@ namespace CollectingIdeas.Utility
 {
     public static class SD
     {
+        public const string Role_User_Administrator = "Administrator";
+        public const string Role_User_Staff = "Staff";
+        public const string Role_User_QAManager = "QAManager";
+        public const string Role_User_Visitor = "Visitor";
+
     }
 }

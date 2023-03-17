@@ -24,16 +24,47 @@ namespace CollectingIdeas.DataAccess.Repository
             DbSet.Add(entity);
         }
 
-        public IEnumerable<T> GetAll()
+        public IEnumerable<T> GetAll(Expression<Func<T, bool>>? filter = null, string? includeProperties = null)
         {
             IQueryable<T> query = DbSet;
+            if (filter != null)
+            {
+                query = query.Where(filter);
+            }
+
+            if (includeProperties != null)
+            {
+                foreach (var item in includeProperties.Split(','))
+                {
+                    query = query.Include(item);
+                }
+
+            }
             return query.ToList();
         }
 
-        public T GetFirstOrDefault(Expression<Func<T, bool>> filter)
+        public T GetFirstOrDefault(Expression<Func<T, bool>> filter, string? includeProperties = null, bool tracked = true)
         {
-            IQueryable<T> query = DbSet;
-            query= query.Where(filter);
+            IQueryable<T> query;
+            if (tracked)
+            {
+                query = DbSet;
+            }
+            else
+            {
+                query = DbSet.AsNoTracking();
+            }
+
+
+            if (includeProperties != null)
+            {
+                foreach (var item in includeProperties.Split(','))
+                {
+                    query = query.Include(item);
+                }
+
+            }
+            query = query.Where(filter);
             return query.FirstOrDefault();
         }
 

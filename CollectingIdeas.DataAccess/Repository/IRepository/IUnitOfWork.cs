@@ -8,6 +8,7 @@ namespace CollectingIdeas.DataAccess.Repository.IRepository
 {
     public interface IUnitOfWork
     {
+        IApplicationUserRepository ApplicationUser { get; }
         ICategoryRepository Category { get; }
         IDepartmentRepository Department { get; }
         ITopicRepository Topic { get; }

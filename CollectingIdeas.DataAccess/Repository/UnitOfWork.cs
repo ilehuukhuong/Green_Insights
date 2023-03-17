@@ -19,6 +19,7 @@ namespace CollectingIdeas.DataAccess.Repository
         public UnitOfWork(ApplicationDbContext db)
         {
             _db = db;
+            ApplicationUser = new ApplicationUserRepository(_db);
             Category = new CategoryRepository(_db);
             Department = new DepartmentRepository(_db);
             Topic = new TopicRepository(_db);
@@ -26,6 +27,7 @@ namespace CollectingIdeas.DataAccess.Repository
             View =new ViewRepository(_db);
             Comment = new CommentRepository(_db);
         }
+        public IApplicationUserRepository ApplicationUser { get; private set; }
         public ICategoryRepository Category { get; private set; }
         public IDepartmentRepository Department { get; private set; }
         public ITopicRepository Topic { get; private set;}

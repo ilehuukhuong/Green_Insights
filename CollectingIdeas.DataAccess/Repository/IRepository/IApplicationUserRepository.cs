@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace CollectingIdeas.DataAccess.Repository.IRepository
 {
-    public interface ICommentRepository : IRepository<Comment>
+    public interface IApplicationUserRepository : IRepository<ApplicationUser>
     {
-        void Update(Comment comment);
-        public IEnumerable<Comment> GetAllComment();
-
+        void Update(ApplicationUser applicationUser);
     }
 }

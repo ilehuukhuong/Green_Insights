@@ -57,7 +57,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var objIdea = _unitOfWork.Idea.GetIdea(id);
+            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
             if (objIdea == null)
             {
                 return NotFound();
@@ -75,7 +75,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var objIdeaTemp = _unitOfWork.Idea.GetIdea(id);
+            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
             if (objIdeaTemp == null)
             {
                 return NotFound();
@@ -83,7 +83,7 @@ namespace WebCollectingIdeas.Controllers
             var userId = _userManager.GetUserId(HttpContext.User);
             var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
             ManageView(id, objIdeaTemp, userId, objViewTemp);
-            var objIdea = _unitOfWork.Idea.GetIdea(id);
+            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
             var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
             switch (objView.React)
             {
@@ -114,7 +114,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             }
-            var objIdeaTemp = _unitOfWork.Idea.GetIdea(id);
+            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
             if (objIdeaTemp == null)
             {
                 return NotFound();
@@ -122,7 +122,7 @@ namespace WebCollectingIdeas.Controllers
             var userId = _userManager.GetUserId(HttpContext.User);
             var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
             ManageView(id, objIdeaTemp, userId, objViewTemp);
-            var objIdea = _unitOfWork.Idea.GetIdea(id);
+            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
             var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
             switch (objView.React)
             {

@@ -1,8 +1,6 @@
 ﻿using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,16 +9,18 @@ using System.Threading.Tasks;
 
 namespace CollectingIdeas.DataAccess.Repository
 {
-    public class IdeaRepository : Repository<Idea>, IIdeaRepository
+    public class ApplicationUserRepository : Repository<ApplicationUser>, IApplicationUserRepository
     {
         private readonly ApplicationDbContext _db;
-        public IdeaRepository(ApplicationDbContext db) : base(db)
+
+        public ApplicationUserRepository(ApplicationDbContext db) : base(db)
         {
             _db = db;
         }
-        public void Update(Idea idea)
+
+        public void Update(ApplicationUser applicationUser)
         {
-            _db.Ideas.Update(idea);
+            _db.ApplicationUsers.Update(applicationUser);
         }
     }
 }
