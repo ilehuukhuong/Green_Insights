@@ -15,14 +15,14 @@ namespace CollectingIdeas.Models
         [Key]
         public int Id { get; set; }
         public string Content { get; set; }
-        public bool isName { get; set; }
+        public bool isDisplay { get; set; }
         public int IdeaId { get; set; }
         public DateTime CreateDatetime { get; set; } = DateTime.Now;
         [ValidateNever]
         [Required]
-        public string IdentityUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         [ValidateNever]
-        [ForeignKey("IdentityUserId")]
-        public IdentityUser IdentityUser { get; set; }
+        [ForeignKey("ApplicationUserId")]
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

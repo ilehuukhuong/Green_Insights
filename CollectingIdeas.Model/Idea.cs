@@ -21,6 +21,8 @@ namespace CollectingIdeas.Models
         [StringLength(500)]
         public string? Description { get; set; }
         public string? Path { get; set; }
+        public bool isDisplay { get; set; }
+        public bool isAgree { get; set; }
         public int Views { get; set; }
         public int Likes { get; set; }
         public int Dislikes { get; set; }
@@ -36,11 +38,10 @@ namespace CollectingIdeas.Models
         [ForeignKey("TopicId")]
         public Topic Topic { get; set; }
         [ValidateNever]
-        public string IdentityUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         [ValidateNever]
-        [ForeignKey("IdentityUserId")]
-        public IdentityUser IdentityUser { get; set; }
-       
+        [ForeignKey("ApplicationUserId")]
+        public ApplicationUser ApplicationUser { get; set; }
     }
 
 }

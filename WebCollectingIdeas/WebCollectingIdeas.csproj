@@ -54,12 +54,7 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Topic\Create.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Topic\Delete.cshtml" />
     <_ContentIncludedByDefault Remove="Views\Topic\Edit.cshtml" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <UpToDateCheckInput Remove="Views\Topic\Delete.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

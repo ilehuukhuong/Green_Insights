@@ -3,6 +3,7 @@ using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using CollectingIdeas.Models.ViewModel;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Ionic.Zip;
 using MailKit;
 using Microsoft.AspNetCore.Authorization;
@@ -22,14 +23,12 @@ namespace WebCollectingIdeas.Controllers
     public class IdeaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly ISendMailService _mailService;
         private IWebHostEnvironment _webHostEnvironment;
 
-        public IdeaController(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager, IWebHostEnvironment webHostEnvironment, ISendMailService mailService)
+        public IdeaController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, ISendMailService mailService)
         {
             _unitOfWork = unitOfWork;
-            _userManager = userManager;
             _webHostEnvironment = webHostEnvironment;
             _mailService = mailService;
         }
@@ -40,7 +39,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 page = 1;
             }
-            IEnumerable<Topic> items = _unitOfWork.Topic.GetAll().OrderByDescending(x => x.Id);
+            IEnumerable<Topic> items = _unitOfWork.Topic.GetAll().OrderByDescending(x => x.ClosureDate);
             if (!string.IsNullOrEmpty(Searchtext))
             {
                 items = items.Where(x => x.Name.Contains(Searchtext));
@@ -53,135 +52,38 @@ namespace WebCollectingIdeas.Controllers
         }
         public IActionResult Detail(int id)
         {
-            if (id <= 0)
-            {
-                return NotFound();
-            }
-            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
+            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic,ApplicationUser");
             if (objIdea == null)
             {
                 return NotFound();
             };
-            var userId = _userManager.GetUserId(HttpContext.User);
-            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            string userId = claims.Value;
+            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.ApplicationUserId == userId);
             ManageView(id, objIdea, userId, objView);
             return View(objIdea);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Like(int id)
+        public IActionResult View(int TopicId)
         {
-            if (id <= 0)
-            {
-                return NotFound();
-            }
-            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
-            if (objIdeaTemp == null)
-            {
-                return NotFound();
-            };
-            var userId = _userManager.GetUserId(HttpContext.User);
-            var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
-            ManageView(id, objIdeaTemp, userId, objViewTemp);
-            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
-            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
-            switch (objView.React)
-            {
-                case -1:
-                    objView.React = 1;
-                    objIdea.Likes += 1;
-                    objIdea.Dislikes -= 1;
-                    break;
-                case 1:
-                    objView.React = 0;
-                    objIdea.Likes -= 1;
-                    break;
-                default:
-                    objView.React = 1;
-                    objIdea.Likes += 1;
-                    break;
-            }
-            _unitOfWork.Idea.Update(objIdea);
-            _unitOfWork.View.Update(objView);
-            _unitOfWork.Save();
-            return Json(new { success = true });
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Dislike(int id)
-        {
-            if (id <= 0)
-            {
-                return NotFound();
-            }
-            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
-            if (objIdeaTemp == null)
-            {
-                return NotFound();
-            };
-            var userId = _userManager.GetUserId(HttpContext.User);
-            var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
-            ManageView(id, objIdeaTemp, userId, objViewTemp);
-            var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
-            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
-            switch (objView.React)
-            {
-                case -1:
-                    objView.React = 0;
-                    objIdea.Dislikes -= 1;
-                    break;
-                case 1:
-                    objView.React = -1;
-                    objIdea.Likes -= 1;
-                    objIdea.Dislikes += 1;
-                    break;
-                default:
-                    objView.React = -1;
-                    objIdea.Dislikes += 1;
-                    break;
-            }
-            _unitOfWork.Idea.Update(objIdea);
-            _unitOfWork.View.Update(objView);
-            _unitOfWork.Save();
-            return Json(new { success = true });
-        }
-        public void ManageView(int id, Idea objIdea, string userId, View objView)
-        {
-            if (objView == null)
-            {
-                View objViewNew = new View();
-                objViewNew.IdentityUserId = userId;
-                objViewNew.IdeaId = id;
-                _unitOfWork.View.Add(objViewNew);
-                objIdea.Views += 1;
-                _unitOfWork.Idea.Update(objIdea);
-                _unitOfWork.Save();
-
-            }
-            else
-            {
-                _unitOfWork.View.Update(objView);
-                _unitOfWork.Save();
-            }
-        }
-        public IActionResult View(int id)
-        {
-            if (id <= 0)
-            {
-                return NotFound();
-            }
-            var obj = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == id);
+            var obj = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == TopicId);
             if (obj == null)
             {
                 return NotFound();
             };
             return View(obj);
         }
-        public IActionResult Create(int id)
+        public IActionResult Create(int TopicId)
         {
-            if (id <= 0)
+            var topicCheck = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == TopicId);
+            if (topicCheck == null)
             {
                 return NotFound();
+            };
+            if (topicCheck.ClosureDate < DateTime.Now)
+            {
+                TempData["Deleted"] = "It's too late to create ideas now.";
+                return RedirectToAction("View", "Idea", new { TopicId });
             }
             IdeaVM ideaVM = new IdeaVM();
             ideaVM.idea = new Idea();
@@ -200,14 +102,28 @@ namespace WebCollectingIdeas.Controllers
                 }
                 );
 
-            ViewBag.TopicId = id;
+            ViewBag.TopicId = TopicId;
             return View(ideaVM);
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IdeaVM obj, IFormFile? file, IdeaVM model)
+        public IActionResult Create(IdeaVM obj, IFormFile? file)
         {
-            obj.idea.IdentityUserId = _userManager.GetUserId(HttpContext.User);
+            var topicCheck = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == obj.idea.TopicId);
+            if (topicCheck.ClosureDate < DateTime.Now)
+            {
+                TempData["Deleted"] = "It's too late to create ideas now.";
+                return RedirectToAction("View", "Idea", new { obj.idea.TopicId });
+            }
+            if (obj.idea.isAgree == false)
+            {
+                TempData["Deleted"] = "You must agree to the terms and conditions before submitting.";
+                return NoContent();
+            }
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
+            var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            string userId = claims.Value;
+            obj.idea.ApplicationUserId = userId;
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
@@ -231,14 +147,147 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Idea.Add(obj.idea);
                 _unitOfWork.Save();
 
-                _mailService.IdeaSubmissionEmail("kaissken@gmail.com","","");
+                _mailService.IdeaSubmissionEmail("kaissken@gmail.com", "", "");
 
                 TempData["Success"] = "Create successfully";
-                
-                return RedirectToAction("View", "Idea", new { @id = obj.idea.TopicId });
+
+                return RedirectToAction("View", "Idea", new { obj.idea.TopicId });
             }
             TempData["Deleted"] = "Create failed";
-            return RedirectToAction("Create", "Idea", new { @id = obj.idea.TopicId });
+            return RedirectToAction("Create", "Idea", new { obj.idea.TopicId });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Like(int id)
+        {
+            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id);
+            if (objIdeaTemp == null)
+            {
+                return NotFound();
+            };
+            if (CheckFinalClosureDate(objIdeaTemp.Id) == true)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                string userId = claims.Value;
+                var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.ApplicationUserId == userId);
+                ManageView(id, objIdeaTemp, userId, objViewTemp);
+                var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id, includeProperties: "Category,Topic");
+                var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.ApplicationUserId == userId);
+                switch (objView.React)
+                {
+                    case -1:
+                        objView.React = 1;
+                        objIdea.Likes += 1;
+                        objIdea.Dislikes -= 1;
+                        break;
+                    case 1:
+                        objView.React = 0;
+                        objIdea.Likes -= 1;
+                        break;
+                    default:
+                        objView.React = 1;
+                        objIdea.Likes += 1;
+                        break;
+                }
+                _unitOfWork.Idea.Update(objIdea);
+                _unitOfWork.View.Update(objView);
+                _unitOfWork.Save();
+                return Json(new { success = true });
+            }
+            TempData["Deleted"] = "It's too late to like or dislike now.";
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Dislike(int id)
+        {
+            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id);
+            if (objIdeaTemp == null)
+            {
+                return NotFound();
+            };
+            if (CheckFinalClosureDate(objIdeaTemp.Id) == true)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                string userId = claims.Value;
+                var objViewTemp = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.ApplicationUserId == userId);
+                ManageView(id, objIdeaTemp, userId, objViewTemp);
+                var objIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id);
+                var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.ApplicationUserId == userId);
+                switch (objView.React)
+                {
+                    case -1:
+                        objView.React = 0;
+                        objIdea.Dislikes -= 1;
+                        break;
+                    case 1:
+                        objView.React = -1;
+                        objIdea.Likes -= 1;
+                        objIdea.Dislikes += 1;
+                        break;
+                    default:
+                        objView.React = -1;
+                        objIdea.Dislikes += 1;
+                        break;
+                }
+                _unitOfWork.Idea.Update(objIdea);
+                _unitOfWork.View.Update(objView);
+                _unitOfWork.Save();
+                return Json(new { success = true });
+            }
+            TempData["Deleted"] = "It's too late to like or dislike now.";
+            return Json(new { success = false });
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Comment(Comment comment)
+        {
+            if (CheckFinalClosureDate(comment.IdeaId) == true)
+            {
+                var claimsIdentity = (ClaimsIdentity)User.Identity;
+                var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+                string userId = claims.Value;
+                comment.ApplicationUserId = userId;
+                if (ModelState.IsValid)
+                {
+                    _unitOfWork.Comment.Add(comment);
+                    _unitOfWork.Save();
+                    TempData["Success"] = "Create successfully";
+                    return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
+                }
+            }
+            TempData["Deleted"] = "It's too late to leave a comment now.";
+            return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
+        }
+        public bool CheckFinalClosureDate(int id)
+        {
+            var ideaCheck = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id);
+            var topicCheck = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == ideaCheck.TopicId);
+            if (topicCheck.FinalClosureDate < DateTime.Now)
+            {
+                return false;
+            }
+            return true;
+        }
+        public void ManageView(int id, Idea objIdea, string userId, View objView)
+        {
+            if (objView == null)
+            {
+                View objViewNew = new View();
+                objViewNew.ApplicationUserId = userId;
+                objViewNew.IdeaId = id;
+                _unitOfWork.View.Add(objViewNew);
+                objIdea.Views += 1;
+                _unitOfWork.Idea.Update(objIdea);
+                _unitOfWork.Save();
+            }
+            else
+            {
+                _unitOfWork.View.Update(objView);
+                _unitOfWork.Save();
+            }
         }
         public IActionResult DownloadZip(int id)
         {
@@ -251,10 +300,8 @@ namespace WebCollectingIdeas.Controllers
             }
             // Name of the zip file.
             string zipFileName = "topic_" + id + ".zip";
-
             // Path to the zip file to be created.
             string zipPath = Path.Combine(Path.GetTempPath(), zipFileName);
-
             // Use DotNetZip to create the zip file.
             using (ZipFile zip = new ZipFile())
             {
@@ -264,39 +311,41 @@ namespace WebCollectingIdeas.Controllers
                 // Save the zip file to the specified path.
                 zip.Save(zipPath);
             }
-
             // Return the zip file to the user.
             byte[] fileBytes = System.IO.File.ReadAllBytes(zipPath);
             return File(fileBytes, MediaTypeNames.Application.Zip, zipFileName);
         }
         public IActionResult DownloadExcel(int id)
         {
-            var ideas = _unitOfWork.Idea.GetAll();
+            var ideas = _unitOfWork.Idea.GetAll(i => i.TopicId == id, includeProperties: "Category,ApplicationUser");
             var workbook = new XLWorkbook();
             var worksheet = workbook.Worksheets.Add("Ideas");
             worksheet.Cell("A1").Value = "ID";
-            worksheet.Cell("B1").Value = "Title";
-            worksheet.Cell("C1").Value = "Description";
-            worksheet.Cell("D1").Value = "Path";
-            worksheet.Cell("E1").Value = "Views";
-            worksheet.Cell("F1").Value = "Like";
-            worksheet.Cell("G1").Value = "Dislike";
+            worksheet.Cell("B1").Value = "First Name";
+            worksheet.Cell("C1").Value = "Last Name";
+            worksheet.Cell("D1").Value = "Title";
+            worksheet.Cell("E1").Value = "Description";
+            worksheet.Cell("F1").Value = "Category";
+            worksheet.Cell("G1").Value = "Path";
+            worksheet.Cell("H1").Value = "Views";
+            worksheet.Cell("I1").Value = "Like";
+            worksheet.Cell("J1").Value = "Dislike";
             int row = 2;
             int i = 1;
             foreach (var idea in ideas)
             {
-                if (idea.TopicId == id)
-                {
-                    worksheet.Cell("A" + row).Value = i;
-                    worksheet.Cell("B" + row).Value = idea.Title;
-                    worksheet.Cell("C" + row).Value = idea.Description;
-                    worksheet.Cell("D" + row).Value = idea.Path;
-                    worksheet.Cell("E" + row).Value = idea.Views;
-                    worksheet.Cell("F" + row).Value = idea.Likes;
-                    worksheet.Cell("G" + row).Value = idea.Dislikes;
-                    row++;
-                    i++;
-                }
+                worksheet.Cell("A" + row).Value = i;
+                worksheet.Cell("B" + row).Value = idea.ApplicationUser.FirstName;
+                worksheet.Cell("C" + row).Value = idea.ApplicationUser.LastName;
+                worksheet.Cell("D" + row).Value = idea.Title;
+                worksheet.Cell("E" + row).Value = idea.Description;
+                worksheet.Cell("F" + row).Value = idea.Category.Name;
+                worksheet.Cell("G" + row).Value = idea.Path;
+                worksheet.Cell("H" + row).Value = idea.Views;
+                worksheet.Cell("I" + row).Value = idea.Likes;
+                worksheet.Cell("J" + row).Value = idea.Dislikes;
+                row++;
+                i++;
             }
             var stream = new MemoryStream();
             workbook.SaveAs(stream);
@@ -305,21 +354,5 @@ namespace WebCollectingIdeas.Controllers
             var fileName = "Topic_" + id + ".xlsx";
             return File(stream, contentType, fileName);
         }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult Comment(Comment comment)
-        {
-            comment.IdentityUserId = _userManager.GetUserId(HttpContext.User);
-            if (ModelState.IsValid)
-            {
-                _unitOfWork.Comment.Add(comment);
-                _unitOfWork.Save();
-                TempData["Success"] = "Create successfully";
-                return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
-            }
-            TempData["Deleted"] = "Create failed";
-            return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
-        }
-      
     }
 }

@@ -13,8 +13,7 @@ namespace WebCollectingIdeas.Views.Shared.Components.Ideas
         }
         public IViewComponentResult Invoke(int id)
         {
-            IEnumerable<Idea> objIdeasList = _unitOfWork.Idea.GetAll();
-            ViewBag.TopicId = id;
+            IEnumerable<Idea> objIdeasList = _unitOfWork.Idea.GetAll(i => i.TopicId == id);
             return View("_PartialIdea",objIdeasList);
         }
     }

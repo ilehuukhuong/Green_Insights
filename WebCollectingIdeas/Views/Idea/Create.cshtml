@@ -29,21 +29,27 @@
             <label asp-for=idea.Path>File</label>
             <input type="file" id="fileUrl" name="file" class="form-control" />
         </div>
-        <div>
+        <div class="mb-3">
             <label>
-                <input type="checkbox" asp-for="AgreeToTerms" />
+                <input type="checkbox" asp-for=idea.isDisplay>
+                Show my name
+            </label>
+        </div>
+        <div class="mb-3">
+            <label>
+                <input type="checkbox" asp-for="idea.isAgree" />
                 I agree to the <a href="">terms and conditions</a>
             </label>
         </div>
         <div class="button-group">
-        <button type="submit" onclick="return ValidateInput()" class="btn btn-success create">Create</button>
-        <a class="btn btn-dark text-white" asp-controller="Idea" asp-action="View" asp-route-id=@ViewBag.TopicId><i class='bx bx-arrow-back'></i></a>
+            <button type="submit" onclick="return ValidateInput()" class="btn btn-success create">Create</button>
+            <a class="btn btn-dark text-white" asp-controller="Idea" asp-action="View" asp-route-TopicId=@ViewBag.TopicId><i class='bx bx-arrow-back'></i></a>
         </div>
     </div>
 </form>
 @section Scripts{
     <partial name="_ValidationScriptsPartial" />
-@*    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    @*    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         function ValidateInput() {
             if (document.getElementById("fileUrl").value == "") {
@@ -58,15 +64,4 @@
             return true;
         }
     </script>*@
-    <script>
-        $(document).ready(function () {
-            $("form").submit(function (event) {
-                if (!$('#AgreeToTerms').is(':checked')) {
-                    event.preventDefault();
-                    alert("You must agree to the terms and conditions before submitting.");
-                }
-            });
-        });
-    </script>
-   
 }

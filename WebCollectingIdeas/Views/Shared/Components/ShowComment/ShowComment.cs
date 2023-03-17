@@ -13,8 +13,7 @@ namespace WebCollectingIdeas.Views.Shared.Components.ShowComment
         }
         public IViewComponentResult Invoke(int id)
         {
-            IEnumerable<Comment> objCommentList = _unitOfWork.Comment.GetAllComment();
-            ViewBag.IdeaId = id;
+            IEnumerable<Comment> objCommentList = _unitOfWork.Comment.GetAll(i => i.IdeaId == id, includeProperties: "ApplicationUser");
             return View("_PartialShowComment", objCommentList);
         }
     }

@@ -31,11 +31,12 @@
             <i class='bx bx-menu' id='btn'></i>
         </div>
         <div class="src">
-            <i class='bx bx-search-alt'></i>
-            <input type="text" placeholder="Search topic.." />
+            <form asp-controller="Idea" asp-action="Index" method="get" class="searchform">
+                <i class='bx bx-search-alt'></i>
+                <input type="text" name="Searchtext" placeholder="Search topic.." />
+            </form>
 
         </div>
-
         <ul class="sub-nav">
             <li>
                 <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
@@ -84,29 +85,29 @@
     </div>
 
     @*<footer>
-        <div class="footer-bottom">
+    <div class="footer-bottom">
 
-            <p>©@DateTime.Now.Year All Rights Reserverd</p>
-            <div class="footer-group">
-                <div class="footer-content">
+    <p>©@DateTime.Now.Year All Rights Reserverd</p>
+    <div class="footer-group">
+    <div class="footer-content">
 
-                    <ul class="socials">
+    <ul class="socials">
 
-                        <li><a href="https://www.facebook.com/uniofgreenwich"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="https://www.facebook.com/uniofgreenwich"><i class="fa fa-facebook"></i></a></li>
 
-                        <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+    <li><a href="#"><i class="fa fa-twitter"></i></a></li>
 
-                        <li><a href="https://www.gre.ac.uk/welcome"><i class="fa fa-google"></i></a></li>
+    <li><a href="https://www.gre.ac.uk/welcome"><i class="fa fa-google"></i></a></li>
 
-                        <li><a href="#"><i class="fa fa-youtube"></i></a></li>
+    <li><a href="#"><i class="fa fa-youtube"></i></a></li>
 
-                        <li><a href="https://github.com/ilehuukhuong/CollectingIdeas"><qwi class="fa fa-github"></qwi></a></li>
+    <li><a href="https://github.com/ilehuukhuong/CollectingIdeas"><qwi class="fa fa-github"></qwi></a></li>
 
-                    </ul>
-                </div>
-            </div>
+    </ul>
+    </div>
+    </div>
 
-        </div>
+    </div>
     </footer>*@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>

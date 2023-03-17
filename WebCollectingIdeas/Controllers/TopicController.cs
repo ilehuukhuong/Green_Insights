@@ -1,5 +1,6 @@
 ﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
+using DocumentFormat.OpenXml.Office2010.Excel;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
@@ -100,51 +101,27 @@ namespace WebCollectingIdeas.Controllers
             }
             return View(obj);
         }
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            //var categoryformDb = _db.Categories.Find(id);
-            var topicformDbFirst = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
-            //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (topicformDbFirst == null)
-            {
-                return NotFound();
-            }
-            return View(topicformDbFirst);
-        }
-        //post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
-        {
-            var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                _unitOfWork.Topic.Remove(obj);
-                _unitOfWork.Save();
-                TempData["Deleted"] = "Delete successfully";
-                return RedirectToAction("index");
-            }
-        }
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
-            if (obj != null)
+            var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.TopicId == id);
+            if (objIdeaTemp == null)
             {
-                _unitOfWork.Topic.Remove(obj);
-                _unitOfWork.Save();
-                TempData["Deleted"] = "Delete successfully";
-                return Json(new { success = true });
+                var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == id);
+                if (obj != null)
+                {
+                    _unitOfWork.Topic.Remove(obj);
+                    _unitOfWork.Save();
+                    TempData["Deleted"] = "Delete successfully";
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
+            TempData["Deleted"] = "Cannot be deleted because there are ideas present in this topic.";
             return Json(new { success = false });
         }
         [HttpPost]
@@ -156,6 +133,15 @@ namespace WebCollectingIdeas.Controllers
                 var items = ids.Split(',');
                 if (items != null && items.Any())
                 {
+                    foreach(var item  in items)
+                    {
+                        var objIdeaTemp = _unitOfWork.Idea.GetFirstOrDefault(u => u.TopicId == Convert.ToInt32(item));
+                        if (objIdeaTemp != null)
+                        {
+                            TempData["Deleted"] = "Cannot be deleted because there are ideas present in some topic.";
+                            return Json(new { success = false });
+                        }
+                    }
                     foreach (var item in items)
                     {
                         var obj = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == Convert.ToInt32(item));

@@ -24,7 +24,7 @@ namespace CollectingIdeas.DataAccess.Repository
         }
         public IEnumerable<Comment> GetAllComment()
         {
-            IQueryable<Comment> query = DbSet.Include(i => i.IdentityUser);
+            IQueryable<Comment> query = DbSet.Include(i => i.ApplicationUser);
             return query.ToList();
         }
     }

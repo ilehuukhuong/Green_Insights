@@ -15,9 +15,5 @@ namespace CollectingIdeas.Models.ViewModel
         public IEnumerable<SelectListItem> CategoryList { get; set; }
         [ValidateNever]
         public IEnumerable<SelectListItem> TopicList { get; set; }
-         // other properties here
-        public bool AgreeToTerms { get; set; }
     }
-
-       
 }

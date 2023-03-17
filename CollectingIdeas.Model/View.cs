@@ -20,7 +20,7 @@ namespace CollectingIdeas.Models
         [Required]
         public int IdeaId { get; set; }
         [Required]
-        public string IdentityUserId { get; set; }
+        public string ApplicationUserId { get; set; }
         public int React { get; set; }
     }
 }

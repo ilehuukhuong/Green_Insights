@@ -17,9 +17,20 @@ namespace WebCollectingIdeas.Views.Shared.Components.React
         public IViewComponentResult Invoke(int id)
         {
             var userId = _userManager.GetUserId(HttpContext.User);
-            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.IdentityUserId == userId);
+            var objView = _unitOfWork.View.GetFirstOrDefault(x => x.IdeaId == id && x.ApplicationUserId == userId);
             ViewBag.IdeaId = id;
+            ViewBag.FinalClosureDate = CheckFinalClosureDate(id);
             return View("_PartialReact", objView);
+        }
+        public bool CheckFinalClosureDate(int id)
+        {
+            var ideaCheck = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == id);
+            var topicCheck = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == ideaCheck.TopicId);
+            if (topicCheck.FinalClosureDate < DateTime.Now)
+            {
+                return false;
+            }
+            return true;
         }
     }
 }
