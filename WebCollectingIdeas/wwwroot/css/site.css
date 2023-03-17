@@ -779,7 +779,7 @@ button.btn.btn-warning.delete {
     }
 
     .left-col-two {
-        margin-top:20px;
+        margin-top: 20px;
     }
 
     .most-view {
@@ -787,6 +787,13 @@ button.btn.btn-warning.delete {
         padding: 0;
         height: auto;
     }
+
+    .col-sm-6.col-md-6.col-12.pb-3 {
+        position: absolute;
+        right: 0;
+        top: 56rem;
+    }
+}
 
     @media screen and (min-width: 480px) {
 
@@ -811,6 +818,13 @@ button.btn.btn-warning.delete {
             margin-right: 5px;
         }
     }
+@media screen and (min-width: 576px) {
+    .col-sm-6.col-md-6.col-12.pb-3 {
+        position: absolute;
+        right: 10px;
+        top: 33rem !important;
+    }
+}
 
     @media screen and (min-width: 768px) {
         .content {
@@ -902,111 +916,133 @@ button.btn.btn-warning.delete {
             width: 24%;
         }
 
-        @media screen and (min-width: 980px) {
-            .content {
-                width: 940px;
-                margin: 30px auto;
-            }
-
-            DIV.content DIV.left-col {
-                width: 80%;
-            }
-
-            DIV.content DIV.left-col-one {
-                margin-top: 30px;
-                width: 60%;
-                height: 60em !important;
-            }
-
-            .content .new-block-sub {
-                width: 48%;
-            }
-
-                .content .new-block-sub .mb-1 {
-                    margin: 10px 10px 0 0;
-                }
-
-            .badge.bg-primary.rounded-pill {
-                margin-right: 15px;
-            }
-
-            small.time {
-                margin-top: 16px;
-            }
-
-            .badge.bg-danger.rounded-pill {
-                margin-right: 16px;
-            }
-
-            DIV.content DIV.left-col-two {
-                margin-top: 30px;
-                float: right;
-                width: 38%;
-                margin-left: 0;
-            }
-
-            DIV.content DIV.right-col {
-                top: 0;
-                right: 0;
-                width: 18%;
-            }
+        textarea#Content {
+            width: 300px;
         }
 
-        @media screen and (min-width: 1280px) {
-            .content {
-                width: 1140px;
-            }
-
-            .widgetContent {
-                width: 912px;
-                margin: 0;
-                min-height: 398px;
-                max-height: 533px;
-                height: auto !important;
-                height: 533px;
-            }
-
-            .galleryview.withOutThumbs {
-                height: 398px !important;
-            }
-        }
-
-        @media screen and (min-width: 1366px) {
-            .content {
-                width: 1240px;
-            }
-
-            .widgetContent {
-                width: 992px;
-            }
-        }
-
-        @media screen and (min-width: 1700px) {
-            .content {
-                width: 1540px;
-            }
-
-            DIV.content DIV.left-col {
-                width: 77%;
-            }
-
-            .widgetContent {
-                width: 1185px !important;
-                min-height: 502px;
-                max-height: 637px;
-                height: auto !important;
-                height: 502px;
-            }
-
-            .galleryview.withOutThumbs {
-                height: 502px !important;
-            }
-
-            DIV.content DIV.right-col {
-                width: 21%;
-            }
+        .form-idea {
+            width: 300px;
         }
     }
+
+    @media screen and (min-width: 980px) {
+        .content {
+            width: 940px;
+            margin: 30px auto;
+        }
+
+        DIV.content DIV.left-col {
+            width: 80%;
+        }
+
+        DIV.content DIV.left-col-one {
+            margin-top: 30px;
+            width: 60%;
+            height: 60em !important;
+        }
+
+        .content .new-block-sub {
+            width: 48%;
+        }
+
+            .content .new-block-sub .mb-1 {
+                margin: 10px 10px 0 0;
+            }
+
+        .badge.bg-primary.rounded-pill {
+            margin-right: 15px;
+        }
+
+        small.time {
+            margin-top: 16px;
+        }
+
+        .badge.bg-danger.rounded-pill {
+            margin-right: 16px;
+        }
+
+        DIV.content DIV.left-col-two {
+            margin-top: 30px;
+            float: right;
+            width: 38%;
+            margin-left: 0;
+        }
+
+        DIV.content DIV.right-col {
+            top: 0;
+            right: 0;
+            width: 18%;
+        }
+    }
+
+    @media screen and (min-width: 1280px) {
+        .content {
+            width: 1140px;
+        }
+
+        .widgetContent {
+            width: 912px;
+            margin: 0;
+            min-height: 398px;
+            max-height: 533px;
+            height: auto !important;
+            height: 533px;
+        }
+
+        .galleryview.withOutThumbs {
+            height: 398px !important;
+        }
+
+        textarea#Content {
+            width: 550px;
+            height: 120px;
+        }
+
+        .form-idea {
+            width: 550px !important;
+        }
+    }
+
+    @media screen and (min-width: 1366px) {
+        .content {
+            width: 1240px;
+        }
+
+        .widgetContent {
+            width: 992px;
+        }
+
+    }
+
+    @media screen and (min-width: 1700px) {
+        .content {
+            width: 1540px;
+        }
+
+        DIV.content DIV.left-col {
+            width: 77%;
+        }
+
+        .widgetContent {
+            width: 1185px !important;
+            min-height: 502px;
+            max-height: 637px;
+            height: auto !important;
+            height: 502px;
+        }
+
+        .galleryview.withOutThumbs {
+            height: 502px !important;
+        }
+
+        DIV.content DIV.right-col {
+            width: 21%;
+        }
+    }
+
+.comment.mt-4.text-justify {
+    margin-left: 50px;
+}
 
     .clear {
         clear: both;
