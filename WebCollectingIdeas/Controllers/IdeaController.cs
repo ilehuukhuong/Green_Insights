@@ -165,7 +165,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             };
-            if (CheckFinalClosureDate(objIdeaTemp.Id) == true)
+            if (/*CheckFinalClosureDate(objIdeaTemp.Id) ==*/ true)
             {
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -195,8 +195,8 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Save();
                 return Json(new { success = true });
             }
-            TempData["Deleted"] = "It's too late to like or dislike now.";
-            return Json(new { success = false });
+            //TempData["Deleted"] = "It's too late to like or dislike now.";
+            //return Json(new { success = false });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
@@ -207,7 +207,7 @@ namespace WebCollectingIdeas.Controllers
             {
                 return NotFound();
             };
-            if (CheckFinalClosureDate(objIdeaTemp.Id) == true)
+            if (/*CheckFinalClosureDate(objIdeaTemp.Id) ==*/ true)
             {
                 var claimsIdentity = (ClaimsIdentity)User.Identity;
                 var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
@@ -237,8 +237,8 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Save();
                 return Json(new { success = true });
             }
-            TempData["Deleted"] = "It's too late to like or dislike now.";
-            return Json(new { success = false });
+            //TempData["Deleted"] = "It's too late to like or dislike now.";
+            //return Json(new { success = false });
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
