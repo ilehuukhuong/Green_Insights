@@ -46,6 +46,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Error\" />
+    <Folder Include="wwwroot\file\" />
   </ItemGroup>
 
   <ItemGroup>
