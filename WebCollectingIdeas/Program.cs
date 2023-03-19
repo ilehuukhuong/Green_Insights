@@ -10,6 +10,20 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 var mailsettings = builder.Configuration.GetSection("MailSettings");
+var services = builder.Services;
+var configuration = builder.Configuration;
+
+services.AddAuthentication()
+    .AddFacebook(facebookOptions =>
+{
+    facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
+    facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
+})
+.AddMicrosoftAccount(microsoftOptions =>
+ {
+     microsoftOptions.ClientId = configuration["Authentication:Microsoft:ClientId"];
+     microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
+ });
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
