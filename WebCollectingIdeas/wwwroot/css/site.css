@@ -1104,7 +1104,7 @@ SECTION.most-view {
     text-decoration: none;
     border-radius: 0;
     padding-top: 10px;
-    background: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+    background: #f39c12;
     border-radius: 10px;
     color: white;
 }
@@ -1311,7 +1311,7 @@ SECTION.popular-view {
     text-decoration: none;
     border-radius: 0;
     padding-top: 10px;
-    background: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+    background: #198754;
     border-radius: 10px;
     color: white;
 }
