@@ -796,16 +796,6 @@ button.btn.btn-warning.delete {
 
 @media screen and (min-width: 480px) {
 
-
-    .content .new-block-sub {
-        width: 48%;
-        float: left;
-    }
-
-        .content .new-block-sub.right {
-            float: right;
-        }
-
     .badge.bg-primary.rounded-pill {
         margin-right: 5px;
     }
@@ -883,10 +873,6 @@ button.btn.btn-warning.delete {
         float: none;
     }
 
-    .content .new-block-sub {
-        width: auto;
-    }
-
     DIV.content DIV.left-col-two {
         float: left;
         width: 28%;
@@ -944,14 +930,6 @@ button.btn.btn-warning.delete {
         width: 60%;
     }
 
-    .content .new-block-sub {
-        width: 48%;
-    }
-
-        .content .new-block-sub .mb-1 {
-            margin: 10px 10px 0 0;
-        }
-
     .badge.bg-primary.rounded-pill {
         margin-right: 15px;
     }
@@ -979,6 +957,12 @@ button.btn.btn-warning.delete {
 
     .sub-title {
         font-size: 2.2em;
+    }
+
+    .tile_count .tile_stats_count {
+        margin-bottom: 10px;
+        border-bottom: 0;
+        padding-bottom: 10px;
     }
 }
 
@@ -1114,7 +1098,7 @@ SECTION.most-view {
     padding-bottom: 10px;
 }
 
-.new-block, .new-block-sub {
+.new-block{
     margin: 25px 0 25px;
 }
 
@@ -1319,6 +1303,7 @@ SECTION.popular-view {
 .container-for-heading {
     padding-top: 10px;
     padding-bottom: 10px;
+    margin: 8px;
 }
 
 SECTION.latest-ideas {
@@ -1446,3 +1431,17 @@ SECTION.comment {
     display: flex;
     flex-wrap: nowrap;
 }
+
+.tile_count {
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+    .tile_count .tile_stats_count {
+        border-bottom: 1px solid #D9DEE4;
+        padding: 0 10px 0 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
