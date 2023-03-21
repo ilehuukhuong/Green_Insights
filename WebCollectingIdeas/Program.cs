@@ -12,6 +12,7 @@ var builder = WebApplication.CreateBuilder(args);
 var mailsettings = builder.Configuration.GetSection("MailSettings");
 var services = builder.Services;
 var configuration = builder.Configuration;
+builder.Services.AddResponseCaching();
 
 services.AddAuthentication()
     .AddFacebook(facebookOptions =>
@@ -19,11 +20,12 @@ services.AddAuthentication()
     facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
     facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
 })
-.AddMicrosoftAccount(microsoftOptions =>
- {
-     microsoftOptions.ClientId = configuration["Authentication:Microsoft:ClientId"];
-     microsoftOptions.ClientSecret = configuration["Authentication:Microsoft:ClientSecret"];
- });
+
+.AddGoogle(googleOptions =>
+{
+	googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+	googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+});
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -50,6 +52,7 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
+app.UseResponseCaching();
 
 app.UseRouting();
 app.UseAuthentication();;

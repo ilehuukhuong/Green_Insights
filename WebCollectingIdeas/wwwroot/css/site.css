@@ -13,6 +13,7 @@ html {
     min-height: 100%;
 }
 
+
 body {
     min-height: 100%;
     background-color: white;
@@ -274,14 +275,15 @@ i.bx.bx-user-circle {
     border-radius: 10px;
     padding-left: 28px;
     padding-top: 4px;
-    width: 100px;
+    width: 80px;
     height: 35px;
     right: 10px;
     bottom: -5px;
     border: 1px solid #fff;
-    margin: 5px;
+    margin: 10px;
     text-transform: uppercase;
     transition: all 0.5s ease;
+
 }
 
 i.bx.bx-user-plus {
@@ -715,26 +717,30 @@ i.bx.bx-plus.Idea {
 }
 /*CSS for Login & Register Page*/
 .login-submit {
-    width: 300px;
+    width: 150px;
     display: flex;
-    margin-left: 30px;
+   
     justify-content: center;
 }
 
 .register-submit {
-    width: 300px;
+    width: 150px;
     display: flex;
     margin-left: 30px;
     justify-content: center;
+    margin-bottom:15px;
 }
 
 #forgot-password {
     color: #2691d9;
     text-decoration: none;
+
 }
 
 .forget {
-    margin: 10px;
+    margin-left:-60px;
+    width:300px;
+    margin-bottom:10px;
 }
 
 .section {
@@ -777,6 +783,7 @@ button.btn.btn-warning.delete {
         margin-top: 20px;
         height: 70em !important;
     }
+  
 
     .left-col-two {
         margin-top: 20px;
@@ -799,6 +806,7 @@ button.btn.btn-warning.delete {
 
     DIV.content DIV.left-col-one {
         height: 60em !important;
+
     }
 
     .content .new-block-sub {
@@ -809,11 +817,21 @@ button.btn.btn-warning.delete {
         .content .new-block-sub.right {
             float: right;
         }
-
+    .col-md-5 {
+        border: 5px solid gray;
+        border-radius: 6px;
+        
+       
+    }
+    .form-floating {
+        width: 350px;
+        margin-left:0;
+        justify-content:center;
+    }
     .badge.bg-primary.rounded-pill {
         margin-right: 5px;
     }
-
+   
     .badge.bg-success.rounded-pill {
         margin-right: 5px;
     }
@@ -943,7 +961,15 @@ button.btn.btn-warning.delete {
         width: 60%;
         height: 60em !important;
     }
-
+    DIV.content DIV.left-col-one.on {
+        margin-top: 0;
+        width: 60%;
+        height:50em !important;
+    }
+    .idea1{
+        font-size:30px;
+        margin-top:0;   
+    }
     .content .new-block-sub {
         width: 48%;
     }
@@ -951,6 +977,7 @@ button.btn.btn-warning.delete {
         .content .new-block-sub .mb-1 {
             margin: 10px 10px 0 0;
         }
+        
 
     .badge.bg-primary.rounded-pill {
         margin-right: 15px;
@@ -971,8 +998,16 @@ button.btn.btn-warning.delete {
         margin-left: 0;
     }
 
+    DIV.content DIV.left-col-two.on {
+        margin-top: 0;
+        float: right;
+        width: 38%;
+        margin-left: 0;
+    }
+
+
     DIV.content DIV.right-col {
-        top: 0;
+        margin-top: 0;
         right: 0;
         width: 18%;
     }
@@ -1214,6 +1249,15 @@ SECTION {
     flex-wrap: wrap;
     padding-bottom: 10px;
 }
+.button-list.one {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding-bottom: 10px;
+   font-weight:bold;
+   font-size:30px;
+}
 
 .badge.bg-primary.rounded-pill {
     padding-top: 9px;
@@ -1326,6 +1370,7 @@ SECTION.latest-ideas {
 .content .right-col .d-flex.w-100.justify-content-between {
     margin: 10px;
 }
+
 
 div#photos {
     overflow: hidden;
