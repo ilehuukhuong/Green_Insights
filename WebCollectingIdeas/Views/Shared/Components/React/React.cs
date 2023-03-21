@@ -8,8 +8,8 @@ namespace WebCollectingIdeas.Views.Shared.Components.React
     public class React : ViewComponent
     {
         private readonly IUnitOfWork _unitOfWork;
-        private readonly UserManager<IdentityUser> _userManager;
-        public React(IUnitOfWork unitOfWork, UserManager<IdentityUser> userManager)
+        private readonly UserManager<ApplicationUser> _userManager;
+        public React(IUnitOfWork unitOfWork, UserManager<ApplicationUser> userManager)
         {
             _unitOfWork = unitOfWork;
             _userManager = userManager;

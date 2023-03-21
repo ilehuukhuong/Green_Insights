@@ -13,13 +13,17 @@ namespace CollectingIdeas.Models
     public class ApplicationUser:IdentityUser
     {
         [Required]
+        [Display(Name = "First name")]
         public string FirstName { get; set; }
         [Required]
+        [Display(Name = "Last name")]
         public string LastName { get; set; }
         public int? DepartmentId { get; set; }
         [ForeignKey("DepartmentId")]
         [ValidateNever]
         public Department Department { get; set; }
         public string? Path { get; set; }
+        public string? FullName { get; set; }
+        public bool isDelete { get; set; }
     }
 }
