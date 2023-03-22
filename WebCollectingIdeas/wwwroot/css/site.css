@@ -211,7 +211,6 @@ body {
 
 ul.navbar-nav {
     position: relative;
-    top: 85px;
     left: 55px;
     display: flex;
     flex-direction: column;
@@ -260,11 +259,13 @@ a#manage {
     text-transform: uppercase;
     transition: all 0.5s ease;
 }
+
 .anhnenlogin {
-    background-image:url('Img/greenwich-9 (1).jpg');
-    width:100%;
-    height:35em;
+    background-image: url('Img/greenwich-9 (1).jpg');
+    width: 100%;
+    height: 35em;
 }
+
 i.bx.bx-user-circle {
     font-size: 18px;
     position: absolute;
@@ -279,15 +280,14 @@ i.bx.bx-user-circle {
     border-radius: 10px;
     padding-left: 28px;
     padding-top: 4px;
-    width: 80px;
+    width: 100px;
     height: 35px;
     right: 10px;
     bottom: -5px;
     border: 1px solid #fff;
-    margin: 10px;
+    margin: 5px;
     text-transform: uppercase;
     transition: all 0.5s ease;
-
 }
 
 i.bx.bx-user-plus {
@@ -723,7 +723,6 @@ i.bx.bx-plus.Idea {
 .login-submit {
     width: 150px;
     display: flex;
-   
     justify-content: center;
 }
 
@@ -732,19 +731,18 @@ i.bx.bx-plus.Idea {
     display: flex;
     margin-left: 30px;
     justify-content: center;
-    margin-bottom:15px;
+    margin-bottom: 15px;
 }
 
 #forgot-password {
     color: #2691d9;
     text-decoration: none;
-
 }
 
 .forget {
-    margin-left:-60px;
-    width:300px;
-    margin-bottom:10px;
+    margin-left: -60px;
+    width: 300px;
+    margin-bottom: 10px;
 }
 
 .section {
@@ -775,6 +773,8 @@ button.btn.btn-warning.delete {
 }
 /****CSS for Home Index****/
 
+/****CSS for Home Index****/
+
 .content {
     position: relative;
     z-index: 50;
@@ -786,7 +786,6 @@ button.btn.btn-warning.delete {
     .left-col-one {
         margin-top: 20px;
     }
-  
 
     .left-col-two {
         margin-top: 20px;
@@ -810,7 +809,7 @@ button.btn.btn-warning.delete {
     .badge.bg-primary.rounded-pill {
         margin-right: 5px;
     }
-   
+
     .badge.bg-success.rounded-pill {
         margin-right: 5px;
     }
@@ -940,15 +939,6 @@ button.btn.btn-warning.delete {
         margin-top: 30px;
         width: 60%;
     }
-    DIV.content DIV.left-col-one.on {
-        margin-top: 0;
-        width: 60%;
-        height:50em !important;
-    }
-    .idea1{
-        font-size:30px;
-        margin-top:0;   
-    }
 
     .badge.bg-primary.rounded-pill {
         margin-right: 15px;
@@ -969,16 +959,8 @@ button.btn.btn-warning.delete {
         margin-left: 0;
     }
 
-    DIV.content DIV.left-col-two.on {
-        margin-top: 0;
-        float: right;
-        width: 38%;
-        margin-left: 0;
-    }
-
-
     DIV.content DIV.right-col {
-        margin-top: 0;
+        top: 0;
         right: 0;
         width: 18%;
     }
@@ -1126,7 +1108,7 @@ SECTION.most-view {
     padding-bottom: 10px;
 }
 
-.new-block{
+.new-block {
     margin: 25px 0 25px;
 }
 
@@ -1232,15 +1214,6 @@ SECTION.most-view {
     justify-content: space-between;
     flex-wrap: wrap;
     padding-bottom: 10px;
-}
-.button-list.one {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    flex-wrap: wrap;
-    padding-bottom: 10px;
-   font-weight:bold;
-   font-size:30px;
 }
 
 .badge.bg-primary.rounded-pill {
@@ -1357,7 +1330,6 @@ SECTION.latest-ideas {
 .content .right-col .d-flex.w-100.justify-content-between {
     margin: 10px;
 }
-
 
 div#photos {
     overflow: hidden;
@@ -1483,3 +1455,51 @@ SECTION.comment {
         white-space: nowrap;
         position: relative;
     }
+
+.account-avatar-image {
+    width: 50px;
+    height: 50px;
+    background-color: #fafafa;
+    border-radius: 50%;
+    text-align: center;
+}
+
+
+.account-user {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    line-height: 15px;
+}
+
+.account-avatar {
+    width: 50px;
+    height: 50px;
+}
+.account-detail {
+    margin-left: 12px;
+    margin-top: 10px;
+}
+
+.username-post {
+    text-decoration: none;
+    color: black;
+    text-align: center;
+    min-width: 70px;
+    margin: 0 5px 0 0;
+    padding-top: 16px;
+    font-weight: 400;
+    letter-spacing: .05em;
+}
+
+.usersname {
+    font-weight: 900;
+    font-size: 15px;
+    color: #262626;
+    margin-bottom: 2px;
+    font-family: 'Noto Sans TC', 'sans-serif';
+}
+.date {
+    font-family: 'Noto Sans TC', 'sans-serif';
+    font-size:0.75em;
+}
