@@ -6,8 +6,10 @@
 }
 
 <br/>
+<div class="anhnenlogin">
 
 <div class="row">
+   
     <div class="col-md-5">
         <section>
             <form id="account" method="post">
@@ -77,11 +79,16 @@
                         <div>
                             <p>
                                 @foreach (var provider in Model.ExternalLogins!)
-                                {
-                                    <div>
-                                    <button type="submit" class="btn btn-primary" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">@provider.DisplayName</button>
-                               </div>
-                                }
+                                
+                                        { @if (provider.Name == "Facebook")
+                                            {
+                                                <button style="margin-bottom:10px" type="submit" class="btn btn-primary bi bi-facebook" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">  @provider.DisplayName</button>
+                                            }
+                                            else if (provider.Name == "Google")
+                                            {
+                                                <button type="submit" class="btn btn-danger bi bi-google" name="provider" value="@provider.Name" title="Log in using your @provider.DisplayName account">  @provider.DisplayName</button>
+
+                                            }}
                             </p>
                         </div>
                     </form>
@@ -90,12 +97,10 @@
         </section>
        
     </div>
-     <div class="col-md-6">
-            <img style =“float:right;width:100%;height:100%; src="~/css/Img/greenwich-9.jpg" />
-        </div>
+   
 </div>
 
-
+</div>
 @section Scripts {
     <partial name="_ValidationScriptsPartial" />
 }
