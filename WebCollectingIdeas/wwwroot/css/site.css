@@ -1457,8 +1457,8 @@ SECTION.comment {
     }
 
 .account-avatar-image {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    height: 40px;
     background-color: #fafafa;
     border-radius: 50%;
     text-align: center;
@@ -1473,11 +1473,15 @@ SECTION.comment {
 }
 
 .account-avatar {
-    width: 50px;
-    height: 50px;
+    width: 40px;
+    display: inline-flex;
+    height: 40px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
 }
 .account-detail {
-    margin-left: 12px;
+    margin-left: 10px;
     margin-top: 10px;
 }
 
