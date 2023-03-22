@@ -8,6 +8,14 @@
             <hr />
         </div>
         <div class="row">
+            <div class="col-12">
+                <a class="account-avatar">
+                    <img src="/@Model.account.Path" width="50" class="account-avatar-image" />
+                </a>
+               
+            </div>
+        </div>
+        <div class="row">
             <div class="mb-3 col-6">
                 <label asp-for=account.FirstName></label>
                 <input asp-for=account.FirstName class=form-control aria-required="true" />
@@ -79,9 +87,4 @@
                 <a class="btn btn-dark text-white" asp-controller="Account" asp-action="Index"><i class='bx bx-arrow-back'></i></a>
             </div>
         </div>
-    <div class="row">
-        <div class="col-10">
-            <img src="/@Model.account.Path" width="50" />
-        </div>
-    </div>
 </form>

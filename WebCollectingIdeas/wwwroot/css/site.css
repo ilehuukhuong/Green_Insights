@@ -39,6 +39,7 @@ body {
         color: white;
         box-shadow: 3px 0 10px dimgrey;
         z-index: 999;
+        overflow: auto;
     }
 
 
@@ -67,7 +68,7 @@ body {
     .sidebar #btn {
         position: absolute;
         color: white;
-        left: 20%;
+        left: 1em;
         top: 10px;
         font-size: 30px;
         height: 50px;
@@ -156,12 +157,16 @@ body {
 
     .sidebar ul {
         opacity: 0;
+        width: 0;
+        height: 0;
     }
 
     .sidebar.active ul {
         padding-left: 5px;
         margin-top: 20px;
         opacity: 1;
+        width: 240px;
+        height:auto;
     }
 
     .sidebar ul li {
@@ -179,7 +184,7 @@ body {
 
     .sidebar ul li a {
         opacity: 0;
-        width: calc(100% - 20px);
+        width: calc(100% - 50px);
     }
 
     .sidebar.active ul li a {
@@ -233,13 +238,13 @@ a#manage {
     align-items: center;
     justify-content: center;
     width: calc(100% - 30px);
-    right: 70px;
+    right: 6em;
 }
 
     a#manage:hover {
         cursor: pointer;
-        color: #000;
-        background: #b3b3b370;
+        color: #000 !important;
+        background: #fff;
         box-shadow: 0 2px 2px darkgrey;
     }
 
