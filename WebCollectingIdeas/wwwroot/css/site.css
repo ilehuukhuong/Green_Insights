@@ -221,7 +221,7 @@ ul.navbar-nav {
 #logout {
     position: absolute;
     padding: 5px;
-    bottom: -45px;
+    bottom: -5em;
     left: 12px;
     border: 1px solid #d92121;
 }
@@ -233,7 +233,6 @@ a#manage {
     align-items: center;
     justify-content: center;
     width: calc(100% - 30px);
-    bottom: 0;
     right: 70px;
 }
 
@@ -890,7 +889,7 @@ button.btn.btn-warning.delete {
     }
 
     SECTION.popular-view {
-        margin: 0;
+        margin: 10px;
         width: auto;
         float: none;
     }
@@ -902,8 +901,9 @@ button.btn.btn-warning.delete {
 
     DIV.content DIV.right-col {
         position: absolute;
-        right: 0;
-        width: 24%;
+        right: -0.75em;
+        top: 18.4rem;
+        width: 26%;
     }
 
     textarea#Content {
@@ -915,9 +915,14 @@ button.btn.btn-warning.delete {
     }
 
     SECTION.comment {
-        margin: 0;
+        margin: 10px;
         width: auto;
         float: none;
+    }
+
+    .header-idea {
+        margin-top: 7px !important;
+        margin-left: 55px;
     }
 }
 
@@ -974,8 +979,33 @@ button.btn.btn-warning.delete {
         border-bottom: 0;
         padding-bottom: 10px;
     }
-}
 
+
+    .header-idea-2 {
+        margin-top: 7px !important;
+        margin-left: 45px;
+        margin-bottom: 2px;
+    }
+
+    .right-col .latest-ideas .container-for-heading .new-block .d-flex.w-100.justify-content-between {
+        margin: 0;
+    }
+        .right-col .latest-ideas .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user .account-avatar {
+            width: 20px;
+            height: 20px;
+            margin-top: 15px;
+        }
+
+        .right-col .latest-ideas .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user .account-detail {
+            margin-top: 10px;
+            margin-left: 8px;
+        }
+
+            .right-col .latest-ideas .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user
+            .account-detail .username-post .usersname {
+                font-size: 12px;
+            }
+}
 @media screen and (min-width: 1280px) {
     .content {
         width: 1140px;
@@ -1080,7 +1110,8 @@ SECTION.most-view {
 
 
 .content .new-block H4, .content .news-block P, .content .news-block-sub H4, .content .news-block-sub P {
-    margin-bottom: 5px;
+    margin-top: 7px !important;
+    margin-right: 10px;
 }
 
 .left-col-one {
@@ -1111,102 +1142,6 @@ SECTION.most-view {
 .new-block {
     margin: 25px 0 25px;
 }
-
-
-.news-tag.tag-1 {
-    text-decoration: none;
-    height: 25px;
-    color: white;
-    text-align: center;
-    min-width: 70px;
-    margin: 0 5px 0 0;
-    padding-top: 4px;
-    font-size: 0.7em;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    background-color: #bf3d37;
-}
-
-    .news-tag.tag-1:hover {
-        color: white;
-    }
-
-.news-tag.tag-2 {
-    text-decoration: none;
-    height: 25px;
-    color: white;
-    text-align: center;
-    min-width: 70px;
-    margin: 0 5px 0 0;
-    padding-top: 4px;
-    font-size: 0.7em;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    background-color: #359ee0;
-}
-
-    .news-tag.tag-2:hover {
-        color: white;
-    }
-
-.news-tag.tag-3 {
-    text-decoration: none;
-    height: 25px;
-    color: white;
-    text-align: center;
-    min-width: 70px;
-    margin: 0 5px 0 0;
-    padding-top: 4px;
-    font-size: 0.7em;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    background-color: #8869ac;
-}
-
-    .news-tag.tag-3:hover {
-        color: white;
-    }
-
-.news-tag.tag-4 {
-    text-decoration: none;
-    height: 25px;
-    color: white;
-    text-align: center;
-    min-width: 70px;
-    margin: 0 5px 0 0;
-    padding-top: 4px;
-    font-size: 0.7em;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    background-color: #31a254;
-}
-
-    .news-tag.tag-4:hover {
-        color: white;
-    }
-
-.news-tag.tag-5 {
-    text-decoration: none;
-    height: 25px;
-    color: white;
-    text-align: center;
-    min-width: 70px;
-    margin: 0 5px 0 0;
-    padding-top: 4px;
-    font-size: 0.7em;
-    font-weight: 400;
-    text-transform: uppercase;
-    letter-spacing: .05em;
-    background-color: #444;
-}
-
-    .news-tag.tag-5:hover {
-        color: white;
-    }
 
 .button-list {
     display: flex;
@@ -1272,7 +1207,7 @@ SECTION.most-view {
 
 SECTION.popular-view {
     background: white;
-    margin: 0;
+    margin: 5px;
     border-radius: 10px;
     border: 1px solid #c7cbcf;
 }
@@ -1327,9 +1262,6 @@ SECTION.latest-ideas {
     background: #f4f4f4;
 }
 
-.content .right-col .d-flex.w-100.justify-content-between {
-    margin: 10px;
-}
 
 div#photos {
     overflow: hidden;
@@ -1480,6 +1412,7 @@ SECTION.comment {
     align-items: center;
     margin-top: 5px;
 }
+
 .account-detail {
     margin-left: 10px;
     margin-top: 10px;
@@ -1503,7 +1436,8 @@ SECTION.comment {
     margin-bottom: 2px;
     font-family: 'Noto Sans TC', 'sans-serif';
 }
+
 .date {
     font-family: 'Noto Sans TC', 'sans-serif';
-    font-size:0.75em;
+    font-size: 0.75em;
 }
