@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity;
 using WebCollectingIdeas.Mail;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using CollectingIdeas.Models;
 
 var builder = WebApplication.CreateBuilder(args);
 var mailsettings = builder.Configuration.GetSection("MailSettings");
@@ -15,25 +16,25 @@ var configuration = builder.Configuration;
 builder.Services.AddResponseCaching();
 
 services.AddAuthentication()
-    .AddFacebook(facebookOptions =>
+.AddFacebook(facebookOptions =>
 {
     facebookOptions.AppId = configuration["Authentication:Facebook:AppId"];
     facebookOptions.AppSecret = configuration["Authentication:Facebook:AppSecret"];
 })
-
 .AddGoogle(googleOptions =>
 {
-	googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
-	googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
-});
+    googleOptions.ClientId = configuration["Authentication:Google:ClientId"];
+    googleOptions.ClientSecret = configuration["Authentication:Google:ClientSecret"];
+}); ;
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
 builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
 //builder.Services.AddDefaultIdentity<IdentityUser>(/*options => options.SignIn.RequireConfirmedAccount = true*/)
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddIdentity<IdentityUser,IdentityRole>( ).AddDefaultTokenProviders()
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
+
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
@@ -55,7 +56,7 @@ app.UseStaticFiles();
 app.UseResponseCaching();
 
 app.UseRouting();
-app.UseAuthentication();;
+app.UseAuthentication();
 
 app.UseAuthorization();
 app.MapRazorPages();

@@ -13,14 +13,14 @@
     <div class="Category-element">
         <form asp-controller="Account" asp-action="Index" method="get" class="searchform">
             <div class="input-group">
-                <input type="text" name="Searchtext" class="form-search" placeholder="Search by first or last name" />
+                <input type="text" name="Searchtext" class="form-search" placeholder="Search by name" />
                 <div class="input-group-append">
                     <button type="submit" class="btn btn-secondary" id="Search">Search</button>
                 </div>
             </div>
         </form>
         <div class="btn-group-md">
-            <a asp-controller="Account" asp-action="Create" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
+            <a asp-controller="Account" asp-action="Upsert" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
         </div>
     </div>
     <table class="table table-bordered table-striped">
@@ -47,14 +47,25 @@
                         <td class="new-items">@item.Email</td>
                         <td class="new-items">@item.PhoneNumber</td>
                         <td class="action">
-                            <div>
-                                <a class="pencil" asp-controller="Account" asp-action="Edit" asp-route-id=@item.Id>
-                                    <i class="bi bi-pencil btn btn-warning"></i>
-                                </a>
-                                <a href="#" data-id="@item.Id" class="btnDelete">
-                                    <i class="bi bi-trash3 btn btn-danger"></i>
-                                </a>
-                            </div>
+                            @if (item.isDelete == true)
+                            {
+                                <div>
+                                    <a href="#" data-id="@item.Id" class="btnunDelete">
+                                        <i class="btn btn-danger">Restore</i>
+                                    </a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div>
+                                    <a class="pencil" asp-controller="Account" asp-action="Upsert" asp-route-id=@item.Id>
+                                        <i class="bi bi-pencil btn btn-warning"></i>
+                                    </a>
+                                    <a href="#" data-id="@item.Id" class="btnDelete">
+                                        <i class="bi bi-trash3 btn btn-danger"></i>
+                                    </a>
+                                </div>
+                            }
                         </td>
                     </tr>
                     i++;
@@ -83,7 +94,29 @@
                 if (conf == true) {
                     let token = $('input[name="__RequestVerificationToken"]').val();
                     $.ajax({
-                        url: '/account/delete',
+                        url: '/Account/DeleteAccount',
+                        type: 'POST',
+                        data: {
+                            __RequestVerificationToken: token,
+                            id: id
+                        },
+                        success: function (rs) {
+                            if (rs.success) {
+                                location.reload();
+                            } else {
+                                location.reload();
+                            }
+                        }
+                    });
+                };
+            });
+            $('body').on('click', '.btnunDelete', function () {
+                var id = $(this).data("id");
+                var conf = confirm('Do you want to restore this user?');
+                if (conf == true) {
+                    let token = $('input[name="__RequestVerificationToken"]').val();
+                    $.ajax({
+                        url: '/Account/DeleteAccount',
                         type: 'POST',
                         data: {
                             __RequestVerificationToken: token,

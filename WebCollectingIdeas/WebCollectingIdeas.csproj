@@ -4,7 +4,6 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>78b3fa68-c2fe-4c9b-bbea-25714d97d095</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +26,6 @@
     <PackageReference Include="DotNetZip" Version="1.16.0" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Facebook" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.14" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.MicrosoftAccount" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.14" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="6.0.14" />
@@ -50,7 +48,7 @@
 
   <ItemGroup>
     <Folder Include="Views\Error\" />
-    <Folder Include="wwwroot\file\" />
+    <Folder Include="wwwroot\AccountProfile\Users\" />
   </ItemGroup>
 
   <ItemGroup>
