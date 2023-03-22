@@ -781,7 +781,6 @@ button.btn.btn-warning.delete {
 
     .left-col-one {
         margin-top: 20px;
-        height: 70em !important;
     }
   
 
@@ -804,10 +803,6 @@ button.btn.btn-warning.delete {
 
 @media screen and (min-width: 480px) {
 
-    DIV.content DIV.left-col-one {
-        height: 60em !important;
-
-    }
 
     .content .new-block-sub {
         width: 48%;
@@ -897,7 +892,6 @@ button.btn.btn-warning.delete {
     DIV.content DIV.left-col-one {
         width: 44%;
         float: left;
-        height: 80em !important;
     }
 
     SECTION.most-view {
@@ -940,6 +934,12 @@ button.btn.btn-warning.delete {
     .form-idea {
         width: 300px;
     }
+
+    SECTION.comment {
+        margin: 0;
+        width: auto;
+        float: none;
+    }
 }
 
 @media screen and (min-width: 980px) {
@@ -959,7 +959,6 @@ button.btn.btn-warning.delete {
     DIV.content DIV.left-col-one {
         margin-top: 30px;
         width: 60%;
-        height: 60em !important;
     }
     DIV.content DIV.left-col-one.on {
         margin-top: 0;
@@ -1010,6 +1009,10 @@ button.btn.btn-warning.delete {
         margin-top: 0;
         right: 0;
         width: 18%;
+    }
+
+    .sub-title {
+        font-size: 2.2em;
     }
 }
 
@@ -1106,33 +1109,36 @@ SECTION {
     position: relative;
 }
 
-.most-view {
-    margin: 0;
-    padding: 0;
-    height: auto;
+SECTION.most-view {
+    display: flex;
+    flex-direction: column;
+    background: white;
+    margin: 10px;
+    border-radius: 10px;
+    border: 1px solid #c7cbcf;
 }
+
 
 .content .new-block H4, .content .news-block P, .content .news-block-sub H4, .content .news-block-sub P {
     margin-bottom: 5px;
 }
 
 .left-col-one {
-    border-radius: 10px;
     height: auto;
     cursor: default;
     border: 1px solid #e7e7e7;
     padding: 15px 15px 0;
-    background: #f1c66d3d;
+    background: #f4f4f4;
 }
 
 .title-1 {
-    margin: 0;
+    margin: 10px;
     position: relative;
     background-size: 34px;
     text-decoration: none;
     border-radius: 0;
     padding-top: 10px;
-    background: linear-gradient(to right, #f6d365 0%, #fda085 51%, #f6d365 100%);
+    background: #f39c12;
     border-radius: 10px;
     color: white;
 }
@@ -1314,17 +1320,19 @@ SECTION {
 }
 
 SECTION.popular-view {
+    background: white;
     margin: 0;
     border-radius: 10px;
+    border: 1px solid #c7cbcf;
 }
 
 .left-col-two {
-    border-radius: 10px;
     height: auto;
     cursor: default;
     border: 1px solid #e7e7e7;
     padding: 15px 15px 0;
-    background: #dac1ec5e;
+    background: #f4f4f4;
+    ;
 }
 
 .title-2 {
@@ -1334,7 +1342,7 @@ SECTION.popular-view {
     text-decoration: none;
     border-radius: 0;
     padding-top: 10px;
-    background: linear-gradient(to right, #fbc2eb 0%, #a6c1ee 51%, #fbc2eb 100%);
+    background: #213b68;
     border-radius: 10px;
     color: white;
 }
@@ -1346,13 +1354,14 @@ SECTION.popular-view {
     text-decoration: none;
     border-radius: 0;
     padding-top: 10px;
-    background: linear-gradient(to right, #a1c4fd 0%, #c2e9fb 51%, #a1c4fd 100%);
+    background: #198754;
     border-radius: 10px;
     color: white;
 }
 
 .container-for-heading {
     padding-top: 10px;
+    padding-bottom: 10px;
 }
 
 SECTION.latest-ideas {
@@ -1363,7 +1372,6 @@ SECTION.latest-ideas {
 }
 
 .right-col {
-    border-radius: 10px;
     background: #f4f4f4;
 }
 
@@ -1426,4 +1434,59 @@ div#photos {
     100% {
         left: -400%;
     }
+}
+
+P.mb-1 {
+    display: -webkit-box;
+    -webkit-line-clamp: 5;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+SECTION.comment {
+    background: white;
+    margin-top: 30px;
+    border-radius: 10px;
+    border: 1px solid #c7cbcf;
+}
+
+.accordion {
+    --bs-accordion-bg: #e7e7e7 !important;
+}
+
+.accordion-button.collapsed {
+    color: black;
+}
+
+.accordion-body {
+    margin: 15px 0 15px;
+    border-bottom: 1px solid #222;
+}
+
+    .accordion-body strong {
+        color: #bf3d37;
+    }
+
+.title-4 {
+    margin: 0;
+    position: relative;
+    background-size: 34px;
+    text-decoration: none;
+    border-radius: 0;
+    padding-top: 10px;
+    background: #bb352f;
+    border-radius: 10px;
+    color: white;
+}
+
+.read-comt {
+    margin-left: 4px;
+    margin-right: 4px;
+    color: #00bc8c;
+    min-width: 80px;
+    text-decoration: none;
+    align-items: center;
+    display: flex;
+    flex-wrap: nowrap;
 }
