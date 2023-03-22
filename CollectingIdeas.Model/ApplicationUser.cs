@@ -23,7 +23,7 @@ namespace CollectingIdeas.Models
         [ValidateNever]
         public Department Department { get; set; }
         public string? Path { get; set; }
-        public string? FullName { get; set; }
+        public string FullName { get; set; }
         public bool isDelete { get; set; }
     }
 }

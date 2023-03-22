@@ -18,6 +18,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using CollectingIdeas.Models;
+using CollectingIdeas.Utility;
 
 namespace WebCollectingIdeas.Areas.Identity.Pages.Account
 {
@@ -153,17 +154,24 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
-
+                user.FirstName = "External";
+                user.LastName = "Login";
+                user.DepartmentId = 1;
+                user.FullName = Filter.FilterChar("External" + " " + "Login");
+                Random r = new Random();
+                user.Path = @"AccountProfile/acc (" + r.Next(1, 29) + @").jpg";
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 
                 var result = await _userManager.CreateAsync(user);
+
                 if (result.Succeeded)
                 {
                     result = await _userManager.AddLoginAsync(user, info);
                     if (result.Succeeded)
                     {
                         _logger.LogInformation("User created an account using {Name} provider.", info.LoginProvider);
+                        await _userManager.AddToRoleAsync(user, SD.Role_User_Visitor);
 
                         var userId = await _userManager.GetUserIdAsync(user);
                         var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
