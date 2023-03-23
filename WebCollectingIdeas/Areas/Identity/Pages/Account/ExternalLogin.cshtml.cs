@@ -159,7 +159,7 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
                 user.DepartmentId = 1;
                 user.FullName = Filter.FilterChar("External" + " " + "Login");
                 Random r = new Random();
-                user.Path = @"AccountProfile/acc (" + r.Next(1, 29) + @").jpg";
+                user.Path = @"AccountProfile/acc (" + r.Next(1, 20) + @").jpg";
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
 

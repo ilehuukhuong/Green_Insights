@@ -149,7 +149,7 @@ namespace WebCollectingIdeas.Controllers
                     if (obj.account.Path == null)
                     {
                         Random r = new Random();
-                        user.Path = @"AccountProfile/acc (" + r.Next(1, 29) + @").jpg";
+                        user.Path = @"AccountProfile/acc (" + r.Next(1, 20) + @").jpg";
                     }
                     else
                     {

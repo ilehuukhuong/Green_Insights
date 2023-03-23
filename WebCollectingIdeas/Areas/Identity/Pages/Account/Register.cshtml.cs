@@ -158,7 +158,7 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
                 user.DepartmentId = Input.DepartmentId;
                 user.FullName = Filter.FilterChar(Input.FirstName + " " + Input.LastName);
                 Random r = new Random();
-                user.Path = @"AccountProfile/acc (" + r.Next(1,29) + @").jpg";
+                user.Path = @"AccountProfile/acc (" + r.Next(1,20) + @").jpg";
                 if (result.Succeeded)
                 {
                     _logger.LogInformation("User created a new account with password.");

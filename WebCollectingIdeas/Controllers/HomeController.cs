@@ -1,4 +1,6 @@
-﻿using CollectingIdeas.Models;
+﻿using CollectingIdeas.DataAccess.Repository.IRepository;
+using CollectingIdeas.Models;
+using CollectingIdeas.Models.ViewModel;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,16 +10,22 @@ namespace WebCollectingIdeas.Controllers
     {
 
         private readonly ILogger<HomeController> _logger;
+		private readonly IUnitOfWork _unitOfWork;
 
-
-        public HomeController(ILogger<HomeController> logger)
+		public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
-        }
+			_unitOfWork = unitOfWork;
+		}
 
-        public IActionResult Index()
+		public IActionResult Index()
         {
-            return View();
+            HomeVM  homeVM = new HomeVM();
+            homeVM.MostViews = _unitOfWork.Idea.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x=>x.Views).Take(5);
+            homeVM.MostPopular = _unitOfWork.Idea.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x => x.Likes- x.Dislikes).Take(5);
+            homeVM.LatestIdeas = _unitOfWork.Idea.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x => x.CreateDatetime).Take(5);
+            homeVM.LatestComments= _unitOfWork.Comment.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x => x.CreateDatetime).Take(5);
+			return View(homeVM);
         }
 
         public IActionResult Privacy()
