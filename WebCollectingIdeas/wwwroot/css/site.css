@@ -695,15 +695,8 @@ i.btn.btn-secondary.export-excel {
 
 /*CSS for View of Ideas*/
 
-.btn-outline-warning.detail {
-    margin: 5px;
-}
-
-.btn-outline-info.btnLike {
-    margin: 5px;
-}
-
-.btn-outline-danger.btnDislike {
+.btn.btn-outline-warning.detail, .btn.btn-outline-info.btnLike, .btn.btn-outline-danger.btnDislike,
+.btn.btn-info.btnLike, .btn.btn-danger.btnDislike {
     margin: 5px;
 }
 
@@ -928,6 +921,11 @@ button.btn.btn-warning.delete {
     .header-idea {
         margin-top: 7px !important;
         margin-left: 55px;
+    }
+
+    .popular-view .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user .account-detail{
+        margin-top: 10px;
+        margin-left: 0;
     }
 }
 
@@ -1445,4 +1443,19 @@ SECTION.comment {
 .date {
     font-family: 'Noto Sans TC', 'sans-serif';
     font-size: 0.75em;
+}
+
+/* Css for Admin Account page*/
+
+.btn.btn-success.btnCreate-account {
+    margin-left: 11em;
+    position: relative;
+    min-width: auto;
+    margin-top: 10px;
+    height: 40px;
+    text-align: center;
+    font-size: 12px;
+    padding-top: 10px;
+    right: 0;
+    white-space: nowrap;
 }

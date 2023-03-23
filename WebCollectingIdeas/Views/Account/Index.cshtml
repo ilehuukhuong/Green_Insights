@@ -20,7 +20,7 @@
             </div>
         </form>
         <div class="btn-group-md">
-            <a asp-controller="Account" asp-action="Upsert" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
+            <a asp-controller="Account" asp-action="Upsert" class="btn btn-success btnCreate-account"><i class='bx bx-plus'>CREATE</i></a>
         </div>
     </div>
     <table class="table table-bordered table-striped">
@@ -50,8 +50,8 @@
                             @if (item.isDelete == true)
                             {
                                 <div>
-                                    <a href="#" data-id="@item.Id" class="btnunDelete">
-                                        <i class="btn btn-danger">Restore</i>
+                                    <a href="#" data-id="@item.Id" class=" btn btn-outline-danger btnunDelete">
+                                        <i class='bx bx-undo'></i>Restore
                                     </a>
                                 </div>
                             }
