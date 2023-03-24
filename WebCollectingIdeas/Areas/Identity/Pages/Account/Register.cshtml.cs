@@ -192,6 +192,14 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
             }
 
             // If we got this far, something failed, redisplay form
+            Input = new InputModel()
+            {
+                DepartmentList = _unitOfWork.Department.GetAll().OrderByDescending(x => x.Name).Select(i => new SelectListItem
+                {
+                    Text = i.Name,
+                    Value = i.Id.ToString()
+                })
+            };
             return Page();
         }
 

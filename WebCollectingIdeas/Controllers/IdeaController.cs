@@ -73,6 +73,7 @@ namespace WebCollectingIdeas.Controllers
             };
             ViewBag.TopicId = TopicId;
             ViewBag.TopicName = obj.Name;
+            ViewBag.SearchText = Searchtext;
             var pageSize = 5;
             if (page == null)
             {
@@ -133,8 +134,17 @@ namespace WebCollectingIdeas.Controllers
             }
             if (obj.idea.isAgree == false)
             {
+                obj.CategoryList = _unitOfWork.Category.GetAll().Select(
+                    u => new SelectListItem()
+                    {
+                        Text = u.Name,
+                        Value = u.Id.ToString()
+                    }
+                );
+
+                ViewBag.TopicId = obj.idea.TopicId;
                 TempData["Deleted"] = "You must agree to the terms and conditions before submitting.";
-                return NoContent();
+                return View(obj);
             }
             var claimsIdentity = (ClaimsIdentity)User.Identity;
             var claims = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
