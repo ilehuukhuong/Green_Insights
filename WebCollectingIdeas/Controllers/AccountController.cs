@@ -214,5 +214,10 @@ namespace WebCollectingIdeas.Controllers
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+
+        public IActionResult Role()
+        {
+                return View();
+        }
     }
 }

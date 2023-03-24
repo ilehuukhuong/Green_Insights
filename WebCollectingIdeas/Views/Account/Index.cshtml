@@ -61,8 +61,11 @@
                                     <a class="pencil" asp-controller="Account" asp-action="Upsert" asp-route-id=@item.Id>
                                         <i class="bi bi-pencil btn btn-warning"></i>
                                     </a>
-                                    <a href="#" data-id="@item.Id" class="btnDelete">
+                                    <a  class="trash" href="#" data-id="@item.Id" class="btnDelete">
                                         <i class="bi bi-trash3 btn btn-danger"></i>
+                                    </a>
+                                    <a class="role" asp-controller="Account" asp-action="Role" asp-route-id=@item.Id>
+                                        <i class="bi bi-person-vcard btn btn-info"></i>
                                     </a>
                                 </div>
                             }
