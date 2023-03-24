@@ -24,7 +24,7 @@ namespace WebCollectingIdeas.Controllers
             homeVM.MostViews = _unitOfWork.Idea.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x=>x.Views).Take(5);
             homeVM.MostPopular = _unitOfWork.Idea.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x => x.Likes- x.Dislikes).Take(5);
             homeVM.LatestIdeas = _unitOfWork.Idea.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x => x.CreateDatetime).Take(5);
-            homeVM.LatestComments= _unitOfWork.Comment.GetAll(includeProperties: "ApplicationUser").OrderByDescending(x => x.CreateDatetime).Take(5);
+            homeVM.LatestComments= _unitOfWork.Comment.GetAll(includeProperties: "ApplicationUser,Idea").OrderByDescending(x => x.CreateDatetime).Take(5);
 			return View(homeVM);
         }
 

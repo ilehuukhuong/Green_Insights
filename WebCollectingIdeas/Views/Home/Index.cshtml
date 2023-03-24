@@ -11,16 +11,16 @@
 				<div class="widgetContent">
 					<div id="photos" class="galleryview withOutThumbs">
 						<figure>
-							<img src="/file/img/box3.png" />
+							<img src="/css/Img/box2.jpg" />
 						</figure>
 						<figure>
-							<img src="/file/img/box2.jpg" />
+							<img src="/css/Img/box2.jpg" />
 						</figure>
 						<figure>
-							<img src="/file/img/box3.png" />
+							<img src="/css/Img/box3.png" />
 						</figure>
 						<figure>
-							<img src="/file/img/box4.png" />
+							<img src="/css/Img/box4.png" />
 						</figure>
 					</div>
 				</div>
@@ -33,87 +33,76 @@
 						<h2 class="sub-title">Most Views</h2>
 					</div>
 					<div class="container-for-heading">
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (1).jpg" class="account-avatar-image" />
-									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
+						@foreach (var item in Model.MostViews)
+						{
+							<div class="new-block">
+								<div class="d-flex w-100 justify-content-between">
+									<div class="account-user">
+										<a class="account-avatar">
+											@if (item.isDisplay == true)
+											{
+												<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
+											}
+											else
+											{
+												<img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
+											}
 										</a>
-										<small class="date">3 days ago</small>
+										<div class="account-detail">
+											<a href="#" class="username-post">
+												@if (item.isDisplay == true)
+												{
+													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+												}
+												else
+												{
+													<p class="usersname">Anonymous</p>
+												}
+											</a>
+											<small class="date">
+												@{
+													var myMessage = "Hello World";
+													TimeSpan ts = DateTime.Now - item.CreateDatetime;
+													int differenceInDays = ts.Days;
+													if (differenceInDays >= 1)
+													{
+														myMessage = differenceInDays + " days";
+													}
+													else
+													{
+														int differenceInHours = ts.Hours;
+														if (differenceInHours >= 1)
+														{
+															myMessage = differenceInHours + " hours";
+
+														}
+														else
+														{
+															int differenceInMinutes = ts.Minutes;
+															myMessage = differenceInMinutes + " minutes";
+														}
+													}
+												}
+												@myMessage ago
+											</small>
+										</div>
 									</div>
+									<h4 class="header-idea">@item.Title</h4>
 								</div>
-								<h4 class="header-idea">Idea heading</h4>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (2).jpg" class="account-avatar-image" />
+								<hr />
+								<p class="mb-1">@item.Description</p>
+								<div class="button-list">
+									<a class="arrow" href="/Idea/Detail/@item.Id">
+										Read more
+										<i class='bx bx-chevron-right'></i>
 									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
-										</a>
-										<small class="date">3 days ago</small>
-									</div>
+									<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>@item.Views</span>
+									<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>@item.Likes</span>
+									<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>@item.Dislikes</span>
 								</div>
-								<h4 class="header-idea">Idea heading</h4>
+								<div class="clear"></div>
 							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (8).jpg" class="account-avatar-image" />
-									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
-										</a>
-										<small class="date">3 days ago</small>
-									</div>
-								</div>
-								<h4 class="header-idea">Idea heading</h4>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
+						}
 					</div>
 				</section>
 				<section class="comment">
@@ -121,90 +110,73 @@
 						<h2 class="sub-title">Lastest Comment</h2>
 					</div>
 					<div class="container-for-heading">
-						<div class="new-block">
-							<div class="account-user">
-								<a class="account-avatar">
-									<img src="/AccountProfile/acc (10).jpg" class="account-avatar-image"/>
-								</a>
-								<div class="account-detail">
-									<a href="#" class="username-post">
-										<p class="usersname"> User's Name</p>
-									</a>
-									<small class="date">3 days ago</small>
+						@foreach (var item in Model.LatestComments)
+						{
+							<div class="new-block">
+								<div class="d-flex w-100 justify-content-between">
+									<div class="account-user">
+										<a class="account-avatar">
+											@if (item.isDisplay == true)
+											{
+												<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
+											}
+											else
+											{
+												<img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
+											}
+										</a>
+										<div class="account-detail">
+											<a href="#" class="username-post">
+												@if (item.isDisplay == true)
+												{
+													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+												}
+												else
+												{
+													<p class="usersname">Anonymous</p>
+												}
+											</a>
+											<small class="date">
+												@{
+													var myMessage = "Hello World";
+													TimeSpan ts = DateTime.Now - item.CreateDatetime;
+													int differenceInDays = ts.Days;
+													if (differenceInDays >= 1)
+													{
+														myMessage = differenceInDays + " days";
+													}
+													else
+													{
+														int differenceInHours = ts.Hours;
+														if (differenceInHours >= 1)
+														{
+															myMessage = differenceInHours + " hours";
+
+														}
+														else
+														{
+															int differenceInMinutes = ts.Minutes;
+															myMessage = differenceInMinutes + " minutes";
+														}
+													}
+												}
+												@myMessage ago
+											</small>
+										</div>
+									</div>
+									@*<h4 class="header-idea">@item.Title</h4>*@
 								</div>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="account-user">
-								<a class="account-avatar">
-									<img src="/AccountProfile/acc (15).jpg" class="account-avatar-image" />
-								</a>
-								<div class="account-detail">
-									<a href="#" class="username-post">
-										<p class="usersname"> User's Name</p>
+								<hr />
+								<p class="mb-1">@item.Content</p>
+								<div class="button-list">
+									<a class="arrow" href="/Idea/Detail/@item.Id">
+										Read more
+										<i class='bx bx-chevron-right'></i>
 									</a>
-									<small class="date">3 days ago</small>
 								</div>
+								<div class="clear"></div>
 							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="account-user">
-								<a class="account-avatar">
-									<img src="/AccountProfile/acc (12).jpg" class="account-avatar-image" />
-								</a>
-								<div class="account-detail">
-									<a href="#" class="username-post">
-										<p class="usersname"> User's Name</p>
-									</a>
-									<small class="date">3 days ago</small>
-								</div>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="account-user">
-								<a class="account-avatar">
-									<img src="/AccountProfile/acc (11).jpg" class="account-avatar-image" />
-								</a>
-								<div class="account-detail">
-									<a href="#" class="username-post">
-										<p class="usersname"> User's Name</p>
-									</a>
-									<small class="date">3 days ago</small>
-								</div>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-							</div>
-							<div class="clear"></div>
-						</div>
+						}
 					</div>
 				</section>
 			</div>
@@ -216,141 +188,75 @@
 						<h2 class="sub-title">Most Popular</h2>
 					</div>
 					<div class="container-for-heading">
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (6).jpg" class="account-avatar-image" />
-									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
+						@foreach (var item in Model.MostPopular)
+						{
+							<div class="new-block">
+								<div class="d-flex w-100 justify-content-between">
+									<div class="account-user">
+										<a class="account-avatar">
+											@if (item.isDisplay == true)
+											{
+												<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
+											}
+											else
+											{
+												<img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
+											}
 										</a>
-										<small class="date">3 days ago</small>
+										<div class="account-detail">
+											<a href="#" class="username-post">
+												@if (item.isDisplay == true)
+												{
+													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+												}
+												else
+												{
+													<p class="usersname">Anonymous</p>
+												}
+											</a>
+											<small class="date">
+												@{
+													var myMessage = "Hello World";
+													TimeSpan ts = DateTime.Now - item.CreateDatetime;
+													int differenceInDays = ts.Days;
+													if (differenceInDays >= 1)
+													{
+														myMessage = differenceInDays + " days";
+													}
+													else
+													{
+														int differenceInHours = ts.Hours;
+														if (differenceInHours >= 1)
+														{
+															myMessage = differenceInHours + " hours";
+
+														}
+														else
+														{
+															int differenceInMinutes = ts.Minutes;
+															myMessage = differenceInMinutes + " minutes";
+														}
+													}
+												}
+												@myMessage ago
+											</small>
+										</div>
 									</div>
+										<h4 class="header-idea-2">@item.Title</h4>
 								</div>
-								<h4 class="header-idea-2">Idea heading</h4>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (20).jpg" class="account-avatar-image" />
+								<hr />
+								<p class="mb-1">@item.Description</p>
+								<div class="button-list">
+									<a class="arrow" href="/Idea/Detail/@item.Id">
+										Read more<i class='bx bx-chevron-right'></i>
 									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
-										</a>
-										<small class="date">3 days ago</small>
-									</div>
+									<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>@item.Views</span>
+									<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>@item.Likes</span>
+									<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>@item.Dislikes</span>
 								</div>
-								<h4 class="header-idea-2">Idea heading</h4>
+								<div class="clear"></div>
 							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (17).jpg" class="account-avatar-image" />
-									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
-										</a>
-										<small class="date">3 days ago</small>
-									</div>
-								</div>
-								<h4 class="header-idea-2">Idea heading</h4>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (11).jpg" class="account-avatar-image" />
-									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
-										</a>
-										<small class="date">3 days ago</small>
-									</div>
-								</div>
-								<h4 class="header-idea-2">Idea heading</h4>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
-						<div class="new-block">
-							<div class="d-flex w-100 justify-content-between">
-								<div class="account-user">
-									<a class="account-avatar">
-										<img src="/AccountProfile/acc (15).jpg" class="account-avatar-image" />
-									</a>
-									<div class="account-detail">
-										<a href="#" class="username-post">
-											<p class="usersname"> User's Name</p>
-										</a>
-										<small class="date">3 days ago</small>
-									</div>
-								</div>
-								<h4 class="header-idea-2">Idea heading</h4>
-							</div>
-							<hr />
-							<p class="mb-1">Donec id elit non mi porta gravida at eget metus. Maecenas sed diam eget risus varius blandit.</p>
-							<div class="button-list">
-								<a class="arrow" href="#">
-									Read more<i class='bx bx-chevron-right'></i>
-								</a>
-								<span class="badge bg-primary rounded-pill"><i class="fa fa-eye"></i>120</span>
-								<span class="badge bg-success rounded-pill"><i class="fa fa-thumbs-up"></i>120</span>
-								<span class="badge bg-danger rounded-pill"><i class="fa fa-thumbs-down"></i>120</span>
-							</div>
-							<div class="clear"></div>
-						</div>
+						}
 					</div>
 				</section>
 
@@ -377,7 +283,7 @@
 										}
 										else
 										{
-											<img src="/AccountProfile/acc (1).jpg" class="account-avatar-image" />
+											<img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
 										}
 									</a>
 									<div class="account-detail">
@@ -415,7 +321,8 @@
 													}
 												}
 											}
-											@myMessage ago</small>
+											@myMessage ago
+										</small>
 									</div>
 								</div>
 								<h4 class="header-idea-3">@item.Title</h4>
