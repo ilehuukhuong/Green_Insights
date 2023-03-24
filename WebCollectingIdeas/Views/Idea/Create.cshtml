@@ -26,8 +26,8 @@
             <span asp-validation-for=idea.CategoryId class="text-danger"></span>
         </div>
         <div class="mb-3">
-            <label asp-for=idea.Path>File</label>
-            <input type="file" id="fileUrl" name="file" class="form-control" />
+            <label asp-for=file>File</label>
+            <input asp-for=file class="form-control"/>
         </div>
         <div class="mb-3">
             <label>

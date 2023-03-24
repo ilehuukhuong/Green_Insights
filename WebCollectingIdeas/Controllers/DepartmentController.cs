@@ -28,6 +28,7 @@ namespace WebCollectingIdeas.Controllers
             items = items.ToPagedList(pageIndex, pageSize);
             ViewBag.PageSize = pageSize;
             ViewBag.Page = page;
+            ViewBag.SearchText = Searchtext;
             return View(items);
         }
         public IActionResult Create()
@@ -93,24 +94,6 @@ namespace WebCollectingIdeas.Controllers
                 return NotFound();
             }
             return View(departmentformDbFirst);
-        }
-        //post
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public IActionResult DeletePOST(int? id)
-        {
-            var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == id);
-            if (obj == null)
-            {
-                return NotFound();
-            }
-            else
-            {
-                _unitOfWork.Department.Remove(obj);
-                _unitOfWork.Save();
-                TempData["Deleted"] = "Delete successfully";
-                return RedirectToAction("index");
-            }
         }
         [HttpPost]
         [ValidateAntiForgeryToken]

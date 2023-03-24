@@ -48,6 +48,7 @@ namespace WebCollectingIdeas.Controllers
             items = items.ToPagedList(pageIndex, pageSize);
             ViewBag.PageSize = pageSize;
             ViewBag.Page = page;
+            ViewBag.SearchText = Searchtext;
             return View(items);
         }
         public IActionResult Detail(int id)
@@ -124,7 +125,7 @@ namespace WebCollectingIdeas.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(IdeaVM obj, IFormFile? file)
+        public IActionResult Create(IdeaVM obj)
         {
             var topicCheck = _unitOfWork.Topic.GetFirstOrDefault(u => u.Id == obj.idea.TopicId);
             if (topicCheck.ClosureDate < DateTime.Now)
@@ -153,7 +154,7 @@ namespace WebCollectingIdeas.Controllers
             if (ModelState.IsValid)
             {
                 string wwwRootPath = _webHostEnvironment.WebRootPath;
-                if (file != null)
+                if (obj.file != null)
                 {
                     string fileName = Guid.NewGuid().ToString();
                     var userMail = User.FindFirstValue(ClaimTypes.Email);
@@ -163,10 +164,10 @@ namespace WebCollectingIdeas.Controllers
                         Directory.CreateDirectory(uploads);
                     }
 
-                    var extension = Path.GetExtension(file.FileName);
+                    var extension = Path.GetExtension(obj.file.FileName);
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
-                        file.CopyTo(fileStreams);
+                        obj.file.CopyTo(fileStreams);
                     }
                     obj.idea.Path = @"file/topic_" + obj.idea.TopicId + @"/" + userMail + @"_" + obj.idea.Title + @"/" + fileName + extension;
                 }

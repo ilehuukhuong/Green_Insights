@@ -47,6 +47,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="mailssave\" />
     <Folder Include="Views\Error\" />
     <Folder Include="wwwroot\AccountProfile\Users\" />
     <Folder Include="wwwroot\file\" />

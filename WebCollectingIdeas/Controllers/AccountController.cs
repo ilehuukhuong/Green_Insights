@@ -47,6 +47,7 @@ namespace WebCollectingIdeas.Controllers
             items = items.ToPagedList(pageIndex, pageSize);
             ViewBag.PageSize = pageSize;
             ViewBag.Page = page;
+            ViewBag.SearchText = Searchtext;
             return View(items);
         }
         public IActionResult Upsert(string? id) 

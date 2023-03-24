@@ -81,7 +81,7 @@
     </table>
     <div class="row">
         <div class="col-12">
-            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { Searchtext = ViewBag.Searchtext , page }))
         </div>
     </div>
 </div>
