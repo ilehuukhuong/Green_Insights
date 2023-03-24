@@ -156,7 +156,7 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
                 user.FirstName = Input.FirstName;
                 user.LastName = Input.LastName;
                 user.DepartmentId = Input.DepartmentId;
-                user.FullName = Filter.FilterChar(Input.FirstName + " " + Input.LastName);
+                user.FullName = Input.FirstName + " " + Input.LastName;
                 Random r = new Random();
                 user.Path = @"AccountProfile/acc (" + r.Next(1,20) + @").jpg";
                 if (result.Succeeded)

@@ -157,7 +157,7 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
                 user.FirstName = "External";
                 user.LastName = "Login";
                 user.DepartmentId = 1;
-                user.FullName = Filter.FilterChar("External" + " " + "Login");
+                user.FullName = "External" + " " + "Login";
                 Random r = new Random();
                 user.Path = @"AccountProfile/acc (" + r.Next(1, 20) + @").jpg";
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);

@@ -41,7 +41,7 @@ namespace WebCollectingIdeas.Controllers
             IEnumerable<ApplicationUser> items = _unitOfWork.ApplicationUser.GetAll(includeProperties:"Department").OrderByDescending(x => x.FirstName);
             if (!string.IsNullOrEmpty(Searchtext))
             {
-                items = items.Where(x => x.FullName.Contains(CollectingIdeas.Utility.Filter.FilterChar(Searchtext)));
+                items = items.Where(x => CollectingIdeas.Utility.Filter.FilterChar(x.FullName).Contains(CollectingIdeas.Utility.Filter.FilterChar(Searchtext)));
             }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
             items = items.ToPagedList(pageIndex, pageSize);
@@ -137,7 +137,7 @@ namespace WebCollectingIdeas.Controllers
                     var user = CreateUser();
                     await _userStore.SetUserNameAsync(user, obj.account.Email, CancellationToken.None);
                     var result = await _userManager.CreateAsync(user, obj.Password);
-                    user.FullName = CollectingIdeas.Utility.Filter.FilterChar(obj.account.FirstName + " " + obj.account.LastName);
+                    user.FullName = obj.account.FirstName + " " + obj.account.LastName;
                     user.FirstName = obj.account.FirstName;
                     user.LastName = obj.account.LastName;
                     user.DepartmentId = obj.account.DepartmentId;
@@ -176,7 +176,7 @@ namespace WebCollectingIdeas.Controllers
                         return NotFound();
                     }
                     user.isDelete = obj.account.isDelete;
-                    user.FullName = CollectingIdeas.Utility.Filter.FilterChar(obj.account.FirstName + " " + obj.account.LastName);
+                    user.FullName = obj.account.FirstName + " " + obj.account.LastName;
                     user.DepartmentId = obj.account.DepartmentId;
                     user.FirstName = obj.account.FirstName;
                     user.LastName = obj.account.LastName;

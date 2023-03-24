@@ -23,7 +23,7 @@ namespace WebCollectingIdeas.Controllers
             IEnumerable<Category> items = _unitOfWork.Category.GetAll().OrderByDescending(x => x.Id);
             if (!string.IsNullOrEmpty(Searchtext))
             {
-                items = items.Where(x => x.Name.Contains(Searchtext));
+                items = items.Where(x => CollectingIdeas.Utility.Filter.FilterChar(x.Name).Contains(CollectingIdeas.Utility.Filter.FilterChar(Searchtext)));
             }
             var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
             items = items.ToPagedList(pageIndex, pageSize);
