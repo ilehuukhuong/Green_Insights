@@ -64,14 +64,30 @@ namespace WebCollectingIdeas.Controllers
             ManageView(id, objIdea, userId, objView);
             return View(objIdea);
         }
-        public IActionResult View(int TopicId)
+        public IActionResult View(int TopicId, string Searchtext, int? page)
         {
-            var obj = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == TopicId);
+			var obj = _unitOfWork.Topic.GetFirstOrDefault(x => x.Id == TopicId);
             if (obj == null)
             {
                 return NotFound();
             };
-            return View(obj);
+            ViewBag.TopicId = TopicId;
+            ViewBag.TopicName = obj.Name;
+            var pageSize = 5;
+            if (page == null)
+            {
+                page = 1;
+            }
+            IEnumerable<Idea> items = _unitOfWork.Idea.GetAll(x=> x.TopicId == TopicId, includeProperties:"Category,Topic").OrderByDescending(x => x.Id);
+            if (!string.IsNullOrEmpty(Searchtext))
+            {
+                items = items.Where(x => x.Title.Contains(Searchtext));
+            }
+            var pageIndex = page.HasValue ? Convert.ToInt32(page) : 1;
+            items = items.ToPagedList(pageIndex, pageSize);
+            ViewBag.PageSize = pageSize;
+            ViewBag.Page = page;
+            return View(items);
         }
         public IActionResult Create(int TopicId)
         {
@@ -242,7 +258,7 @@ namespace WebCollectingIdeas.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Comment(Comment comment)
+        public IActionResult Comment(CollectingIdeas.Models.Comment comment)
         {
             if (CheckFinalClosureDate(comment.IdeaId) == true)
             {

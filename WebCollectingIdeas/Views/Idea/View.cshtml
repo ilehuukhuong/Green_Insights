@@ -1,54 +1,66 @@
-﻿@model Topic
+﻿@model X.PagedList.PagedList<Idea>
+@using X.PagedList.Mvc.Core;
+@using X.PagedList;
 @{
-    ViewData["Title"] = @Model.Name;
+    ViewData["Title"] = ViewBag.TopicName;
 }
-
-<div class="container p-3">
-    <div class="row pt-4">
-        <div class="col">
-            <h2>List of Ideas</h2>
+@await Component.InvokeAsync("Ideas", ViewBag.TopicId)
+<form asp-controller="Idea" asp-action="View" method="get" class="searchform">
+    <div class="input-group">
+        <input type="text" name="Searchtext" class="form-search" placeholder="Search Idea.." />
+        <div class="input-group-append">
+            <button type="submit" class="btn btn-secondary" id="Search">Search</button>
+        </div>
+        <input type="hidden" name="TopicId" value="@ViewBag.TopicId" />
+    </div>
+</form>
+<div class="container-ideas-list">
+    <div class="row">
+        <table class="table table-bordered table-striped">
+            <thead class="items">
+                <tr>
+                    <th>Title</th>
+                    <th>Views</th>
+                    <th>Like</th>
+                    <th>Dislike</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Model != null && Model.Any())
+                {
+                    var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
+                    @foreach (var obj in Model)
+                    {
+                        <tr>
+                            <td class="new-items">@obj.Title</td>
+                            <td class="new-items">@obj.Views</td>
+                            <td class="new-items">@obj.Likes</td>
+                            <td class="new-items">@obj.Dislikes</td>
+                            <td class="action">
+                                <a class="btn btn-outline-warning detail" asp-action="Detail" asp-route-id=@obj.Id><i class='bx bx-detail'></i></a>
+                                @await Component.InvokeAsync("React", obj.Id)
+                            </td>
+                        </tr>
+                        i++;
+                    }
+                }
+                else
+                {
+                    <tr>
+                        <td colspan="4">There are no topics available at this time!!!</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="row">
+            <div class="col-12">
+                @Html.PagedListPager(Model, page => Url.Action("View", new {TopicId= ViewBag.TopicId , page }))
+            </div>
         </div>
     </div>
 </div>
-<div class="col-12">
-    <dl class="row justify-content-center">
-        <dt class="col-sm-6 text-end">Topic Name:</dt>
-        <dd class="col-sm-6">@Model.Name</dd>
-        <dt class="col-sm-6 text-end">Submission deadline:</dt>
-        <dd class="col-sm-6">@Model.ClosureDate</dd>
-        <dt class="col-sm-6 text-end">Evaluation deadline:</dt>
-        <dd class="col-sm-6">@Model.FinalClosureDate</dd>
-    </dl>
-</div>
-<div class="col-12 text-center">
-    <a class="btn btn-dark text-white" asp-controller="Idea" asp-action="Index"><i class='bx bx-arrow-back'></i></a>
-    @if (Model.ClosureDate > DateTime.Now)
-    {
-        <a class="btn btn-success text-white" asp-controller="Idea" asp-action="Create" asp-route-TopicId=@Model.Id><i class="bx bx-plus Idea"></i></a>
-    }
-</div>
-@if (Model != null)
-{
-        <div class="container-ideas-list">
-            <div class="row">
-                <table class="table table-bordered table-striped">
-                    <thead class="items">
-                        <tr>
-                            <th>Title</th>
-                            <th>Views</th>
-                            <th>Like</th>
-                            <th>Dislike</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @await Component.InvokeAsync("Ideas", Model.Id)
-                    </tbody>
-                </table>
-            </div>
-        </div>
-}
-    @section Scripts{
+@section Scripts{
     <script>
         $(document).ready(function () {
             $('body').on('click', '.btnLike', function () {
