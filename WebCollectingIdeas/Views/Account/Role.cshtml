@@ -1,5 +1,5 @@
 ﻿@{
-    ViewData["Title"] = "Role Page";
+    ViewData["Title"] = "Role Index";
 }
 <div class="container p-3">
     <div class="row justify-content-end">
@@ -11,7 +11,7 @@
 </div>
 <div class="card-body">
     <div class="Category-element">
-        <form asp-controller="Category" asp-action="Index" method="get" class="searchform">
+        <form asp-controller="Account" asp-action="Index" method="get" class="searchform">
             <div class="input-group">
                 <input type="text" name="Searchtext" class="form-search" placeholder="Search Category.." />
                 <div class="input-group-append">
@@ -20,7 +20,7 @@
             </div>
         </form>
         <div class="btn-group-md">
-            <a asp-controller="Account" asp-action="Create" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
+            <a asp-controller="Account" asp-action="CreateRole" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
             <a href="#" class="btn btn-danger" id="BtnDeleteAll"> <i class='bx bxs-trash'></i>DELETE ALL</a>
         </div>
     </div>

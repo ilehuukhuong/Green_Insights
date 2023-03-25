@@ -604,7 +604,6 @@ i.bx.bx-plus {
 /* Css for Detail Page of Ideas*/
 .container-ideas {
     position: relative;
-    left: 25%;
 }
 
 .button-group {
@@ -793,12 +792,6 @@ button.btn.btn-warning.delete {
         padding: 0;
         height: auto;
     }
-
-    .col-sm-6.col-md-6.col-12.pb-3 {
-        position: absolute;
-        right: 0;
-        top: 56rem;
-    }
 }
 
 @media screen and (min-width: 480px) {
@@ -809,14 +802,6 @@ button.btn.btn-warning.delete {
 
     .badge.bg-success.rounded-pill {
         margin-right: 5px;
-    }
-}
-
-@media screen and (min-width: 576px) {
-    .col-sm-6.col-md-6.col-12.pb-3 {
-        position: absolute;
-        right: 10px;
-        top: 60% !important;
     }
 }
 
@@ -1007,6 +992,10 @@ button.btn.btn-warning.delete {
             .account-detail .username-post .usersname {
                 font-size: 12px;
             }
+
+    .show-cmt {
+        margin-left: 10em !important;
+    }
 }
 @media screen and (min-width: 1280px) {
     .content {
@@ -1548,4 +1537,24 @@ td.name-item {
     margin-right: calc(-0.5 * var(--bs-gutter-x));
     margin-left: calc(-0.5 * var(--bs-gutter-x));
     background: url( 'Img/greenwich-9.jpg' );
+}
+section.cmt-view {
+    width: 100%;
+    height: auto;
+}
+    .cmt-action {
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap:wrap;
+    justify-content: space-between;
+}
+
+.show-cmt {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    width: 25em;
+    height: auto;
+    margin-top:20px;
+    margin-left:10px;
 }

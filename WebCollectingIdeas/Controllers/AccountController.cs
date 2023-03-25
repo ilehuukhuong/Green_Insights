@@ -219,5 +219,15 @@ namespace WebCollectingIdeas.Controllers
         {
                 return View();
         }
+
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+
+        public IActionResult EditRole()
+        {
+            return View();
+        }
     }
 }
