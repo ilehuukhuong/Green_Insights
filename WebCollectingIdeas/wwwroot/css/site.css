@@ -796,8 +796,7 @@ button.btn.btn-warning.delete {
 
     .col-sm-6.col-md-6.col-12.pb-3 {
         position: absolute;
-        right: 0;
-        top: 56rem;
+        margin-left:100px
     }
 }
 
@@ -815,8 +814,8 @@ button.btn.btn-warning.delete {
 @media screen and (min-width: 576px) {
     .col-sm-6.col-md-6.col-12.pb-3 {
         position: absolute;
-        right: 10px;
-        top: 60% !important;
+        top: 75% !important;
+        right:0;
     }
 }
 

@@ -78,11 +78,15 @@
 <section>
     <div class="container">
         <div class="row">
-            @await Component.InvokeAsync("CreateComment", Model.Id)
-            <div class="col-sm-6 col-md-6 col-12 pb-3">
-                <h1>Comments</h1>
-                @await Component.InvokeAsync("ShowComment", Model.Id)
-            </div>
+            <div class="cmt">
+                @await Component.InvokeAsync("CreateComment", Model.Id)
+                <div class="col-sm-6 col-md-6 col-12 pb-3">
+                    <b>
+                        <h4>Comment</h4>
+                        @await Component.InvokeAsync("ShowComment", Model.Id)
+                    </b>
+                </div>
+            </div>                   
         </div>
     </div>
 </section>

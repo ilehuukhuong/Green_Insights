@@ -62,15 +62,6 @@ public class SendMailService : ISendMailService
         logger.LogInformation("send mail to " + mailContent.To);
 
     }
-    public async Task SendEmailAsync(string email, string subject, string htmlMessage)
-    {
-        await SendMail(new MailContent()
-        {
-            To = email,
-            Subject = subject,
-            Body = htmlMessage
-        });
-    }
 
     public async Task IdeaSubmissionEmail(string email, string fullname, string title)
     {
