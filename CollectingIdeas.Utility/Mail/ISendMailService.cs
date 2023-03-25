@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using WebCollectingIdeas.Mail;
+using CollectingIdeas.Utility.Mail;
 
 
 public interface ISendMailService

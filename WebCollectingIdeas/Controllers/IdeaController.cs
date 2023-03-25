@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using System.Net.Mime;
 using System.Security.Claims;
-using WebCollectingIdeas.Mail;
+using CollectingIdeas.Utility.Mail;
 using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
@@ -174,7 +174,7 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Idea.Add(obj.idea);
                 _unitOfWork.Save();
 
-                _mailService.IdeaSubmissionEmail("kaissken@gmail.com", "", "");
+                _mailService.IdeaSubmissionEmail("testmailcollectingidea@gmail.com", "", "");
 
                 TempData["Success"] = "Create successfully";
 

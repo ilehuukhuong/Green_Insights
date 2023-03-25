@@ -1,4 +1,4 @@
-﻿namespace WebCollectingIdeas.Mail;
+﻿namespace CollectingIdeas.Utility.Mail;
 
 public class MailSettings
 {
