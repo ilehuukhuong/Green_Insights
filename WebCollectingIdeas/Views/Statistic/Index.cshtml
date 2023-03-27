@@ -1,12 +1,6 @@
 ﻿@{
-	ViewData["Title"] = "Statistic Page";
+    ViewData["Title"] = "Statistic Page";
 }
- <head>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.css" />
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.0/chart.min.js"></script>
-    <link rel="stylesheet" href="~/css/Statistic.css" asp-append-version="true" />
-</head>
-<body>
 <div class="container">
     <div class="container p-3">
         <div class="row justify-content-end">
@@ -15,111 +9,209 @@
             </div>
         </div>
     </div>
-
-        <div class="chart">
-            <canvas id="myChart"></canvas>
-        </div>
-        <div class="chart1">
-            <canvas id="myChart1"></canvas>
-            <canvas id="myChart2"></canvas>
-        </div>
+    <div class="chart">
+        <canvas id="Percentageofideas"></canvas>
+    </div>
+    <div class="chart1">
+        <canvas id="Numberofideas"></canvas>
+        <canvas id="Numberofcontributors"></canvas>
+    </div>
 </div>
-</body>
 @section Scripts{
-    <script>
-        var ctx = document.getElementById('myChart').getContext('2d');
-        var chart = new Chart(ctx, {
-            type: 'pie',
-            data: {
-                labels: ['Red', 'Blue', 'Yellow'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Statistic/Percentageofideas",
+                data: "",
+                contextType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessResult,
+                error: OnError
+            });
+            function OnSuccessResult(data) {
+                var _data = data;
+                var _chartLabels = _data[0];
+                var _charData = _data[1];
+                var barColor = ["red", "green", "yellow", "blue", "brown", "orange", "purple"];
+                new Chart("Percentageofideas", {
+                    type: 'pie',
+                    data: {
+                        labels: _chartLabels,
+                        datasets: [{
+                            label: 'Percentage of ideas',
+                            data: _charData,
+                            //backgroundColor: barColor,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Percentage of ideas by each Department'
+                            }
+                        }
                     }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'My Chart Title'
-                    }
-                }
+                });
+            }
+            function OnError(err) {
+                console.log("Something went wrong!");
             }
         });
     </script>
-    <script>
-        var ctx = document.getElementById('myChart1').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [65, 59, 80, 81, 56, 55],
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Statistic/Numberofideas",
+                data: "",
+                contextType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessResult,
+                error: OnError
+            });
+            function OnSuccessResult(data) {
+                var _data = data;
+                var _chartLabels = _data[0];
+                var _charData = _data[1];
+                var barColor = ["red", "green", "yellow", "blue", "brown", "orange", "purple"];
+                new Chart("Numberofideas", {
+                    type: 'bar',
+                    data: {
+                        labels: _chartLabels,
+                        datasets: [{
+                            label: 'Number of Ideas',
+                            data: _charData,
+                            //backgroundColor: barColor,
+                            //borderColor: barColor,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        },
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Number of ideas made by each Department'
+                            }
+                        }
                     }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'My Chart Title'
-                    }
-                }
+                });
             }
-        });
-    </script>
+            function OnError(err) {
+                console.log("Something went wrong!");
+            }
 
-    <script>
-        var ctx = document.getElementById('myChart2').getContext('2d');
-        var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['January', 'February', 'March', 'April', 'May', 'June'],
-                datasets: [{
-                    label: 'My First Dataset',
-                    data: [12, 59, 80, 81, 56, 55],    
-                    backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                    borderColor: 'rgba(255, 99, 132, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
+        });
+    </script>
+    <script type="text/javascript">
+        $(function () {
+            $.ajax({
+                type: "POST",
+                url: "/Statistic/Numberofcontributors",
+                data: "",
+                contextType: "application/json; charset=utf-8",
+                dataType: "json",
+                success: OnSuccessResult,
+                error: OnError
+            });
+            function OnSuccessResult(data) {
+                var _data = data;
+                var _chartLabels = _data[0];
+                var _charData = _data[1];
+                var barColor = ["red", "green", "yellow", "blue", "brown", "orange", "purple"];
+                new Chart("Numberofcontributors", {
+                    type: 'bar',
+                    data: {
+                        labels: _chartLabels,
+                        datasets: [{
+                            label: 'Number of contributors',
+                            data: _charData,
+                            //backgroundColor: barColor,
+                            //borderColor: barColor,
+                            backgroundColor: [
+                                'rgba(255, 99, 132, 0.2)',
+                                'rgba(255, 159, 64, 0.2)',
+                                'rgba(255, 205, 86, 0.2)',
+                                'rgba(75, 192, 192, 0.2)',
+                                'rgba(54, 162, 235, 0.2)',
+                                'rgba(153, 102, 255, 0.2)',
+                                'rgba(201, 203, 207, 0.2)'
+                            ],
+                            borderColor: [
+                                'rgb(255, 99, 132)',
+                                'rgb(255, 159, 64)',
+                                'rgb(255, 205, 86)',
+                                'rgb(75, 192, 192)',
+                                'rgb(54, 162, 235)',
+                                'rgb(153, 102, 255)',
+                                'rgb(201, 203, 207)'
+                            ],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        indexAxis: 'y',
+                        plugins: {
+                            title: {
+                                display: true,
+                                text: 'Number of contributors within each Department'
+                            }
+                        }
                     }
-                },
-                plugins: {
-                    title: {
-                        display: true,
-                        text: 'My Chart Title'
-                    }
-                }
+                });
             }
+            function OnError(err) {
+                console.log("Something went wrong!");
+            }
+
         });
     </script>
 }
