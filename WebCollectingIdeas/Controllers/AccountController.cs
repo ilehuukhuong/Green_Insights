@@ -222,9 +222,12 @@ namespace WebCollectingIdeas.Controllers
             }
         }
 
-        public IActionResult Role()
+        public IActionResult Role(string id)
         {
-                return View();
+            AccountVM accountVM = new AccountVM();
+            accountVM.account = new ApplicationUser();
+            accountVM.account = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id);
+            return View(accountVM);
         }
 
         public IActionResult CreateRole()
