@@ -199,6 +199,13 @@ namespace WebCollectingIdeas.Controllers
                 }
                 return RedirectToAction("index");
             }
+            obj.DepartmentList = _unitOfWork.Department.GetAll().Select(
+                u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString()
+                }
+                );
             return View(obj);
         }
         private ApplicationUser CreateUser()
