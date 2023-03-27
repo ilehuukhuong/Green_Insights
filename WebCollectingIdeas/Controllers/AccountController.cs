@@ -221,5 +221,20 @@ namespace WebCollectingIdeas.Controllers
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
         }
+
+        public IActionResult Role()
+        {
+                return View();
+        }
+
+        public IActionResult CreateRole()
+        {
+            return View();
+        }
+
+        public IActionResult EditRole()
+        {
+            return View();
+        }
     }
 }

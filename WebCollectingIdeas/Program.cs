@@ -4,7 +4,7 @@ using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using Microsoft.AspNetCore.Identity;
-using WebCollectingIdeas.Mail;
+using CollectingIdeas.Utility.Mail;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using CollectingIdeas.Models;

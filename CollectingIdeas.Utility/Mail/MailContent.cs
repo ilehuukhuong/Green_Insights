@@ -1,4 +1,4 @@
-﻿namespace WebCollectingIdeas.Mail;
+﻿namespace CollectingIdeas.Utility.Mail;
 public class MailContent
 {
     public string To { get; set; }              // Địa chỉ gửi đến

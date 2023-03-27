@@ -1,7 +1,7 @@
 ﻿@model Comment
 @if (ViewBag.FinalClosureDate == true)
 {
-    <div class="col-sm-6">
+    <div class="Box-cmt">
         <form class="cmt" asp-controller="Idea" asp-action="Comment" method="post">
             <input asp-for="IdeaId" type="hidden" value="@ViewBag.IdeaId" />
             <div>
