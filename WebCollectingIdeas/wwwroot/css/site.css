@@ -166,7 +166,7 @@ body {
         margin-top: 20px;
         opacity: 1;
         width: 240px;
-        height:auto;
+        height: auto;
     }
 
     .sidebar ul li {
@@ -908,7 +908,7 @@ button.btn.btn-warning.delete {
         margin-left: 55px;
     }
 
-    .popular-view .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user .account-detail{
+    .popular-view .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user .account-detail {
         margin-top: 10px;
         margin-left: 0;
     }
@@ -977,6 +977,7 @@ button.btn.btn-warning.delete {
     .right-col .latest-ideas .container-for-heading .new-block .d-flex.w-100.justify-content-between {
         margin: 0;
     }
+
         .right-col .latest-ideas .container-for-heading .new-block .d-flex.w-100.justify-content-between .account-user .account-avatar {
             width: 20px;
             height: 20px;
@@ -997,6 +998,7 @@ button.btn.btn-warning.delete {
         margin-left: 10em !important;
     }
 }
+
 @media screen and (min-width: 1280px) {
     .content {
         width: 1140px;
@@ -1452,6 +1454,7 @@ SECTION.comment {
     color: #f2f2f200;
     text-decoration: underline;
     margin: 5px;
+    display: inline-block;
 }
 
     .trash:hover {
@@ -1475,7 +1478,7 @@ SECTION.comment {
 }
 
 
-/*Css for Category, Department and Topic, Idea*/
+/*Css for Category, Department and Topic, Idea, Role*/
 thead.items {
     text-align: center;
 }
@@ -1538,14 +1541,16 @@ td.name-item {
     margin-left: calc(-0.5 * var(--bs-gutter-x));
     background: url( 'Img/greenwich-9.jpg' );
 }
+
 section.cmt-view {
     width: 100%;
     height: auto;
 }
-    .cmt-action {
+
+.cmt-action {
     display: inline-flex;
     flex-direction: row;
-    flex-wrap:wrap;
+    flex-wrap: wrap;
     justify-content: space-between;
 }
 
@@ -1555,6 +1560,51 @@ section.cmt-view {
     flex-direction: column;
     width: 25em;
     height: auto;
-    margin-top:20px;
-    margin-left:10px;
+    margin-top: 20px;
+    margin-left: 10px;
 }
+
+.table.tb-role {
+    color: black;
+}
+
+.table-name {
+    text-align: center;
+}
+
+.role-title {
+    background-color: #a8e2f6;
+    text-align: center;
+}
+.role-title-2 {
+    background-color: #f39c12;
+    text-align: center;
+}
+
+.role-name {
+    text-align: center;
+}
+
+.role-button {
+    display: flex;
+    justify-content: center;
+}
+
+.btn.btn-outline-danger.role-remove {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.btn.btn-outline-success.addition {
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+

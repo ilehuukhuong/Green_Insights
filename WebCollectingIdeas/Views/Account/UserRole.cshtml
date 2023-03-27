@@ -1,58 +1,61 @@
 ﻿@{
-    ViewData["Title"] = "Role Index";
+    ViewData["Title"] = "User Role";
 }
 <div class="container p-3">
     <div class="row justify-content-end">
         <div class="text-center">
-            <h2>Role List</h2>
+            <h2>User Role</h2>
         </div>
 
     </div>
 </div>
-<div class="card-body">
-    <div class="Category-element">
-        <form asp-controller="Account" asp-action="Index" method="get" class="searchform">
-            <div class="input-group">
-                <input type="text" name="Searchtext" class="form-search" placeholder="Search Category.." />
-                <div class="input-group-append">
-                    <button type="submit" class="btn btn-secondary" id="Search">Search</button>
-                </div>
-            </div>
-        </form>
-        <div class="btn-group-md">
-            <a asp-controller="Account" asp-action="CreateRole" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
-            <a href="#" class="btn btn-danger" id="BtnDeleteAll"> <i class='bx bxs-trash'></i>DELETE ALL</a>
-        </div>
-    </div>
-    <table class="table table-bordered table-striped">
-        <thead class="items">
+<div class="row">
+    <div class="col-12 col-sm-6 pl-4 pr-4">
+        <h5 class="table-name">Current Roles</h5>
+        <table class="table tb-role">
+            <thead class="role-title">
+                <tr>
+                    <th>Role's name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
             <tr>
-                <th><input type="checkbox" id="SelectAll" /></th>
-                <th>ID</th>
-                <th class="name-item">Name</th>
-                <th>Last Update</th>
-                <th>Action</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr id="">
-                <td class="new-items"><input type="checkbox" id="cbkItem" value="" /></td>
-                <td class="new-items"></td>
-                <td class="name-item"></td>
-                <td class="new-items"></td>
-                <td class="action">
-                    <div>
-                        <a class="pencil" asp-controller="Account" asp-action="Edit" asp-route-id="">
-                            <i class="bi bi-pencil btn btn-warning" title="Edit Role"></i>
-                        </a>
-                        <a href="#" class="btnDelete">
-                            <i class="bi bi-trash3 btn btn-danger" title="Delete Role"></i>
-                        </a>
-                    </div>
+                <th scope="row" class="role-name">Admin</th>
+                <td class="role-button">
+                    <button type="button" class="btn btn-outline-danger role-remove"><i class="bi bi-dash"></i></button>
                 </td>
             </tr>
-        </tbody>
-    </table>
+            <tr>
+                <th scope="row" class="role-name">Manager</th>
+                <td class="role-button">
+                    <button type="button" class="btn btn-outline-danger role-remove"><i class="bi bi-dash"></i></button>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="col-12 col-sm-6 pl-4 pr-4">
+        <h5 class="table-name">Remaining Roles</h5>
+        <table class="table tb-role">
+            <thead class="role-title-2">
+                <tr>
+                    <th>Role's name</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tr>
+                <th scope="row" class="role-name">Admin</th>
+                <td class="role-button">
+                    <button type="button" class="btn btn-outline-success addition"><i class="bi bi-plus"></i></button>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row" class="role-name">Manager</th>
+                <td class="role-button">
+                    <button type="button" class="btn btn-outline-success addition"><i class="bi bi-plus"></i></button>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
 @section Scripts{
