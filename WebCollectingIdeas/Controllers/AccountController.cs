@@ -24,12 +24,14 @@ namespace WebCollectingIdeas.Controllers
         private readonly IWebHostEnvironment _webHostEnvironment;
         private readonly IUserStore<ApplicationUser> _userStore;
         private readonly UserManager<ApplicationUser> _userManager;
-        public AccountController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, IUserStore<ApplicationUser> userStore, UserManager<ApplicationUser> userManager)
+        private RoleManager<IdentityRole> _roleManager;
+        public AccountController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment, IUserStore<ApplicationUser> userStore, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             _unitOfWork = unitOfWork;
             _webHostEnvironment = webHostEnvironment;
             _userStore = userStore;
             _userManager = userManager;
+            _roleManager = roleManager;
         }
         public ActionResult Index(string Searchtext, int? page)
         {
@@ -125,7 +127,6 @@ namespace WebCollectingIdeas.Controllers
                                 System.IO.File.Delete(oldImagePath);
                             }
                         }
-                        
                     }
                     using (var fileStreams = new FileStream(Path.Combine(uploads, fileName + extension), FileMode.Create))
                     {
@@ -220,15 +221,58 @@ namespace WebCollectingIdeas.Controllers
                     $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
                     $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
             }
-        }
-
-        public IActionResult UserRole(string id)
+        } 
+        public async Task<IActionResult> ManageAsync(string userId)
         {
-            AccountVM accountVM = new AccountVM();
-            accountVM.account = new ApplicationUser();
-            accountVM.account = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == id);
-            return View(accountVM);
+            ViewBag.userId = userId;
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            ViewBag.UserName = user.UserName;
+            var model = new List<ManageUserRolesVM>();
+            foreach (var role in _roleManager.Roles.ToList())
+            {
+                var userRolesViewModel = new ManageUserRolesVM
+                {
+                    RoleId = role.Id,
+                    RoleName = role.Name
+                };
+                if (await _userManager.IsInRoleAsync(user, role.Name))
+                {
+                    userRolesViewModel.Selected = true;
+                }
+                else
+                {
+                    userRolesViewModel.Selected = false;
+                }
+                model.Add(userRolesViewModel);
+            }
+            return View(model);
         }
-
+        [HttpPost]
+        public async Task<IActionResult> Manage(List<ManageUserRolesVM> model, string userId)
+        {
+            var user = await _userManager.FindByIdAsync(userId);
+            if (user == null)
+            {
+                return NotFound();
+            }
+            var roles = await _userManager.GetRolesAsync(user);
+            var result = await _userManager.RemoveFromRolesAsync(user, roles);
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot remove user existing roles");
+                return View(model);
+            }
+            result = await _userManager.AddToRolesAsync(user, model.Where(x => x.Selected).Select(y => y.RoleName));
+            if (!result.Succeeded)
+            {
+                ModelState.AddModelError("", "Cannot add selected roles to user");
+                return View(model);
+            }
+            return RedirectToAction("Index");
+        }
     }
 }

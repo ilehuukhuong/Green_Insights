@@ -39,7 +39,7 @@
 								<div class="d-flex w-100 justify-content-between">
 									<div class="account-user">
 										<a class="account-avatar">
-											@if (item.isDisplay == true)
+											@if (item.isDisplay == true && item.ApplicationUser.isDelete == false)
 											{
 												<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
 											}
@@ -50,13 +50,20 @@
 										</a>
 										<div class="account-detail">
 											<a href="#" class="username-post">
-												@if (item.isDisplay == true)
+												@if (item.ApplicationUser.isDelete == true)
 												{
-													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+													<p class="usersname">This account has been blocked</p>
 												}
 												else
 												{
-													<p class="usersname">Anonymous</p>
+													if (item.isDisplay == true)
+													{
+														<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+													}
+													else
+													{
+														<p class="usersname">Anonymous</p>
+													}
 												}
 											</a>
 											<small class="date">
@@ -116,7 +123,7 @@
 								<div class="d-flex w-100 justify-content-between">
 									<div class="account-user">
 										<a class="account-avatar">
-											@if (item.isDisplay == true)
+											@if (item.isDisplay == true && item.ApplicationUser.isDelete == false)
 											{
 												<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
 											}
@@ -127,13 +134,20 @@
 										</a>
 										<div class="account-detail">
 											<a href="#" class="username-post">
-												@if (item.isDisplay == true)
+												@if (item.ApplicationUser.isDelete == true)
 												{
-													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+													<p class="usersname">This account has been blocked</p>
 												}
 												else
 												{
-													<p class="usersname">Anonymous</p>
+													if (item.isDisplay == true)
+													{
+														<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+													}
+													else
+													{
+														<p class="usersname">Anonymous</p>
+													}
 												}
 											</a>
 											<small class="date">
@@ -194,7 +208,7 @@
 								<div class="d-flex w-100 justify-content-between">
 									<div class="account-user">
 										<a class="account-avatar">
-											@if (item.isDisplay == true)
+											@if (item.isDisplay == true && item.ApplicationUser.isDelete == false)
 											{
 												<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
 											}
@@ -205,13 +219,20 @@
 										</a>
 										<div class="account-detail">
 											<a href="#" class="username-post">
-												@if (item.isDisplay == true)
+												@if (item.ApplicationUser.isDelete == true)
 												{
-													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+													<p class="usersname">This account has been blocked</p>
 												}
 												else
 												{
-													<p class="usersname">Anonymous</p>
+													if (item.isDisplay == true)
+													{
+														<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+													}
+													else
+													{
+														<p class="usersname">Anonymous</p>
+													}
 												}
 											</a>
 											<small class="date">
@@ -242,7 +263,7 @@
 											</small>
 										</div>
 									</div>
-										<h4 class="header-idea-2">@item.Title</h4>
+									<h4 class="header-idea-2">@item.Title</h4>
 								</div>
 								<hr />
 								<p class="mb-1">@item.Description</p>
@@ -277,7 +298,7 @@
 							<div class="d-flex w-100 justify-content-between">
 								<div class="account-user">
 									<a class="account-avatar">
-										@if (item.isDisplay == true)
+										@if (item.isDisplay == true && item.ApplicationUser.isDelete == false)
 										{
 											<img src="@item.ApplicationUser.Path" class="account-avatar-image" />
 										}
@@ -288,13 +309,20 @@
 									</a>
 									<div class="account-detail">
 										<a href="#" class="username-post">
-											@if (item.isDisplay == true)
+											@if (item.ApplicationUser.isDelete == true)
 											{
-												<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+												<p class="usersname">This account has been blocked</p>
 											}
 											else
 											{
-												<p class="usersname">Anonymous</p>
+												if (item.isDisplay == true)
+												{
+													<p class="usersname">@item.ApplicationUser.FirstName @item.ApplicationUser.LastName</p>
+												}
+												else
+												{
+													<p class="usersname">Anonymous</p>
+												}
 											}
 										</a>
 										<small class="date">

@@ -22,6 +22,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CollectingIdeas.Model\CollectingIdeas.Models.csproj" />
+    <ProjectReference Include="..\CollectingIdeas.Utility\CollectingIdeas.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -8,6 +8,7 @@ using CollectingIdeas.Utility.Mail;
 using DocumentFormat.OpenXml.Office2016.Drawing.ChartDrawing;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using CollectingIdeas.Models;
+using CollectingIdeas.DataAccess.DbInitializer;
 
 var builder = WebApplication.CreateBuilder(args);
 var mailsettings = builder.Configuration.GetSection("MailSettings");
@@ -34,8 +35,14 @@ builder.Services.AddDbContext<ApplicationDbContext>(options=>options.UseSqlServe
 //    .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddIdentity<ApplicationUser,IdentityRole>().AddDefaultTokenProviders()
     .AddEntityFrameworkStores<ApplicationDbContext>();
-
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = $"/Identity/Account/Login";
+    options.LogoutPath = $"/Identity/Account/Logout";
+    options.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+});
 builder.Services.AddRazorPages().AddRazorRuntimeCompilation();
+builder.Services.AddScoped<IDbInitializer, DbInitializer>();
 builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 builder.Services.AddScoped<IEmailSender, EmailSender>();
 builder.Services.Configure<MailSettings>(mailsettings);

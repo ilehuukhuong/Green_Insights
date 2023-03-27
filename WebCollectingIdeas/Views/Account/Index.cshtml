@@ -58,13 +58,13 @@
                             else
                             {
                                 <div>
-                                    <a class="role" asp-controller="Account" asp-action="UserRole" asp-route-id=@item.Id>
+                                    <a class="role" asp-controller="Account" asp-action="Manage" asp-route-userId=@item.Id>
                                         <i class="bi bi-person-vcard btn btn-info" title="Edit role"></i>
                                     </a>
                                     <a class="pencil" asp-controller="Account" asp-action="Upsert" asp-route-id=@item.Id>
                                         <i class="bi bi-pencil btn btn-warning" title="Edit information"></i>
                                     </a>
-                                    <a  class="trash" href="#" data-id="@item.Id" class="btnDelete">
+                                    <a class="trash btnDelete" href="#" data-id="@item.Id">
                                         <i class="bi bi-trash3 btn btn-danger" title="Delete"></i>
                                     </a>
                                 </div>

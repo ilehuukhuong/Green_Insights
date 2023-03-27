@@ -16,10 +16,11 @@ using System.Net.Mime;
 using System.Security.Claims;
 using CollectingIdeas.Utility.Mail;
 using X.PagedList;
+using CollectingIdeas.Utility;
 
 namespace WebCollectingIdeas.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator + "," + SD.Role_User_Staff)]
     public class IdeaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -316,6 +317,7 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Save();
             }
         }
+        [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
         public IActionResult DownloadZip(int id)
         {
             string wwwRootPath = _webHostEnvironment.WebRootPath;
@@ -342,6 +344,7 @@ namespace WebCollectingIdeas.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(zipPath);
             return File(fileBytes, MediaTypeNames.Application.Zip, zipFileName);
         }
+        [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
         public IActionResult DownloadExcel(int id)
         {
             var ideas = _unitOfWork.Idea.GetAll(i => i.TopicId == id, includeProperties: "Category,ApplicationUser");
