@@ -222,7 +222,7 @@ namespace WebCollectingIdeas.Controllers
             }
         }
 
-        public IActionResult Role(string id)
+        public IActionResult UserRole(string id)
         {
             AccountVM accountVM = new AccountVM();
             accountVM.account = new ApplicationUser();
@@ -230,14 +230,5 @@ namespace WebCollectingIdeas.Controllers
             return View(accountVM);
         }
 
-        public IActionResult CreateRole()
-        {
-            return View();
-        }
-
-        public IActionResult EditRole()
-        {
-            return View();
-        }
     }
 }
