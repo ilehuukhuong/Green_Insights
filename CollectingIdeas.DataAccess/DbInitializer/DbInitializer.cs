@@ -1,4 +1,5 @@
 ﻿using CollectingIdeas.DataAccess.Data;
+using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
 using CollectingIdeas.Utility;
 using Microsoft.AspNetCore.Identity;
@@ -17,15 +18,18 @@ namespace CollectingIdeas.DataAccess.DbInitializer
         private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly ApplicationDbContext _db;
+        private readonly IUnitOfWork _unitOfWork;
 
         public DbInitializer(
             UserManager<ApplicationUser> userManager,
             RoleManager<IdentityRole> roleManager,
-            ApplicationDbContext db)
+            ApplicationDbContext db,
+            IUnitOfWork unitOfWork)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _db = db;
+            _unitOfWork = unitOfWork;
         }
         public void Initialize()
         {
@@ -40,6 +44,12 @@ namespace CollectingIdeas.DataAccess.DbInitializer
             catch (Exception ex)
             {
 
+            }
+            if (_unitOfWork.Department.GetAll().Count() == 0)
+            {
+                Department obj = new Department();
+                obj.Name = SD.Role_User_Administrator;
+                _unitOfWork.Department.Add(obj);
             }
             // create roles default
             if (!_roleManager.RoleExistsAsync(SD.Role_User_Administrator).GetAwaiter().GetResult())
