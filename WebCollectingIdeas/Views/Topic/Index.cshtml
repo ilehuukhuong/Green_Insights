@@ -20,7 +20,7 @@
         </form>
         <div class="btn-group-md">
             <a asp-controller="Topic" asp-action="Create" class="btn btn-success btnCreate"><i class='bx bx-plus'>CREATE</i></a>
-            <a href="#" class="btn btn-danger" id="BtnDeleteAll"> <i class='bx bxs-trash'></i>DELETE ALL</a>          
+            <a href="#" class="btn btn-danger" id="BtnDeleteAll"> <i class='bx bxs-trash'></i>DELETE ALL</a>
         </div>
     </div>
     <table class="table table-bordered table-striped">
@@ -41,24 +41,72 @@
                 var i = ((ViewBag.Page - 1) * ViewBag.PageSize) + 1;
                 @foreach (var item in Model)
                 {
-                    <tr id="trow_@item.Id">
-                        <td class="new-items"><input type="checkbox" id="cbkItem" value="@item.Id" /></td>
-                        <td class="new-items">@i</td>
-                        <td class="name-item">@item.Name</td>
-                        <td class="new-items">@item.CreateDatetime</td>
-                        <td class="new-items">@item.ClosureDate</td>
-                        <td class="new-items">@item.FinalClosureDate</td>
-                        <td class="action">
-                            <div>
-                                <a class=" pencil" asp-controller="Topic" asp-action="Edit" asp-route-id=@item.Id>
-                                    <i class="bi bi-pencil btn btn-warning"></i>
-                                </a>
-                                <a href="#" data-id="@item.Id" class="btnDelete">
-                                    <i class="bi bi-trash3 btn btn-danger"></i>
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                    @if (item.ClosureDate > DateTime.Now)
+                    {
+                        <tr id="trow_@item.Id" class="deadline" style="background:#30BE96">
+                            <td class="new-items"><input type="checkbox" id="cbkItem" value="@item.Id" /></td>
+                            <td class="new-items">@i</td>
+                            <td class="name-item">@item.Name</td>
+                            <td class="new-items">@item.CreateDatetime</td>
+                            <td class="new-items">@item.ClosureDate</td>
+                            <td class="new-items">@item.FinalClosureDate</td>
+                            <td class="action">
+                                <div>
+                                    <a class=" pencil" asp-controller="Topic" asp-action="Edit" asp-route-id=@item.Id>
+                                        <i class="bi bi-pencil btn btn-warning"></i>
+                                    </a>
+                                    <a href="#" data-id="@item.Id" class="btnDelete">
+                                        <i class="bi bi-trash3 btn btn-danger"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    else
+                    {
+                        @if (item.FinalClosureDate > DateTime.Now)
+                        {
+                            <tr id="trow_@item.Id" class="deadline" style="background:#D6FF7F">
+                                <td class="new-items"><input type="checkbox" id="cbkItem" value="@item.Id" /></td>
+                                <td class="new-items">@i</td>
+                                <td class="name-item">@item.Name</td>
+                                <td class="new-items">@item.CreateDatetime</td>
+                                <td class="new-items">@item.ClosureDate</td>
+                                <td class="new-items">@item.FinalClosureDate</td>
+                                <td class="action">
+                                    <div>
+                                        <a class=" pencil" asp-controller="Topic" asp-action="Edit" asp-route-id=@item.Id>
+                                            <i class="bi bi-pencil btn btn-warning"></i>
+                                        </a>
+                                        <a href="#" data-id="@item.Id" class="btnDelete">
+                                            <i class="bi bi-trash3 btn btn-danger"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                        else
+                        {
+                            <tr id="trow_@item.Id" class="deadline" style="background:#e74c3c">
+                                <td class="new-items"><input type="checkbox" id="cbkItem" value="@item.Id" /></td>
+                                <td class="new-items">@i</td>
+                                <td class="name-item">@item.Name</td>
+                                <td class="new-items">@item.CreateDatetime</td>
+                                <td class="new-items">@item.ClosureDate</td>
+                                <td class="new-items">@item.FinalClosureDate</td>
+                                <td class="action">
+                                    <div>
+                                        <a class=" pencil" asp-controller="Topic" asp-action="Edit" asp-route-id=@item.Id>
+                                            <i class="bi bi-pencil btn btn-warning"></i>
+                                        </a>
+                                        <a href="#" data-id="@item.Id" class="btnDelete">
+                                            <i class="bi bi-trash3 btn btn-danger"></i>
+                                        </a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    }
                     i++;
                 }
             }
