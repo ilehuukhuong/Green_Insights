@@ -667,9 +667,32 @@ i.bx.bx-send {
     vertical-align: middle;
 }
 
-/* Css for Index of Idea*/
+.user-detail {
+    display: inline-flex;
+    align-items: center;
+}
 
-a.views {
+.user-name {
+    margin-top: 6px;
+    text-shadow: none;
+}
+
+.comment-detail {
+    margin-left: 40px;
+}
+
+.cmt-date {
+    text-shadow: none;
+    font-style: italic;
+}
+
+p.comment-text {
+    margin-top: 10px;
+    margin-bottom: 0;
+}
+    /* Css for Index of Idea*/
+
+     .views {
     color: #ffffff00;
     text-decoration: none;
 }
@@ -1691,5 +1714,7 @@ section.cmt-view {
 i.btn.btn-success.bi.bi-filetype-xls {
     background: seagreen;
 }
+
+
 
 

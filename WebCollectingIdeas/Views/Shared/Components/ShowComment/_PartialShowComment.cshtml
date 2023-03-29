@@ -6,18 +6,26 @@
         <div class="comment text-justify">
             @if (obj.isDisplay == false)
             {
-                <h4>
-                    Anonymous
-                </h4>
+                <div class="user-detail">
+                    <img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
+                    <h5 class="user-name">
+                        Anonymous
+                    </h5>
+                </div>
             }
             else
             {
-                <h4>@obj.ApplicationUser.FirstName @obj.ApplicationUser.LastName</h4>
+                <div class="user-detail">
+                    <img src="/AccountProfile/acc (1).jpg" class="account-avatar-image" />
+                    <h5 class="user-name">@obj.ApplicationUser.FirstName @obj.ApplicationUser.LastName</h5>
+                </div>
             }
-            <h6>@String.Format("{0:MMMM dd, yyyy}", obj.CreateDatetime)</h6>
-            <p>@obj.Content</p>
+            <div class="comment-detail">
+                <strong class="cmt-date"><i class='bx bx-calendar'></i>@String.Format("{0:MMMM dd, yyyy}", obj.CreateDatetime)</strong>
+                <p class="comment-text">@obj.Content</p>
+            </div>
         </div>
-
+        <hr />
     }
 }
 else
