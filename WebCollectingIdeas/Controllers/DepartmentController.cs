@@ -80,33 +80,28 @@ namespace WebCollectingIdeas.Controllers
             }
             return View(obj);
         }
-        public IActionResult Delete(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-            //var categoryformDb = _db.Categories.Find(id);
-            var departmentformDbFirst = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-            //var categoryformDbsingle = _db.Categories.SingleOrDefault(u => u.Id == id);
-            if (departmentformDbFirst == null)
-            {
-                return NotFound();
-            }
-            return View(departmentformDbFirst);
-        }
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public IActionResult Delete(int id)
         {
-            var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == id);
-            if (obj != null)
+            var objTemp = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.DepartmentId == id);
+            if (objTemp == null)
             {
-                _unitOfWork.Department.Remove(obj);
-                _unitOfWork.Save();
-                TempData["Deleted"] = "Delete successfully";
-                return Json(new { success = true });
+                var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == id);
+                if (obj != null)
+                {
+                    _unitOfWork.Department.Remove(obj);
+                    _unitOfWork.Save();
+                    TempData["Deleted"] = "Delete successfully";
+                    return Json(new { success = true });
+                }
+                else
+                {
+                    return NotFound();
+                }
             }
+            TempData["Deleted"] = "Cannot be deleted because there are users link to this department.";
             return Json(new { success = false });
         }
         [HttpPost]
@@ -118,6 +113,15 @@ namespace WebCollectingIdeas.Controllers
                 var items = ids.Split(',');
                 if (items != null && items.Any())
                 {
+                    foreach (var item in items)
+                    {
+                        var objTemp = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.DepartmentId == Convert.ToInt32(item));
+                        if (objTemp != null)
+                        {
+                            TempData["Deleted"] = "Cannot be deleted because there are users link to some departments.";
+                            return Json(new { success = false });
+                        }
+                    }
                     foreach (var item in items)
                     {
                         var obj = _unitOfWork.Department.GetFirstOrDefault(u => u.Id == Convert.ToInt32(item));

@@ -111,6 +111,9 @@
                                 if (rs.success) {
                                     location.reload();
                                 }
+                                else {
+                                    location.reload();
+                                }
                             }
                         });
                     }
@@ -141,7 +144,10 @@
                             id: id },
                         success: function (rs) {
                             if (rs.success) {
-                                $('#trow_' + id).remove();
+                                location.reload();
+                            }
+                            else {
+                                location.reload();
                             }
                         }
                     });

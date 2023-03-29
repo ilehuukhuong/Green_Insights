@@ -50,6 +50,7 @@ namespace CollectingIdeas.DataAccess.DbInitializer
                 Department obj = new Department();
                 obj.Name = SD.Role_User_Administrator;
                 _unitOfWork.Department.Add(obj);
+                _unitOfWork.Save();
             }
             // create roles default
             if (!_roleManager.RoleExistsAsync(SD.Role_User_Administrator).GetAwaiter().GetResult())
