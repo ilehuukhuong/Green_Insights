@@ -312,6 +312,16 @@ div #navbarColor02 {
     display: flex;
 }
 
+.mode-switch {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 /*css for Category and Department*/
 
 .Category-element {
@@ -664,14 +674,11 @@ a.views {
     text-decoration: none;
 }
 
-a.download_zip {
+.download_zip, .download_excel {
     color: #ffffff00;
     text-decoration: none;
-}
-
-a.download_excel {
-    color: #ffffff00;
-    text-decoration: none;
+    margin: 5px;
+    display: inline-block
 }
 
 i.fa.fa-eye.btn.btn-secondary.view-detail {
@@ -1605,6 +1612,84 @@ section.cmt-view {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+.input-group-1 {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 50%;
+    right: 0;
+    justify-content: start;
+    float:left;
+}
+
+#box {
+    float: right;
+    border: 1px outset black;
+    width: 40%;
+    border-radius: 5px;
+    margin: 15px;
+}
+.explain-box {
+    --borderWidth: 3px;
+    background: #fff;
+    position: relative;
+    border-radius: var(--borderWidth);
+}
+
+    .explain-box:after {
+        content: '';
+        position: absolute;
+        top: calc(-1 * var(--borderWidth));
+        left: calc(-1 * var(--borderWidth));
+        height: calc(100% + var(--borderWidth) * 2);
+        width: calc(100% + var(--borderWidth) * 2);
+        background: linear-gradient(60deg, #f79533, #f37055, #ef4e7b, #a166ab, #5073b8, #1098ad, #07b39b, #6fba82);
+        border-radius: calc(2 * var(--borderWidth));
+        z-index: -1;
+        animation: animated 3s ease alternate infinite;
+        background-size: 300% 300%;
+    }
+
+
+@keyframes animated {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.explain-item {
+    list-style: none;
+    width: 30%;
+    text-align: center;
+    margin: 5px;
+    font-size: 12px;
+    display: inline-flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.bx.bxs-circle {
+    margin: 5px;
+}
+.title-box {
+    width: 100%;
+    text-align: center;
+    font-size: 20px;
+    color:orangered;
+    font-style:italic;
+}
+
+i.btn.btn-success.bi.bi-filetype-xls {
+    background: seagreen;
 }
 
 

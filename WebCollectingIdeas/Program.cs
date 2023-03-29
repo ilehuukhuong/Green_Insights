@@ -63,6 +63,7 @@ app.UseStaticFiles();
 app.UseResponseCaching();
 
 app.UseRouting();
+SeedDatabase();
 app.UseAuthentication();
 
 app.UseAuthorization();
@@ -90,3 +91,11 @@ app.UseEndpoints(endpoints => {
     });
 });
 app.Run();
+void SeedDatabase()
+{
+    using(var scope= app.Services.CreateScope())
+    {
+        var dbInitializer = scope .ServiceProvider.GetRequiredService<IDbInitializer>();
+        dbInitializer.Initialize();
+    }
+}
