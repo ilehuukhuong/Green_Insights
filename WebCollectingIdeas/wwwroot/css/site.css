@@ -1027,6 +1027,12 @@ button.btn.btn-warning.delete {
     .show-cmt {
         margin-left: 10em !important;
     }
+
+    .tile_count .tile_stats_count {
+        margin-bottom: 10px;
+        border-bottom: 0;
+        padding-bottom: 10px;
+    }
 }
 
 @media screen and (min-width: 1280px) {
@@ -1715,6 +1721,92 @@ i.btn.btn-success.bi.bi-filetype-xls {
     background: seagreen;
 }
 
+.card.border-light.mb-3 {
+    background: #f8f9fa;
+}
 
+.card-header-statis {
+    background: #dee2e6 !important;
+    padding: var(--bs-card-cap-padding-y) var(--bs-card-cap-padding-x);
+    margin-bottom: 0;
+    color: var(--bs-card-cap-color);
+    border-bottom: var(--bs-card-border-width) solid var(--bs-card-border-color);
+    text-align: center;
+    text-transform: uppercase;
+}
+ .table-data{
+     margin-left:0 !important;
+     color:black !important;
+ }
 
+.task-box {
+    position: relative;
+    border-radius: 12px;
+    width: 50%;
+    margin: 20px 0 10px 10px;
+    padding: 16px;
+    cursor: pointer;
+    box-shadow: 2px 2px 4px 0px rgba(235,235,235,1);
+}
+    .task-box:hover
+    {
+        transform: scale(1.02);
+    }
+.time {
+    margin-bottom: 6px;
+    font-size: 10px;
+}
 
+.task-name {
+    font-size: 14px;
+    font-weight: 500;
+    opacity: 0.6;
+}
+.statistics {
+    display: flex;
+    flex-direction:column;
+}
+.data-content {
+    display:inline-flex;
+    flex: 1 1 auto;
+    color: var(--bs-card-color);
+}
+.data-title {
+    display: flex;
+    justify-content: space-between;
+}
+
+.actor {
+    font-size: 12px;
+    font-style: italic;
+}
+
+.tile_count {
+    margin-bottom: 20px;
+    margin-top: 20px;
+    text-align:center;
+}
+
+    .tile_count .tile_stats_count {
+        border-bottom: 1px solid #D9DEE4;
+        padding: 0 10px 0 20px;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+        position: relative;
+    }
+
+        .tile_count .tile_stats_count span {
+            font-size: 13px;
+        }
+
+        .tile_count .tile_stats_count .count {
+            font-size: 30px;
+            line-height: 47px;
+            font-weight: 600;
+        }
+
+.view-more {
+    float: right;
+    font-size: 13px;
+}
