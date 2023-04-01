@@ -1,11 +1,14 @@
 ﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
+using CollectingIdeas.Utility;
 using DocumentFormat.OpenXml.Office2010.Excel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
+    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
     public class TopicController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

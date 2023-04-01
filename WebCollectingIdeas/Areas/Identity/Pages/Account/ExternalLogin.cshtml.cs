@@ -19,6 +19,7 @@ using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using CollectingIdeas.Models;
 using CollectingIdeas.Utility;
+using CollectingIdeas.DataAccess.Repository.IRepository;
 
 namespace WebCollectingIdeas.Areas.Identity.Pages.Account
 {
@@ -31,13 +32,15 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
         private readonly IUserEmailStore<ApplicationUser> _emailStore;
         private readonly IEmailSender _emailSender;
         private readonly ILogger<ExternalLoginModel> _logger;
+        private readonly IUnitOfWork _unitOfWork;
 
         public ExternalLoginModel(
             SignInManager<ApplicationUser> signInManager,
             UserManager<ApplicationUser> userManager,
             IUserStore<ApplicationUser> userStore,
             ILogger<ExternalLoginModel> logger,
-            IEmailSender emailSender)
+            IEmailSender emailSender,
+            IUnitOfWork unitOfWork)
         {
             _signInManager = signInManager;
             _userManager = userManager;
@@ -45,6 +48,7 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
             _emailStore = GetEmailStore();
             _logger = logger;
             _emailSender = emailSender;
+            _unitOfWork = unitOfWork;
         }
 
         /// <summary>
@@ -156,7 +160,8 @@ namespace WebCollectingIdeas.Areas.Identity.Pages.Account
                 var user = CreateUser();
                 user.FirstName = "External";
                 user.LastName = "Login";
-                user.DepartmentId = 1;
+                var DepartmentTemp = _unitOfWork.Department.GetFirstOrDefault(u => u.Name == "Visitor");
+                user.DepartmentId = DepartmentTemp.Id;
                 user.FullName = "External" + " " + "Login";
                 Random r = new Random();
                 user.Path = @"AccountProfile/acc (" + r.Next(1, 20) + @").jpg";

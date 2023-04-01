@@ -31,13 +31,16 @@
             </div>
             <i class='bx bx-menu' id='btn'></i>
         </div>
-        <div class="src">
-            <form asp-controller="Idea" asp-action="Index" method="get" class="searchform">
-                <i class='bx bx-search-alt'></i>
-                <input type="text" name="Searchtext" placeholder="Search topic.." />
-            </form>
+        @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("Staff"))
+        {
+            <div class="src">
+                <form asp-controller="Idea" asp-action="Index" method="get" class="searchform">
+                    <i class='bx bx-search-alt'></i>
+                    <input type="text" name="Searchtext" placeholder="Search topic.." />
+                </form>
 
-        </div>
+            </div>
+        }
         <ul class="sub-nav">
             <li>
                 <a class="nav-link active" asp-area="" asp-controller="Home" asp-action="Index">
@@ -45,46 +48,60 @@
                     <span class="link_name"> Home</span>
                 </a>
             </li>
-
-            <li>
-                <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">
-                    <i class='bx bx-category-alt'></i>
-                    <span class="link_name"> Category</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="dropdown-item" asp-area="" asp-controller="Department" asp-action="Index">
-                    <i class='bx bx-git-branch'></i>
-                    <span class="link_name"> Department</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="dropdown-item" asp-area="" asp-controller="Topic" asp-action="Index">
-                    <i class='bx bx-news'></i>
-                    <span class="link_name">Topic</span>
-                </a>
-            </li>
-
-            <li>
-                <a class="dropdown-item" asp-area="" asp-controller="Idea" asp-action="Index">
-                    <i class='bx bx-brightness'></i>
-                    <span class="link_name"> Ideas</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" asp-area="" asp-controller="Statistic" asp-action="Index">
-                    <i class='bx bx-stats'></i>
-                    <span class="link_name"> Statitics</span>
-                </a>
-            </li>
-            <li>
-                <a class="dropdown-item" asp-area="" asp-controller="Account" asp-action="Index">
-                    <i class="bi bi-person-fill-gear"></i>
-                    <span class="link_name">  Admin Account</span>
-                </a>
-            </li>
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Category" asp-action="Index">
+                        <i class='bx bx-category-alt'></i>
+                        <span class="link_name"> Category</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Topic" asp-action="Index">
+                        <i class='bx bx-news'></i>
+                        <span class="link_name">Topic</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Statistic" asp-action="Index">
+                        <i class='bx bx-stats'></i>
+                        <span class="link_name"> Statitics</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("Staff"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Idea" asp-action="Index">
+                        <i class='bx bx-brightness'></i>
+                        <span class="link_name"> Ideas</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Administrator"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-area="" asp-controller="Department" asp-action="Index">
+                        <i class='bx bx-git-branch'></i>
+                        <span class="link_name"> Department</span>
+                    </a>
+                </li>
+            }
+            @if (User.IsInRole("Administrator"))
+            {
+                <li>
+                    <a class="dropdown-item" asp-controller="Account" asp-area="" asp-action="Index">
+                        <i class="bi bi-person-fill-gear"></i>
+                        <span class="link_name">  Admin Account</span>
+                    </a>
+                </li>
+            }
             <partial name="_LoginPartial" />
 
         </ul>

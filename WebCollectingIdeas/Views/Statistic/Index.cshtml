@@ -32,7 +32,7 @@
                         </span>
                         <div class="count">@Model.Total_Ideas_without_comment</div>
                         <span class="count_bottom">
-                            Lastest Update: Last week
+                            Lastest Update: Now
                         </span>
                     </div>
                 </div>
@@ -47,12 +47,12 @@
                         {
                             <div class="task-box" style="background:#addeff">
                                 <div class="description-task">
-                                    <div class="time">Create at: @item.CreateDatetime</div>
+                                    <div class="time">Create at: @String.Format("{0:MMMM dd, yyyy}", item.CreateDatetime)</div>
                                     <div class="data-title">
-                                        <div class="task-name">Ideas Name</div>
-                                        <div class="actor">By John</div>
+                                        <div class="task-name">@item.Title</div>
+                                        <div class="actor">By @item.ApplicationUser.FirstName</div>
                                     </div>
-                                    <a class="arrow view-more" href="#">
+                                    <a class="arrow view-more" href="/Idea/Detail/@item.Id">
                                         View more
                                         <i class='bx bx-chevron-right'></i>
                                     </a>
@@ -63,19 +63,18 @@
                         {
                             <div class="task-box" style="background:#ffffc7">
                                 <div class="description-task">
-                                    <div class="time">Create at: @item.CreateDatetime</div>
+                                    <div class="time">Create at: @String.Format("{0:MMMM dd, yyyy}", item.CreateDatetime)</div>
                                     <div class="data-title">
-                                        <div class="task-name">Ideas Name</div>
-                                        <div class="actor">By John</div>
+                                        <div class="task-name">@item.Title</div>
+                                        <div class="actor">By @item.ApplicationUser.FirstName</div>
                                     </div>
-                                    <a class="arrow view-more" href="#">
+                                    <a class="arrow view-more" href="/Idea/Detail/@item.Id">
                                         View more
                                         <i class='bx bx-chevron-right'></i>
                                     </a>
                                 </div>
                             </div>
                         }
-                        
                         i++;
                     }
                 }

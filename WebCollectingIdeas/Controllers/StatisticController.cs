@@ -1,10 +1,13 @@
 ﻿using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models.ViewModel;
+using CollectingIdeas.Utility;
 using DocumentFormat.OpenXml.Vml;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WebCollectingIdeas.Controllers
 {
+    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
     public class StatisticController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

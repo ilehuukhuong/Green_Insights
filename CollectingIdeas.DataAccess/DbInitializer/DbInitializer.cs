@@ -45,7 +45,14 @@ namespace CollectingIdeas.DataAccess.DbInitializer
             {
 
             }
-            if (_unitOfWork.Department.GetAll().Count() == 0)
+            if (_unitOfWork.Department.GetFirstOrDefault(u=>u.Name == "Visitor") == null)
+            {
+                Department obj = new Department();
+                obj.Name = "Visitor";
+                _unitOfWork.Department.Add(obj);
+                _unitOfWork.Save();
+            }
+            if (_unitOfWork.Department.GetFirstOrDefault(u => u.Name == SD.Role_User_Administrator) == null)
             {
                 Department obj = new Department();
                 obj.Name = SD.Role_User_Administrator;
@@ -72,8 +79,8 @@ namespace CollectingIdeas.DataAccess.DbInitializer
                         FirstName = "Admin",
                         LastName = "admin",
                         Path = "/AccountProfile/acc (0).jpg"
-                    }, "abcABC@123").GetAwaiter().GetResult(); //pass: Admin123*
-                ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@gmail.com");
+                    }, "abcABC@123").GetAwaiter().GetResult(); //pass: abcABC@123
+                ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@admin.com");
                 _userManager.AddToRoleAsync(user, SD.Role_User_Administrator).GetAwaiter().GetResult();
             }
 

@@ -15,9 +15,11 @@ using X.PagedList;
 using WebCollectingIdeas.Areas.Identity.Pages.Account;
 using DocumentFormat.OpenXml.Spreadsheet;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebCollectingIdeas.Controllers
 {
+    [Authorize(Roles = SD.Role_User_Administrator)]
     public class AccountController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

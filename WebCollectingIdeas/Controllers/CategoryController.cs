@@ -1,11 +1,14 @@
 ﻿using CollectingIdeas.DataAccess.Data;
 using CollectingIdeas.DataAccess.Repository.IRepository;
 using CollectingIdeas.Models;
+using CollectingIdeas.Utility;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
+    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
