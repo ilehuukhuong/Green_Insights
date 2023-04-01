@@ -686,9 +686,12 @@ i.bx.bx-send {
     font-style: italic;
 }
 
-p.comment-text {
-    margin-top: 10px;
-    margin-bottom: 0;
+.comment-text {
+    margin: 10px 10px 10px 0;
+}
+
+.bi.bi-chat-dots {
+    margin: 0 10px 0 10px;
 }
     /* Css for Index of Idea*/
 
@@ -942,6 +945,12 @@ button.btn.btn-warning.delete {
         margin-top: 10px;
         margin-left: 0;
     }
+
+    .show-cmt {
+        width: 35em !important;
+        margin-left: 70px !important;
+    }
+
 }
 
 @media screen and (min-width: 980px) {
@@ -1024,9 +1033,7 @@ button.btn.btn-warning.delete {
                 font-size: 12px;
             }
 
-    .show-cmt {
-        margin-left: 10em !important;
-    }
+
 
     .tile_count .tile_stats_count {
         margin-bottom: 10px;
@@ -1065,6 +1072,11 @@ button.btn.btn-warning.delete {
     div#photos figure img {
         width: 100%;
         height: 25em !important;
+    }
+
+    .show-cmt {
+        margin-left: 5em !important;
+        width: 30em !important;
     }
 }
 
@@ -1105,6 +1117,10 @@ button.btn.btn-warning.delete {
     div#photos figure img {
         width: 100%;
         height: 32em !important;
+    }
+
+    .show-cmt{
+        width:35em !important;
     }
 }
 
@@ -1597,7 +1613,9 @@ section.cmt-view {
     width: 25em;
     height: auto;
     margin-top: 20px;
-    margin-left: 10px;
+    margin-left: 15px;
+    border: 1px solid darkgray;
+    border-radius: 10px;
 }
 
 .table.tb-role {
@@ -1742,7 +1760,7 @@ i.btn.btn-success.bi.bi-filetype-xls {
 .task-box {
     position: relative;
     border-radius: 12px;
-    width: 50%;
+    width: 100%;
     margin: 20px 0 10px 10px;
     padding: 16px;
     cursor: pointer;
@@ -1767,7 +1785,8 @@ i.btn.btn-success.bi.bi-filetype-xls {
     flex-direction:column;
 }
 .data-content {
-    display:inline-flex;
+    display: flex;
+    flex-wrap: wrap;
     flex: 1 1 auto;
     color: var(--bs-card-color);
 }
