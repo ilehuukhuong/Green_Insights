@@ -280,6 +280,9 @@ namespace WebCollectingIdeas.Controllers
                 comment.ApplicationUserId = userId;
                 if (ModelState.IsValid)
                 {
+                    var tempIdea = _unitOfWork.Idea.GetFirstOrDefault(u => u.Id == comment.IdeaId);
+                    tempIdea.Comments += 1;
+                    _unitOfWork.Idea.Update(tempIdea);
                     _unitOfWork.Comment.Add(comment);
                     _unitOfWork.Save();
                     TempData["Success"] = "Create successfully";

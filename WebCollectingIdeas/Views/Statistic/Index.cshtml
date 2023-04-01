@@ -1,4 +1,6 @@
-﻿@{
+﻿@using CollectingIdeas.Models.ViewModel;
+@model StatisticVM;
+@{
     ViewData["Title"] = "Statistic Page";
 }
 <div class="container">
@@ -28,7 +30,7 @@
                             </i>
                             Total Ideas without comment
                         </span>
-                        <div class="count">2000</div>
+                        <div class="count">@Model.Total_Ideas_without_comment</div>
                         <span class="count_bottom">
                             Lastest Update: Last week
                         </span>
@@ -64,32 +66,47 @@
                 </div>
             </div>
             <div class="data-content">
-                <div class="task-box" style="background: #addeff">
-                    <div class="description-task">
-                        <div class="time">Create at: 08:00AM</div>
-                        <div class="data-title">
-                            <div class="task-name">Ideas Name</div>
-                            <div class="actor">By John</div>
-                        </div>
-                        <a class="arrow view-more" href="#">
-                            View more
-                            <i class='bx bx-chevron-right'></i>
-                        </a>
-                    </div>
-                </div>
-                <div class="task-box" style="background: #ffffc7">
-                    <div class="description-task">
-                        <div class="time">Create at: 08:00AM</div>
-                        <div class="data-title">
-                            <div class="task-name">Ideas Name</div>
-                            <div class="actor">By John</div>
-                        </div>
-                        <a class="arrow view-more" href="#">
-                            View more
-                            <i class='bx bx-chevron-right'></i>
-                        </a>
-                    </div>
-                </div>
+                @if (Model.List_Ideas_without_comment != null && Model.List_Ideas_without_comment.Any())
+                {
+                    var i = 1;
+                    @foreach (var item in Model.List_Ideas_without_comment)
+                    {
+                        @if (i % 2 == 1)
+                        {
+                            <div class="task-box" style="background:#addeff">
+                                <div class="description-task">
+                                    <div class="time">Create at: @item.CreateDatetime</div>
+                                    <div class="data-title">
+                                        <div class="task-name">Ideas Name</div>
+                                        <div class="actor">By John</div>
+                                    </div>
+                                    <a class="arrow view-more" href="#">
+                                        View more
+                                        <i class='bx bx-chevron-right'></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        else
+                        {
+                            <div class="task-box" style="background:#ffffc7">
+                                <div class="description-task">
+                                    <div class="time">Create at: @item.CreateDatetime</div>
+                                    <div class="data-title">
+                                        <div class="task-name">Ideas Name</div>
+                                        <div class="actor">By John</div>
+                                    </div>
+                                    <a class="arrow view-more" href="#">
+                                        View more
+                                        <i class='bx bx-chevron-right'></i>
+                                    </a>
+                                </div>
+                            </div>
+                        }
+                        
+                        i++;
+                    }
+                }
             </div>
         </div>
     </div>

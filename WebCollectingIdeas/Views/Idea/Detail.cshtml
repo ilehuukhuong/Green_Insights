@@ -11,13 +11,20 @@
         <dt class="col-sm-4">
             Full Name
         </dt>
-        @if (Model.isDisplay == true)
+        @if (Model.ApplicationUser.isDelete == true)
         {
-            <dd class="col-sm-6">@Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</dd>
+            <dd class="col-sm-6">This account has been blocked</dd>
         }
         else
         {
-            <dd class="col-sm-6">Anonymous</dd>
+            @if (Model.isDisplay == true)
+            {
+                <dd class="col-sm-6">@Model.ApplicationUser.FirstName @Model.ApplicationUser.LastName</dd>
+            }
+            else
+            {
+                <dd class="col-sm-6">Anonymous</dd>
+            }
         }
         <dt class="col-sm-4">
             Topic Name

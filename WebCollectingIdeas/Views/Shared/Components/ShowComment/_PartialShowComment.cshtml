@@ -4,21 +4,33 @@
     foreach (var obj in Model)
     {
         <div class="comment text-justify">
-            @if (obj.isDisplay == false)
+            @if (obj.ApplicationUser.isDelete == true)
             {
                 <div class="user-detail">
                     <img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
                     <h5 class="user-name">
-                        Anonymous
+                        This account has been blocked
                     </h5>
                 </div>
             }
             else
             {
-                <div class="user-detail">
-                    <img src="/AccountProfile/acc (1).jpg" class="account-avatar-image" />
-                    <h5 class="user-name">@obj.ApplicationUser.FirstName @obj.ApplicationUser.LastName</h5>
-                </div>
+                @if (obj.isDisplay == false)
+                {
+                    <div class="user-detail">
+                        <img src="/AccountProfile/acc (0).jpg" class="account-avatar-image" />
+                        <h5 class="user-name">
+                            Anonymous
+                        </h5>
+                    </div>
+                }
+                else
+                {
+                    <div class="user-detail">
+                        <img src="/@obj.ApplicationUser.Path" class="account-avatar-image" />
+                        <h5 class="user-name">@obj.ApplicationUser.FirstName @obj.ApplicationUser.LastName</h5>
+                    </div>
+                }
             }
             <div class="comment-detail">
                 <strong class="cmt-date"><i class='bx bx-calendar'></i>@String.Format("{0:MMMM dd, yyyy}", obj.CreateDatetime)</strong>
