@@ -1552,6 +1552,7 @@ td.new-items {
     font-family: Montserrat;
     text-align: center;
     padding-top: 20px;
+    vertical-align: middle;
 }
 
 td.name-item {
@@ -1559,6 +1560,7 @@ td.name-item {
     font-weight: 500;
     font-family: Montserrat;
     padding-top: 20px;
+    vertical-align: middle;
 }
 
 .col-3.text-end {
@@ -1741,6 +1743,7 @@ i.btn.btn-success.bi.bi-filetype-xls {
 
 .card.border-light.mb-3 {
     background: #f8f9fa;
+    margin:15px;
 }
 
 .card-header-statis {
@@ -1761,7 +1764,7 @@ i.btn.btn-success.bi.bi-filetype-xls {
     position: relative;
     border-radius: 12px;
     width: 100%;
-    margin: 20px 0 10px 10px;
+    margin: 20px 20px 10px 10px;
     padding: 16px;
     cursor: pointer;
     box-shadow: 2px 2px 4px 0px rgba(235,235,235,1);
@@ -1787,6 +1790,7 @@ i.btn.btn-success.bi.bi-filetype-xls {
 .data-content {
     display: flex;
     flex-wrap: wrap;
+    overflow: auto;
     flex: 1 1 auto;
     color: var(--bs-card-color);
 }
@@ -1826,6 +1830,48 @@ i.btn.btn-success.bi.bi-filetype-xls {
         }
 
 .view-more {
-    float: right;
+    position:absolute;
+    right: 42%;
+    bottom: 5px;
     font-size: 13px;
+}
+
+.data-header {
+    color: black;
+    background: #dee2e6;
+    vertical-align: middle !important;
+}
+
+
+.ano-idea {
+    margin: 0 !important;
+    border-radius: 10px;
+    overflow-y: scroll;
+    overflow-x:hidden;
+}
+
+.btn.read-more {
+    background: indianred;
+    max-width: 50px;
+    height: 25px;
+    font-size: 11px;
+    border-radius: 50%;
+}
+
+    .btn.read-more:hover {
+        background: #f67581;
+    }
+
+.statis-data {
+    justify-content:center
+}
+
+.description {
+    color: black;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 120px;
+    white-space: nowrap;
 }
