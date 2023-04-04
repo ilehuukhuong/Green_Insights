@@ -282,6 +282,7 @@ a#manage {
     padding: 0;
     height: 100vh;
     overflow: hidden;
+    position:relative;
 }
 .or-login {
    position:relative;
@@ -312,6 +313,15 @@ a#manage {
     background: white;
     border-radius: 10px;
     transform: translate(-50%, -50%);
+
+    
+}
+.login2 {
+    width:400px;
+
+}
+.login3 {
+    width:300px;
 }
 
 i.bx.bx-user-circle {
@@ -797,6 +807,8 @@ i.bx.bx-plus.Idea {
     width: 150px;
     display: flex;
     justify-content: center;
+    position:relative;
+    left:30%;
 }
 
 .register-submit {
@@ -814,14 +826,20 @@ i.bx.bx-plus.Idea {
 }
 
 .forget {
-    margin-left: -60px;
-    width: 300px;
+    width: 220px;
     margin-bottom: 10px;
+    justify-content:end;
+    margin-top:5px;
+    display:flex;
+    white-space:nowrap;
 }
 
 .section {
     margin: 10px;
     width:200px;
+    text-align:center;
+    left:20%;
+    position:relative;
 }
 
 /*CSS for interface of Create Ideas, Topic, Category, Department pages*/
@@ -1617,13 +1635,26 @@ td.name-item {
     padding: 8px;
 }
 
-.checkbox a {
+.checkbox1 a {
     color: #2691d9;
     cursor: pointer;
     text-decoration: none;
     font-style: italic;
     font-weight: 600;
-    margin-left: 70px;
+    
+}
+.checkbox1 {
+    display:flex;
+    white-space:nowrap;
+    display:flex;
+    justify-content:space-evenly;
+
+}
+
+.form-floating .login-form {
+    position:relative;
+    width:350px;
+    text-align:center;
 }
 
 
