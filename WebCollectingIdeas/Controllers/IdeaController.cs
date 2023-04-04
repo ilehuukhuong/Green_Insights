@@ -134,7 +134,7 @@ namespace WebCollectingIdeas.Controllers
                 TempData["Deleted"] = "It's too late to create ideas now.";
                 return RedirectToAction("View", "Idea", new { obj.idea.TopicId });
             }
-            if (obj.idea.isAgree == false)
+            if (obj.idea.isAgree != true)
             {
                 obj.CategoryList = _unitOfWork.Category.GetAll().Select(
                     u => new SelectListItem()

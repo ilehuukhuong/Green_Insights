@@ -1787,6 +1787,10 @@ i.btn.btn-success.bi.bi-filetype-xls {
     display: flex;
     flex-direction:column;
 }
+.chart {
+    display: flex;
+    justify-content: center;
+}
 .data-content {
     display: flex;
     flex-wrap: wrap;
@@ -1874,4 +1878,10 @@ i.btn.btn-success.bi.bi-filetype-xls {
     text-overflow: ellipsis;
     max-width: 120px;
     white-space: nowrap;
+}
+#Percentageofideas {
+    display: block;
+    box-sizing: border-box;
+    height: 400px !important;
+    width: 400px !important;
 }
