@@ -10,6 +10,9 @@ namespace CollectingIdeas.Models.ViewModel
     {
         public int Total_Ideas_without_comment { get; set; }
         public IEnumerable<Idea> List_Ideas_without_comment { get; set; }
-
+        public int Total_Ideas_ANONYMOUS { get; set; }
+        public IEnumerable<Idea> List_Ideas_ANONYMOUS { get; set; }
+        public int Total_COMMENT_ANONYMOUS { get; set; }
+        public IEnumerable<Comment> List_COMMENT_ANONYMOUS { get; set; }
     }
 }

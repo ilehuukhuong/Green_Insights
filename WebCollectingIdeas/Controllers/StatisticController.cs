@@ -20,6 +20,10 @@ namespace WebCollectingIdeas.Controllers
             StatisticVM obj = new StatisticVM();
             obj.Total_Ideas_without_comment = _unitOfWork.Idea.GetAll(u => u.Comments == 0).Count();
             obj.List_Ideas_without_comment = _unitOfWork.Idea.GetAll(u => u.Comments == 0, includeProperties: "ApplicationUser").OrderByDescending(x => x.CreateDatetime);
+            obj.Total_Ideas_ANONYMOUS = _unitOfWork.Idea.GetAll(u => u.isDisplay == false).Count();
+            obj.List_Ideas_ANONYMOUS = _unitOfWork.Idea.GetAll(u=>u.isDisplay == false).OrderByDescending(x => x.CreateDatetime);
+            obj.Total_COMMENT_ANONYMOUS = _unitOfWork.Comment.GetAll(u => u.isDisplay == false).Count();
+            obj.List_COMMENT_ANONYMOUS = _unitOfWork.Comment.GetAll(u => u.isDisplay == false, includeProperties: "Idea").OrderByDescending(x => x.CreateDatetime);
             return View(obj);
         }
         [HttpPost]

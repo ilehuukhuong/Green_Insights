@@ -82,93 +82,99 @@
         </div>
     </div>
     <div class="row statis-data">
-    <div class="card border-light mb-3 col-md-5 col-sm-12">
-        <div class="card-header-statis">Anonymous's Ideas</div>
-        <div class=" card-body statistics">
-            <div class="row" style="display:inline-block">
-                <div class="tile_count">
-                    <div class="col-md-12 col-sm-12  tile_stats_count">
-                        <span class="title-count">
-                            <i class="fa fa-user">
-                            </i>
-                            Total Ideas without comment
-                        </span>
-                        <div class="count">10</div>
-                        <span class="count_bottom">
-                            Lastest Update: Now
-                        </span>
+        <div class="card border-light mb-3 col-md-5 col-sm-12">
+            <div class="card-header-statis">Anonymous's Ideas</div>
+            <div class=" card-body statistics">
+                <div class="row" style="display:inline-block">
+                    <div class="tile_count">
+                        <div class="col-md-12 col-sm-12  tile_stats_count">
+                            <span class="title-count">
+                                <i class="fa fa-user">
+                                </i>
+                                Total Anonymous's Ideas
+                            </span>
+                            <div class="count">@Model.Total_Ideas_ANONYMOUS</div>
+                            <span class="count_bottom">
+                                Lastest Update: Now
+                            </span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <table class="table ano-idea">
-                    <thead class="data-header">
-                        <tr>
-                            <th scope="col">Ideas' Name</th>
-                            <th scope="col">Number of likes</th>
-                            <th scope="col">Number of dislikes</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="name-item">abcdf</td>
-                            <td class="new-items">20</td>
-                            <td class="new-items">50</td>
-                            <td class="action">
-                                <div>
-                                    <a class="btn read-more" href="#"><p class="view-button">View</p></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-        </div>
-    </div>
-    
-    <div class="card border-light mb-3 col-md-5 col-sm-12">
-        <div class="card-header-statis">Anonymous's comment</div>
-        <div class=" card-body statistics">
-            <div class="row" style="display:inline-block">
-                <div class="tile_count">
-                    <div class="col-md-12 col-sm-12  tile_stats_count">
-                        <span class="title-count">
-                            <i class="fa fa-user">
-                            </i>
-                            Total Ideas without comment
-                        </span>
-                        <div class="count">10</div>
-                        <span class="count_bottom">
-                            Lastest Update: Now
-                        </span>
-                    </div>
+                <div class="row">
+                    <table class="table ano-idea">
+                        <thead class="data-header">
+                            <tr>
+                                <th scope="col">Ideas' Name</th>
+                                <th scope="col">Number of likes</th>
+                                <th scope="col">Number of dislikes</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.List_Ideas_ANONYMOUS)
+                            {
+                                <tr>
+                                    <td class="name-item">@item.Title</td>
+                                    <td class="new-items">@item.Likes</td>
+                                    <td class="new-items">@item.Dislikes</td>
+                                    <td class="action">
+                                        <div>
+                                            <a class="btn read-more" href="/Idea/Detail/@item.Id"><p class="view-button">View</p></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <div class="row">
-                <table class="table ano-idea">
-                    <thead class="data-header">
-                        <tr>
-                            <th scope="col">Ideas' Name</th>
-                            <th scope="col">Description</th>
-                            <th scope="col">Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="name-item">abcdf</td>
-                            <td class="description">akafdjskdgodsahvdfgsdfgdsgsdgsdfgsdg</td>
-                            <td class="action">
-                                <div>
-                                    <a class="btn read-more" href="#"><p class="view-button">View</p></a>
-                                </div>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+        </div>
+
+        <div class="card border-light mb-3 col-md-5 col-sm-12">
+            <div class="card-header-statis">Anonymous's comment</div>
+            <div class=" card-body statistics">
+                <div class="row" style="display:inline-block">
+                    <div class="tile_count">
+                        <div class="col-md-12 col-sm-12  tile_stats_count">
+                            <span class="title-count">
+                                <i class="fa fa-user">
+                                </i>
+                                Total Anonymous's comment
+                            </span>
+                            <div class="count">@Model.Total_COMMENT_ANONYMOUS</div>
+                            <span class="count_bottom">
+                                Lastest Update: Now
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <table class="table ano-idea">
+                        <thead class="data-header">
+                            <tr>
+                                <th scope="col">Ideas' Name</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.List_COMMENT_ANONYMOUS)
+                            {
+                                <tr>
+                                    <td class="name-item">@item.Idea.Title</td>
+                                    <td class="description">@item.Content</td>
+                                    <td class="action">
+                                        <div>
+                                            <a class="btn read-more" href="/Idea/Detail/@item.Idea.Id"><p class="view-button">View</p></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
-    </div>
     </div>
 </div>
 @section Scripts{
