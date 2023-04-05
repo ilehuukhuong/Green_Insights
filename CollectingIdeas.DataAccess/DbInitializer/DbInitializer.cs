@@ -45,17 +45,17 @@ namespace CollectingIdeas.DataAccess.DbInitializer
             {
 
             }
-            if (_unitOfWork.Department.GetFirstOrDefault(u=>u.Name == "Visitor") == null)
-            {
-                Department obj = new Department();
-                obj.Name = "Visitor";
-                _unitOfWork.Department.Add(obj);
-                _unitOfWork.Save();
-            }
             if (_unitOfWork.Department.GetFirstOrDefault(u => u.Name == SD.Role_User_Administrator) == null)
             {
                 Department obj = new Department();
                 obj.Name = SD.Role_User_Administrator;
+                _unitOfWork.Department.Add(obj);
+                _unitOfWork.Save();
+            }
+            if (_unitOfWork.Department.GetFirstOrDefault(u=>u.Name == "Visitor") == null)
+            {
+                Department obj = new Department();
+                obj.Name = "Visitor";
                 _unitOfWork.Department.Add(obj);
                 _unitOfWork.Save();
             }
