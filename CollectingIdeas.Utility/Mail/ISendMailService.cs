@@ -7,4 +7,6 @@ public interface ISendMailService
     Task SendMail(MailContent mailContent);
 
     Task IdeaSubmissionEmail(string email, string fullname, string title);
+    Task CommentIdeaSubmissionEmail(string email, string fullname, string title);
+
 }

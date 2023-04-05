@@ -26,5 +26,6 @@ namespace CollectingIdeas.Models
         [ValidateNever]
         public string FullName { get; set; }
         public bool isDelete { get; set; }
+        public bool isQA { get; set; }
     }
 }

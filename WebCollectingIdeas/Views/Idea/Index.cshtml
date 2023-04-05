@@ -58,7 +58,7 @@
                                 <a class="views" asp-controller="Idea" asp-action="View" asp-route-TopicId=@item.Id>
                                     <i class="fa fa-eye btn btn-secondary view-detail">  View</i>
                                 </a>
-                                @if (User.IsInRole("Administrator") || User.IsInRole("QAManager"))
+                                @if (User.IsInRole("Administrator") || User.IsInRole("QACoordinator") || User.IsInRole("QAManager"))
                                 {
                                     <a class="download_zip" asp-controller="Idea" asp-action="DownloadZip" asp-route-id=@item.Id>
                                         <i class="btn btn-info bi bi-file-zip">  Export ZIP</i>

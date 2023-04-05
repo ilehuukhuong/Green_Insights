@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WebCollectingIdeas.Controllers
 {
-    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
+    [Authorize(Roles = SD.Role_User_QACoordinator + "," + SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
     public class StatisticController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;

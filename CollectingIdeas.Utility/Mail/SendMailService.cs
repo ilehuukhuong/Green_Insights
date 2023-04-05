@@ -68,8 +68,17 @@ public class SendMailService : ISendMailService
         await SendMail(new MailContent()
         {
             To = email,
-            Subject = "Create successfully",
-            Body = "Thank for using website"
+            Subject = "Create idea for collecting idea",
+            Body = "Thank for submitting your idea to website"
+        });
+    }
+    public async Task CommentIdeaSubmissionEmail(string email, string fullname, string title)
+    {
+        await SendMail(new MailContent()
+        {
+            To = email,
+            Subject = "New comment form collecting idea",
+            Body = "New comment has been post to your idea"
         });
     }
 }

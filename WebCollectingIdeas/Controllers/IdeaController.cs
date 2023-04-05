@@ -17,10 +17,11 @@ using System.Security.Claims;
 using CollectingIdeas.Utility.Mail;
 using X.PagedList;
 using CollectingIdeas.Utility;
+using WebCollectingIdeas.Migrations;
 
 namespace WebCollectingIdeas.Controllers
 {
-    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator + "," + SD.Role_User_Staff)]
+    [Authorize(Roles = SD.Role_User_QACoordinator + "," + SD.Role_User_QAManager + "," + SD.Role_User_Administrator + "," + SD.Role_User_Staff)]
     public class IdeaController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -174,8 +175,9 @@ namespace WebCollectingIdeas.Controllers
                 }
                 _unitOfWork.Idea.Add(obj.idea);
                 _unitOfWork.Save();
-
-                _mailService.IdeaSubmissionEmail("testmailcollectingidea@gmail.com", "", "");
+                var userinfo = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.Id == userId);
+                var userQA = _unitOfWork.ApplicationUser.GetFirstOrDefault(u => u.DepartmentId == userinfo.DepartmentId && u.isQA== true);
+                _mailService.IdeaSubmissionEmail(userQA.Email, "", "");
 
                 TempData["Success"] = "Create successfully";
 
@@ -285,6 +287,8 @@ namespace WebCollectingIdeas.Controllers
                     _unitOfWork.Idea.Update(tempIdea);
                     _unitOfWork.Comment.Add(comment);
                     _unitOfWork.Save();
+                    var ideatemp =_unitOfWork.Idea.GetFirstOrDefault(i => i.Id == comment.IdeaId, includeProperties: "ApplicationUser");
+                    _mailService.CommentIdeaSubmissionEmail(ideatemp.ApplicationUser.Email, "", "");
                     TempData["Success"] = "Create successfully";
                     return RedirectToAction("Detail", "Idea", new { @id = comment.IdeaId });
                 }
@@ -320,7 +324,7 @@ namespace WebCollectingIdeas.Controllers
                 _unitOfWork.Save();
             }
         }
-        [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
+        [Authorize(Roles = SD.Role_User_QACoordinator + "," + SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
         public IActionResult DownloadZip(int id)
         {
             string wwwRootPath = _webHostEnvironment.WebRootPath;

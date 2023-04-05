@@ -64,6 +64,7 @@ namespace CollectingIdeas.DataAccess.DbInitializer
             {
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Administrator)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_QAManager)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(SD.Role_User_QACoordinator)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Staff)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(SD.Role_User_Visitor)).GetAwaiter().GetResult();
             
@@ -78,10 +79,71 @@ namespace CollectingIdeas.DataAccess.DbInitializer
                         DepartmentId = 1,
                         FirstName = "Admin",
                         LastName = "admin",
-                        Path = "/AccountProfile/acc (0).jpg"
+                        Path = "AccountProfile/acc (0).jpg"
                     }, "abcABC@123").GetAwaiter().GetResult(); //pass: abcABC@123
                 ApplicationUser user = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@admin.com");
                 _userManager.AddToRoleAsync(user, SD.Role_User_Administrator).GetAwaiter().GetResult();
+                
+                _userManager.CreateAsync(
+                    new ApplicationUser
+                    {
+                        UserName = "ilehuukhuong@gmail.com",
+                        Email = "ilehuukhuong@gmail.com",
+                        FullName = "Le Huu Khuong",
+                        PhoneNumber = "84385190202",
+                        DepartmentId = 1,
+                        FirstName = "Khuong",
+                        LastName = "Le",
+                        Path = "AccountProfile/acc (0).jpg"
+                    }, "abcABC@123").GetAwaiter().GetResult(); //pass: abcABC@123
+                ApplicationUser userKhuong = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "ilehuukhuong@gmail.com");
+                _userManager.AddToRoleAsync(userKhuong, SD.Role_User_QAManager).GetAwaiter().GetResult();
+
+                _userManager.CreateAsync(
+                    new ApplicationUser
+                    {
+                        UserName = "phamhiep22102002@gmail.com",
+                        Email = "phamhiep22102002@gmail.com",
+                        FullName = "Pham Van Hiep",
+                        PhoneNumber = "84823447445",
+                        isQA = true,
+                        DepartmentId = 2,
+                        FirstName = "Hiep",
+                        LastName = "Pham",
+                        Path = "AccountProfile/acc (0).jpg"
+                    }, "abcABC@123").GetAwaiter().GetResult(); //pass: abcABC@123
+                ApplicationUser userHiep = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "phamhiep22102002@gmail.com");
+                _userManager.AddToRoleAsync(userHiep, SD.Role_User_QACoordinator).GetAwaiter().GetResult();
+
+                _userManager.CreateAsync(
+                    new ApplicationUser
+                    {
+                        UserName = "anhnpgcs200323@fpt.edu.vn",
+                        Email = "anhnpgcs200323@fpt.edu.vn",
+                        FullName = "Nguyen Phuc Anh",
+                        PhoneNumber = "84908984108",
+                        DepartmentId = 2,
+                        FirstName = "Anh",
+                        LastName = "Nguyen",
+                        Path = "AccountProfile/acc (0).jpg"
+                    }, "abcABC@123").GetAwaiter().GetResult(); //pass: abcABC@123
+                ApplicationUser userPA = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "anhnpgcs200323@fpt.edu.vn");
+                _userManager.AddToRoleAsync(userPA, SD.Role_User_Staff).GetAwaiter().GetResult();
+
+                _userManager.CreateAsync(
+                    new ApplicationUser
+                    {
+                        UserName = "congminhs875@gmail.com",
+                        Email = "congminhs875@gmail.com",
+                        FullName = "Leu Minh Cong",
+                        PhoneNumber = "84964696447",
+                        DepartmentId = 2,
+                        FirstName = "Cong",
+                        LastName = "Leu",
+                        Path = "AccountProfile/acc (0).jpg"
+                    }, "abcABC@123").GetAwaiter().GetResult(); //pass: abcABC@123
+                ApplicationUser userCong = _db.ApplicationUsers.FirstOrDefault(u => u.Email == "congminhs875@gmail.com");
+                _userManager.AddToRoleAsync(userCong, SD.Role_User_Staff).GetAwaiter().GetResult();
             }
 
             return;

@@ -109,7 +109,7 @@ namespace WebCollectingIdeas.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Upsert(AccountVM obj, IFormFile? file)
         {
-            obj.Password = "ABCabc123@";
+            obj.Password = "abcABC@123";
             if (ModelState.IsValid)
             {
                 // upload images
@@ -263,6 +263,16 @@ namespace WebCollectingIdeas.Controllers
             }
             var roles = await _userManager.GetRolesAsync(user);
             var result = await _userManager.RemoveFromRolesAsync(user, roles);
+            if (model.Where(x => x.RoleName == "QACoordinator" && x.Selected == true) == null)
+            {
+                user.isQA = true;
+                await _userManager.UpdateAsync(user);
+            }
+            else
+            {
+                user.isQA = false;
+                await _userManager.UpdateAsync(user);
+            }
             if (!result.Succeeded)
             {
                 ModelState.AddModelError("", "Cannot remove user existing roles");

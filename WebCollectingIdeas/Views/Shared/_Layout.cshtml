@@ -31,7 +31,7 @@
             </div>
             <i class='bx bx-menu' id='btn'></i>
         </div>
-        @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("Staff"))
+        @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("QACoordinator") || User.IsInRole("Staff"))
         {
             <div class="src">
                 <form asp-controller="Idea" asp-action="Index" method="get" class="searchform">
@@ -66,7 +66,7 @@
                     </a>
                 </li>
             }
-            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager"))
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("QACoordinator"))
             {
                 <li>
                     <a class="dropdown-item" asp-area="" asp-controller="Statistic" asp-action="Index">
@@ -75,7 +75,7 @@
                     </a>
                 </li>
             }
-            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("Staff"))
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("QACoordinator") || User.IsInRole("Staff"))
             {
                 <li>
                     <a class="dropdown-item" asp-area="" asp-controller="Idea" asp-action="Index">
@@ -98,7 +98,7 @@
                 <li>
                     <a class="dropdown-item" asp-controller="Account" asp-area="" asp-action="Index">
                         <i class="bi bi-person-fill-gear"></i>
-                        <span class="link_name">  Admin Account</span>
+                        <span class="link_name">Manage Account</span>
                     </a>
                 </li>
             }
