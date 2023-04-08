@@ -57,7 +57,7 @@
                     </a>
                 </li>
             }
-            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager"))
+            @if (User.IsInRole("Administrator") || User.IsInRole("QAManager") || User.IsInRole("QACoordinator"))
             {
                 <li>
                     <a class="dropdown-item" asp-area="" asp-controller="Topic" asp-action="Index">

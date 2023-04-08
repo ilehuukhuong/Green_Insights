@@ -8,7 +8,7 @@ using X.PagedList;
 
 namespace WebCollectingIdeas.Controllers
 {
-    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
+    [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator + "," +SD.Role_User_QACoordinator)]
     public class TopicController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
