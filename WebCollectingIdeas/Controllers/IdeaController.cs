@@ -351,7 +351,7 @@ namespace WebCollectingIdeas.Controllers
             byte[] fileBytes = System.IO.File.ReadAllBytes(zipPath);
             return File(fileBytes, MediaTypeNames.Application.Zip, zipFileName);
         }
-        [Authorize(Roles = SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
+        [Authorize(Roles = SD.Role_User_QACoordinator + "," + SD.Role_User_QAManager + "," + SD.Role_User_Administrator)]
         public IActionResult DownloadExcel(int id)
         {
             var ideas = _unitOfWork.Idea.GetAll(i => i.TopicId == id, includeProperties: "Category,ApplicationUser");
